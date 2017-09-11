@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>AdminLTE 2 | Data Tables</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="assets/css/font-awesome.min.css"> 
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="assets/css/ionicons.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="assets/css/dataTables.bootstrap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="assets/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="assets/css/skin-blue.min.css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Google Font -->
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+  <header class="main-header">
+    <!-- Logo -->
+	 <a class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini"><b>A</b>LT</span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><b>Admin</b>LTE</span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
+      <!-- Sidebar toggle button-->
+    
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+           <form class="" method="post" action="login">
+                      <p>Bienvenido(a) <strong  Style="color:#ffffff;"><?php echo $nombre;?></strong> </p>
+                      <div class="nav__iniciar-sesion-next">
+                        <button class="btn btn-default btn-flat" id="btn_ini"  type="submit">
+                        CERRAR SESIÓN</button>
+                      </div>
+             </form>
+            </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+
+      <!-- Sidebar Menu -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">Menu</li>
+        <!-- Optionally, you can add icons to the links -->
+        <li><a href="nominas/listNominas"><i class="fa fa-link"></i> <span>Nominas</span></a></li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>Rutas</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+        </li>
+      </ul>
+      <!-- /.sidebar-menu -->
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Data Tables
+        <small>advanced tables</small>
+      </h1>
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Lista de contratos</h3>
+            </div>
+            <!-- /.box-header -->
+            <form>
+
+    <div class="form-group"> <!-- Full Name -->
+        <label for="full_name_id" class="control-label">Clientes</label>
+        <select  class="form-control" id="full_name_id" name="full_name">
+        	<option value="">Seleccione</option>
+        	<?php
+	        	foreach ($clientes as $c) {
+	        		echo "<option value='".$c["id_cliente"]."'>".strtoupper($c["cliente"])."</option>";
+	        	}
+        		
+        	?>
+        </select> 
+    </div>  
+
+    <div class="form-group"> <!-- Full Name -->
+        <label for="full_name_id" class="control-label">Ejecutivos</label>
+        <select  class="form-control" id="full_name_id" name="full_name">
+        	<option value="">Seleccione</option>
+        	<?php
+	        	foreach ($usuarios as $u) {
+	        		echo "<option value='".$u["id_usuario"]."'>".strtoupper($u["usuario"])."</option>";
+	        	}
+        		
+        	?>
+        </select> 
+    </div>    
+
+ </form>
+ <button>Exportar Excel</button>
+ <div class="box-body">
+    <table id="tabla_nominas" class="table table-bordered table-hover">
+    	<tr>
+    		<td>ESTADO ACTUAL</td><td>EMPRESA GRUPO</td><td>CLIENTE</td><td>PROYECTO</td>
+    		<td>RESPONSABLE COMERCIAL</td><td>RUT</td><td>NOMBRES</td><td>APELLIDO PATERNO</td>
+    		<td>APELLIDO MATERNO</td><td>FECHA NACIMIENTO</td><td>SEXO</td><td>NACIONALIDAD</td>
+    		<td>ESTADO CIVIL</td><td>DIRECCION</td><td>COMUNA</td><td>REGIÓN</td>
+    		<td>TELÉFONO FIJO</td><td>CELULAR</td><td>EMAIL</td><td>TALLA PANTALÓN</td>
+    		<td>TALLA POLERA</td><td>N° CALZADO</td><td>CARGO</td><td>CADENA</td><td>LOCAL/RUTA</td>
+    		<td>TIPO CONTRATO</td><td>FECHA TERMINO</td><td>ANTIGÜEDAD</td><td>ANTIGÜEDAD LINEAL</td>
+    		<td>VACACIONES PROPORCIONALES LINEALES</td><td>AFP</td><td>ISAPRE</td>
+    		<td>FORMA DE PAGO</td><td>BANCO</td><td>N° CUENTA</td>
+    		<td>ENTREGA CELULAR</td><td>ENTREGA TABLET</td><td>ENTREGA NOTEBOOK</td><td>ENTREGA CREDENCIAL</td>
+    		<td>ENTREGA UNIFORME</td><td>ENTREGA EPP</td><td>ENTREGA ACCESO CLUB 360</td>
+    		<td>ENTREGA CLOUD</td><td>ACCESO INTRANET</td><td>ACCESO APENET</td>
+    		<td>CARGAS FAMILIARES</td><td>APLICA FUERO</td><td>APLICA SALA CUNA</td>
+    		<td>PRESTAMOS CAJA</td><td>OBSERVACIONES GENERALES</td>
+    	</tr>
+
+    	<?php
+
+    		foreach($contratos as $c) {
+    			echo "<tr>";
+    			echo "<td>".$c['Estado_Actual']."</td><td>".strtoupper($c['egrupo'])."</td><td>".strtoupper($c['cliente'])."</td>";
+    			echo "<td>".strtoupper($c['nombre_proyecto'])."</td><td>".strtoupper($c['responsable'])."</td><td>".strtoupper($c['rut'])."</td>";
+    			echo "<td>".strtoupper($c['nombres'])."</td><td>".strtoupper($c['ap_paterno'])."</td><td>".strtoupper($c['ap_materno'])."</td>";
+    			echo "<td>".strtoupper($c['Fecha_Nacimiento'])."</td><td>".strtoupper($c['sexo'])."</td><td>".strtoupper($c['Nacionalidad'])."</td>";
+    			echo "<td>".strtoupper($c['Estado_Civil'])."</td><td>".strtoupper($c['Direccion'])."</td><td>".strtoupper($c['comuna'])."</td>";
+    			echo "<td>".strtoupper($c['region'])."</td><td>".strtoupper($c['fijo'])."</td><td>".strtoupper($c['celular'])."</td>";
+    			echo "<td>".strtoupper($c['email'])."</td><td>".strtoupper($c['talla_pantalon'])."</td><td>".strtoupper($c['talla_polera'])."</td>";
+    			echo "<td>".strtoupper($c['talla_calzado'])."</td><td>".strtoupper($c['cargo'])."</td><td>".strtoupper($c['cadena'])."</td>";
+    			echo "<td>".strtoupper($c['local'])."</td><td>".strtoupper($c['tipo_contrato'])."</td><td>".strtoupper($c['Fecha_Termino'])."</td>";
+    			echo "<td>".strtoupper($c['Antiguedad'])."</td><td>".strtoupper($c['Antiguedad_lineal'])."</td><td>".strtoupper($c['vacaciones'])."</td>";
+    			echo "<td>".strtoupper($c['afp'])."</td><td>".strtoupper($c['Prevision_Salud'])."</td><td>".strtoupper($c['fpago'])."</td>";
+    			echo "<td>".strtoupper($c['banco'])."</td><td>".strtoupper($c['ncuenta'])."</td>";
+    			echo "<td><input type='radio' name='rd_entcelular' value='1'>SI
+    					<input type='radio' name='rd_entcelular' value='0'>NO</td>";
+    			echo "<td><input type='radio' name='rd_enttablet' value='1'>SI
+    					<input type='radio' name='rd_enttablet' value='0'>NO</td>";
+    			echo "<td><input type='radio' name='rd_entnote' value='1'>SI
+    					<input type='radio' name='rd_entnote' value='0'>NO</td>";
+    			echo "<td><input type='radio' name='rd_entcredencial' value='1'>SI
+    					<input type='radio' name='rd_entcredencial' value='0'>NO</td>";
+    			echo "<td><input type='radio' name='rd_entuniforme' value='1'>SI
+    					<input type='radio' name='rd_entuniforme' value='0'>NO</td>";
+    			echo "<td><input type='radio' name='rd_entepp' value='1'>SI
+    					<input type='radio' name='rd_entepp' value='0'>NO</td>";
+    			echo "<td><input type='radio' name='rd_entclub360' value='1'>SI
+    					<input type='radio' name='rd_entclub360' value='0'>NO</td>";
+    			echo "<td><input type='radio' name='rd_entcloud' value='1'>SI
+    					<input type='radio' name='rd_entcloud' value='0'>NO</td>";
+    			echo "<td><input type='radio' name='rd_entintranet' value='1'>SI
+    					<input type='radio' name='rd_entintranet' value='0'>NO</td>";
+    			echo "<td><input type='radio' name='rd_entapenet' value='1'>SI
+    					<input type='radio' name='rd_entapenet' value='0'>NO</td>";
+    			echo "<td><input type='text' name='txt_cargas'></td>";
+    			echo "<td><select>
+    					<option value=''>Seleccione</option>
+    					<option value='Maternal'>MATERNAL</option>
+    					<option value='Sindical'>SINDICAL</option>
+    					<option value='Otro'>OTRO</option>
+    					</select></td>";
+    			echo "<td><input type='radio' name='rd_entcelular' value='1'>SI
+    					<input type='radio' name='rd_entcelular' value='0'>NO</td>";
+    			echo "<td><input type='radio' name='rd_salacuna' value='1'>SI
+    					<input type='radio' name='rd_salacuna' value='0'>NO</td>";
+    			echo "<td><textarea name='txt_obs_general'></textarea></td>";
+    			echo "</tr>";
+    		}
+    	?>
+
+    </table>
+</div>
+<!-- /.box -->
+</div>
+	
+        
+
+  <!-- Control Sidebar -->
+  
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+<script src="assets/js/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="assets/js/bootstrap.min.js"></script>
+<!-- DataTables -->
+<script src="assets/js/jquery.dataTables.min.js"></script>
+<script src="assets/js/dataTables.bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="assets/js/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="assets/js/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="assets/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes 
+<script src="../../dist/js/demo.js"></script>-->
+<!-- page script -->
+<script>
+  
+</script>
+</body>
+</html>
