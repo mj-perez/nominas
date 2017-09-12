@@ -186,7 +186,7 @@ class nomina extends CI_model {
 				 i.isapre as Prevision_Salud,
 				 isnull(pa.fpago,'-') as fpago ,
 				 isnull(b.Banco,'-') as banco,
-				 isnull(con.ncuenta,'-') as ncuenta,
+				 isnull(con.ncuenta,'-') as ncuenta
 				 --en.Celular,
 				 --en.Tablet,
 				 --en.Notebook,
@@ -197,10 +197,10 @@ class nomina extends CI_model {
 				 --en.Acceso_Cloud,
 				 --en.Acceso_Intranet,
 				 --en.Acceso_Apenet,
-				 cn.cant_cargasfamiliares as Cargas_Familiares,
-				 cn.fuero,
-				 cn.sala_cuna,
-				 cn.Prestamo_Caja
+				 --cn.cant_cargasfamiliares as Cargas_Familiares,
+				 --cn.fuero,
+				 --cn.sala_cuna,
+				 --cn.Prestamo_Caja
 				 --en.obs_generales
 				from SGI_Contratos con
 				inner join SGI_EGrupo e on(con.id_egrupo=e.id_egrupo)
@@ -219,7 +219,7 @@ class nomina extends CI_model {
 				left join SGI_Isapres i on(i.id_isapre=con.id_salud)
 				left join SGI_FPagos pa on(pa.id_fpago=con.id_fpago)
 				left join SGI_Bancos b on(b.ID_Banco=con.ID_Banco)
-				left join Cargas_Nomina cn on(con.rut=cn.rut)
+				--left join Cargas_Nomina cn on(con.rut=cn.rut)
 				--left join Entregas_Nomina en on(en.id_contrato=con.id_contrato)
 				where cli.id_cliente=".$id_cliente;
         $res = $this->db->query($query);
@@ -292,7 +292,7 @@ class nomina extends CI_model {
 				 i.isapre as Prevision_Salud,
 				 isnull(pa.fpago,'-') as fpago ,
 				 isnull(b.Banco,'-') as banco,
-				 isnull(con.ncuenta,'-') as ncuenta,
+				 isnull(con.ncuenta,'-') as ncuenta
 				 --en.Celular,
 				 --en.Tablet,
 				 --en.Notebook,
@@ -303,10 +303,10 @@ class nomina extends CI_model {
 				 --en.Acceso_Cloud,
 				 --en.Acceso_Intranet,
 				 --en.Acceso_Apenet,
-				 cn.cant_cargasfamiliares as Cargas_Familiares,
-				 cn.fuero,
-				 cn.sala_cuna,
-				 cn.Prestamo_Caja
+				 --cn.cant_cargasfamiliares as Cargas_Familiares,
+				 --cn.fuero,
+				 --cn.sala_cuna,
+				 --cn.Prestamo_Caja
 				 --en.obs_generales
 				from SGI_Contratos con
 				inner join SGI_EGrupo e on(con.id_egrupo=e.id_egrupo)
@@ -325,7 +325,7 @@ class nomina extends CI_model {
 				left join SGI_Isapres i on(i.id_isapre=con.id_salud)
 				left join SGI_FPagos pa on(pa.id_fpago=con.id_fpago)
 				left join SGI_Bancos b on(b.ID_Banco=con.ID_Banco)
-				left join Cargas_Nomina cn on(con.rut=cn.rut)
+				--left join Cargas_Nomina cn on(con.rut=cn.rut)
 				--left join Entregas_Nomina en on(en.id_contrato=con.id_contrato)
 				where p.id_usuario=".$id_usuario;
         $res = $this->db->query($query);
@@ -398,7 +398,7 @@ class nomina extends CI_model {
 				 i.isapre as Prevision_Salud,
 				 isnull(pa.fpago,'-') as fpago ,
 				 isnull(b.Banco,'-') as banco,
-				 isnull(con.ncuenta,'-') as ncuenta,
+				 isnull(con.ncuenta,'-') as ncuenta
 				 --en.Celular,
 				 --en.Tablet,
 				 --en.Notebook,
@@ -409,10 +409,10 @@ class nomina extends CI_model {
 				 --en.Acceso_Cloud,
 				 --en.Acceso_Intranet,
 				 --en.Acceso_Apenet,
-				 cn.cant_cargasfamiliares as Cargas_Familiares,
-				 cn.fuero,
-				 cn.sala_cuna,
-				 cn.Prestamo_Caja,
+				 --cn.cant_cargasfamiliares as Cargas_Familiares,
+				 --cn.fuero,
+				 --cn.sala_cuna,
+				 --cn.Prestamo_Caja,
 				 --en.obs_generales
 				from SGI_Contratos con
 				inner join SGI_EGrupo e on(con.id_egrupo=e.id_egrupo)
@@ -431,7 +431,7 @@ class nomina extends CI_model {
 				left join SGI_Isapres i on(i.id_isapre=con.id_salud)
 				left join SGI_FPagos pa on(pa.id_fpago=con.id_fpago)
 				left join SGI_Bancos b on(b.ID_Banco=con.ID_Banco)
-				left join Cargas_Nomina cn on(con.rut=cn.rut)
+				--left join Cargas_Nomina cn on(con.rut=cn.rut)
 				--left join Entregas_Nomina en on(en.id_contrato=con.id_contrato)
 				where cli.activo=1
 				--and status_contrato='Firmado'

@@ -80,7 +80,7 @@ class nominalist extends CI_Controller {
 	 		$object->getActiveSheet()->setCellValueByColumnAndRow(32 , $column_row, $row['fpago']);
 	 		$object->getActiveSheet()->setCellValueByColumnAndRow(33 , $column_row, $row['banco']);
 	 		$object->getActiveSheet()->setCellValueByColumnAndRow(34 , $column_row, $row['ncuenta']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(35 , $column_row, $row['Celular']);
+	 		/*$object->getActiveSheet()->setCellValueByColumnAndRow(35 , $column_row, $row['Celular']);
 		    $object->getActiveSheet()->setCellValueByColumnAndRow(36 , $column_row, $row['Tablet']);
 	 		$object->getActiveSheet()->setCellValueByColumnAndRow(37 , $column_row, $row['Notebook']);
 	 		$object->getActiveSheet()->setCellValueByColumnAndRow(38 , $column_row, $row['Credencial']);
@@ -90,7 +90,7 @@ class nominalist extends CI_Controller {
 	 		$object->getActiveSheet()->setCellValueByColumnAndRow(42 , $column_row, $row['Acceso_Cloud']);
 	 		$object->getActiveSheet()->setCellValueByColumnAndRow(43 , $column_row, $row['Acceso_Intranet']);
 	 		$object->getActiveSheet()->setCellValueByColumnAndRow(44 , $column_row, $row['Acceso_Apenet']);
-	 		/*$object->getActiveSheet()->setCellValueByColumnAndRow(45 , $column_row, $row['Cant_CargasFamiliares']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(45 , $column_row, $row['Cant_CargasFamiliares']);
 			$object->getActiveSheet()->setCellValueByColumnAndRow(46 , $column_row, $row['Fuero']);
 	 		$object->getActiveSheet()->setCellValueByColumnAndRow(47 , $column_row, $row['Sala_Cuna']);
 			$object->getActiveSheet()->setCellValueByColumnAndRow(48 , $column_row, $row['Prestamo_Caja']);
