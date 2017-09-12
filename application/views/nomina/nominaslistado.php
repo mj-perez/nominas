@@ -113,8 +113,9 @@
     		<th>ESTADO CIVIL</th><th>DIRECCION</th><th>COMUNA</th><th>REGIÓN</th>
     		<th>TELÉFONO FIJO</th><th>CELULAR</th><th>EMAIL</th><th>TALLA PANTALÓN</th>
     		<th>TALLA POLERA</th><th>N° CALZADO</th><th>CARGO</th><th>CADENA</th><th>LOCAL/RUTA</th>
-    		<th>TIPO CONTRATO</th><th>FECHA TERMINO</th><th>ANTIGÜEDAD</th><th>ANTIGÜEDAD LINEAL</th>
-    		<th>VACACIONES PROPORCIONALES LINEALES</th><th>AFP</th><th>ISAPRE</th>
+    		<th>TIPO CONTRATO</th><th>FECHA INICIO</th><th>FECHA TERMINO</th><th>ANTIGÜEDAD</th>
+        <th>ANTIGÜEDAD LINEAL</th>
+    		<th>VACACIONES PROPORCIONALES LINEALES</th><th>AFP</th><th>PREVISIÓN DE SALUD</th>
     		<th>FORMA DE PAGO</th><th>BANCO</th><th>N° CUENTA</th>
     		<th>ENTREGA CELULAR</th><th>ENTREGA TABLET</th><th>ENTREGA NOTEBOOK</th><th>ENTREGA CREDENCIAL</th>
     		<th>ENTREGA UNIFORME</th><th>ENTREGA EPP</th><th>ENTREGA ACCESO CLUB 360</th>
@@ -137,8 +138,8 @@
     			echo "<td>".strtoupper($c['region'])."</td><td>".strtoupper($c['fijo'])."</td><td>".strtoupper($c['celular'])."</td>";
     			echo "<td>".strtoupper($c['email'])."</td><td>".strtoupper($c['talla_pantalon'])."</td><td>".strtoupper($c['talla_polera'])."</td>";
     			echo "<td>".strtoupper($c['talla_calzado'])."</td><td>".strtoupper($c['cargo'])."</td><td>".strtoupper($c['cadena'])."</td>";
-    			echo "<td>".strtoupper($c['local'])."</td><td>".strtoupper($c['tipo_contrato'])."</td><td>".strtoupper($c['Fecha_Termino'])."</td>";
-    			echo "<td>".strtoupper($c['Antiguedad'])."</td><td>".strtoupper($c['Antiguedad_lineal'])."</td><td>".strtoupper($c['vacaciones'])."</td>";
+    			echo "<td>".strtoupper($c['local'])."</td><td>".strtoupper($c['tipo_contrato'])."</td><td>".strtoupper($c['Fecha_Inicio'])."</td><td>".strtoupper($c['Fecha_Termino'])."</td>";
+    			echo "<td>".strtoupper($c['Antiguedad'])."</td><td>".strtoupper($c['Antiguedad_lineal'])."</td><td></td>";
     			echo "<td>".strtoupper($c['afp'])."</td><td>".strtoupper($c['Prevision_Salud'])."</td><td>".strtoupper($c['fpago'])."</td>";
     			echo "<td>".strtoupper($c['banco'])."</td><td>".strtoupper($c['ncuenta'])."</td>";
     			echo "<td><input type='radio' name='rd_entcelular' class='flat-red' value='1'>SI<br> 

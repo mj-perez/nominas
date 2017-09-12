@@ -41,9 +41,10 @@ class nomina extends CI_model {
 				 p.Direccion,
 				 co.comuna,
 				 re.region,
-				 isnull('+56'+p.Fono_Fijo,'-') as fijo,
+				 isnull(p.Fono_Fijo,'-') as fijo,
 				 p.fono_celular as celular,
 				 p.email,
+				 ----isnull(n.e_mail,p.email) as email,
 				 p.talla_pantalon,
 				 isnull(case 
 				 when p.Talla_Polera=1 then 'XS'
@@ -72,29 +73,25 @@ class nomina extends CI_model {
 				 datediff(month,con.Fecha_Ingreso,getdate())
 				 when  datediff(month,con.Fecha_Ingreso,getdate())>=12 then
 				 datediff(month,con.Fecha_Ingreso,getdate())/12 
-				 end as Antiguedad_lineal, 
-				 isnull(datediff(month,con.Fecha_Ingreso,con.Fecha_Retiro)*1.25,0) as vacaciones,
+				 end as Antiguedad_lineal,
+				 --n.vacaciones,
 				 af.afp,
 				 i.isapre as Prevision_Salud,
-				 isnull(pa.fpago,'-') as fpago ,
+				 isnull(pa.fpago,'-') as fpago, 
 				 isnull(b.Banco,'-') as banco,
 				 isnull(con.ncuenta,'-') as ncuenta,
-				 --en.Celular,
-				 --en.Tablet,
-				 --en.Notebook,
-				 --en.Credencial,
-				 --en.Uniforme,
-				 --en.EPP,
-				 --en.Acceso_Club_360,
-				 --en.Acceso_Cloud,
-				 --en.Acceso_Intranet,
-				 --en.Acceso_Apenet,
-				 cn.cant_cargasfamiliares as Cargas_Familiares,
-				 cn.fuero,
-				 cn.sala_cuna,
-				 cn.Prestamo_Caja
-				 --en.obs_generales
+				 --n.dias_trabajados,
+				 --n.nrohoras_extra,
+				 --n.cant_cargas,
+				 --n.sala_cuna,
+				 --n.prestamo_caja,
+				 --n.obs_generales,
+				 --n.id_nomina,
+				 p.id_dsolicitudper
+				 --li.duracion
 				from SGI_Contratos con
+				--Nominas n 
+				--left join SGI_Contratos con on(con.id_contrato=n.id_contrato)
 				inner join SGI_EGrupo e on(con.id_egrupo=e.id_egrupo)
 				inner join SGI_Clientes cli on(con.ID_Cliente=cli.ID_Cliente)
 				inner join SRH_DatosContratadosNomina p on(con.rut=p.rut)
@@ -111,8 +108,8 @@ class nomina extends CI_model {
 				left join SGI_Isapres i on(i.id_isapre=con.id_salud)
 				left join SGI_FPagos pa on(pa.id_fpago=con.id_fpago)
 				left join SGI_Bancos b on(b.ID_Banco=con.ID_Banco)
-				left join Cargas_Nomina cn on(con.rut=cn.rut)
-				--left join Entregas_Nomina en on(en.id_contrato=con.id_contrato)
+				--left join Licencias li on(con.rut=li.rut)
+				--left join Entrega_Nomina en on(n.id_nomina=en.id_nomina)
 				where cli.activo=1
 				--and status_contrato='Firmado'
 				and u.id_perfil=13";
