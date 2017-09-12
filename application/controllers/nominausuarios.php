@@ -17,10 +17,9 @@ class nominausuarios extends CI_Controller {
 			if($id_usuario!= null){
 				$data["nombre"]=$_SESSION["nombre"];
 				$data["usuario"]=$_SESSION["usuario"];
-				$data['contratos']= $this->nomina->contratos();
 				$data['clientes'] = $this->listar->clientes();
 				$data['usuarios'] = $this->listar->usuarios();
-				$data['listado'] = $this->nomina->buscar_contratosusuario($id_usuario);
+				$data['contratos'] = $this->nomina->buscar_contratosusuario($id_usuario);
 				$this->load->view('nomina/nominaslistado',$data);
 			}else{
 				redirect(site_url("nominalist/listNominas"));

@@ -79,21 +79,21 @@ class nomina extends CI_model {
 				 isnull(pa.fpago,'-') as fpago ,
 				 isnull(b.Banco,'-') as banco,
 				 isnull(con.ncuenta,'-') as ncuenta,
-				 en.Celular,
-				 en.Tablet,
-				 en.Notebook,
-				 en.Credencial,
-				 en.Uniforme,
-				 en.EPP,
-				 en.Acceso_Club_360,
-				 en.Acceso_Cloud,
-				 en.Acceso_Intranet,
-				 en.Acceso_Apenet,
+				 --en.Celular,
+				 --en.Tablet,
+				 --en.Notebook,
+				 --en.Credencial,
+				 --en.Uniforme,
+				 --en.EPP,
+				 --en.Acceso_Club_360,
+				 --en.Acceso_Cloud,
+				 --en.Acceso_Intranet,
+				 --en.Acceso_Apenet,
 				 cn.cant_cargasfamiliares as Cargas_Familiares,
 				 cn.fuero,
 				 cn.sala_cuna,
-				 cn.Prestamo_Caja,
-				 en.obs_generales
+				 cn.Prestamo_Caja
+				 --en.obs_generales
 				from SGI_Contratos con
 				inner join SGI_EGrupo e on(con.id_egrupo=e.id_egrupo)
 				inner join SGI_Clientes cli on(con.ID_Cliente=cli.ID_Cliente)
@@ -112,7 +112,7 @@ class nomina extends CI_model {
 				left join SGI_FPagos pa on(pa.id_fpago=con.id_fpago)
 				left join SGI_Bancos b on(b.ID_Banco=con.ID_Banco)
 				left join Cargas_Nomina cn on(con.rut=cn.rut)
-				left join Entregas_Nomina en on(en.id_contrato=con.id_contrato)
+				--left join Entregas_Nomina en on(en.id_contrato=con.id_contrato)
 				where cli.activo=1
 				--and status_contrato='Firmado'
 				and u.id_perfil=13";
@@ -187,21 +187,21 @@ class nomina extends CI_model {
 				 isnull(pa.fpago,'-') as fpago ,
 				 isnull(b.Banco,'-') as banco,
 				 isnull(con.ncuenta,'-') as ncuenta,
-				 en.Celular,
-				 en.Tablet,
-				 en.Notebook,
-				 en.Credencial,
-				 en.Uniforme,
-				 en.EPP,
-				 en.Acceso_Club_360,
-				 en.Acceso_Cloud,
-				 en.Acceso_Intranet,
-				 en.Acceso_Apenet,
+				 --en.Celular,
+				 --en.Tablet,
+				 --en.Notebook,
+				 --en.Credencial,
+				 --en.Uniforme,
+				 --en.EPP,
+				 --en.Acceso_Club_360,
+				 --en.Acceso_Cloud,
+				 --en.Acceso_Intranet,
+				 --en.Acceso_Apenet,
 				 cn.cant_cargasfamiliares as Cargas_Familiares,
 				 cn.fuero,
 				 cn.sala_cuna,
-				 cn.Prestamo_Caja,
-				 en.obs_generales
+				 cn.Prestamo_Caja
+				 --en.obs_generales
 				from SGI_Contratos con
 				inner join SGI_EGrupo e on(con.id_egrupo=e.id_egrupo)
 				inner join SGI_Clientes cli on(con.ID_Cliente=cli.ID_Cliente)
@@ -220,7 +220,7 @@ class nomina extends CI_model {
 				left join SGI_FPagos pa on(pa.id_fpago=con.id_fpago)
 				left join SGI_Bancos b on(b.ID_Banco=con.ID_Banco)
 				left join Cargas_Nomina cn on(con.rut=cn.rut)
-				left join Entregas_Nomina en on(en.id_contrato=con.id_contrato)
+				--left join Entregas_Nomina en on(en.id_contrato=con.id_contrato)
 				where cli.id_cliente=".$id_cliente;
         $res = $this->db->query($query);
         return $res->result_array();
@@ -281,7 +281,7 @@ class nomina extends CI_model {
 				 when  datediff(month,con.Fecha_Ingreso,getdate())>=12 then
 				 datediff(month,con.Fecha_Ingreso,getdate())/12 
 				 end as Antiguedad, 
-				  case 
+				 case 
 				 when  datediff(month,con.Fecha_Ingreso,getdate())<12 then
 				 datediff(month,con.Fecha_Ingreso,getdate())
 				 when  datediff(month,con.Fecha_Ingreso,getdate())>=12 then
@@ -293,21 +293,21 @@ class nomina extends CI_model {
 				 isnull(pa.fpago,'-') as fpago ,
 				 isnull(b.Banco,'-') as banco,
 				 isnull(con.ncuenta,'-') as ncuenta,
-				 en.Celular,
-				 en.Tablet,
-				 en.Notebook,
-				 en.Credencial,
-				 en.Uniforme,
-				 en.EPP,
-				 en.Acceso_Club_360,
-				 en.Acceso_Cloud,
-				 en.Acceso_Intranet,
-				 en.Acceso_Apenet,
+				 --en.Celular,
+				 --en.Tablet,
+				 --en.Notebook,
+				 --en.Credencial,
+				 --en.Uniforme,
+				 --en.EPP,
+				 --en.Acceso_Club_360,
+				 --en.Acceso_Cloud,
+				 --en.Acceso_Intranet,
+				 --en.Acceso_Apenet,
 				 cn.cant_cargasfamiliares as Cargas_Familiares,
 				 cn.fuero,
 				 cn.sala_cuna,
-				 cn.Prestamo_Caja,
-				 en.obs_generales
+				 cn.Prestamo_Caja
+				 --en.obs_generales
 				from SGI_Contratos con
 				inner join SGI_EGrupo e on(con.id_egrupo=e.id_egrupo)
 				inner join SGI_Clientes cli on(con.ID_Cliente=cli.ID_Cliente)
@@ -326,7 +326,7 @@ class nomina extends CI_model {
 				left join SGI_FPagos pa on(pa.id_fpago=con.id_fpago)
 				left join SGI_Bancos b on(b.ID_Banco=con.ID_Banco)
 				left join Cargas_Nomina cn on(con.rut=cn.rut)
-				left join Entregas_Nomina en on(en.id_contrato=con.id_contrato)
+				--left join Entregas_Nomina en on(en.id_contrato=con.id_contrato)
 				where p.id_usuario=".$id_usuario;
         $res = $this->db->query($query);
         return $res->result_array();
@@ -399,21 +399,21 @@ class nomina extends CI_model {
 				 isnull(pa.fpago,'-') as fpago ,
 				 isnull(b.Banco,'-') as banco,
 				 isnull(con.ncuenta,'-') as ncuenta,
-				 en.Celular,
-				 en.Tablet,
-				 en.Notebook,
-				 en.Credencial,
-				 en.Uniforme,
-				 en.EPP,
-				 en.Acceso_Club_360,
-				 en.Acceso_Cloud,
-				 en.Acceso_Intranet,
-				 en.Acceso_Apenet,
+				 --en.Celular,
+				 --en.Tablet,
+				 --en.Notebook,
+				 --en.Credencial,
+				 --en.Uniforme,
+				 --en.EPP,
+				 --en.Acceso_Club_360,
+				 --en.Acceso_Cloud,
+				 --en.Acceso_Intranet,
+				 --en.Acceso_Apenet,
 				 cn.cant_cargasfamiliares as Cargas_Familiares,
 				 cn.fuero,
 				 cn.sala_cuna,
 				 cn.Prestamo_Caja,
-				 en.obs_generales
+				 --en.obs_generales
 				from SGI_Contratos con
 				inner join SGI_EGrupo e on(con.id_egrupo=e.id_egrupo)
 				inner join SGI_Clientes cli on(con.ID_Cliente=cli.ID_Cliente)
@@ -432,7 +432,7 @@ class nomina extends CI_model {
 				left join SGI_FPagos pa on(pa.id_fpago=con.id_fpago)
 				left join SGI_Bancos b on(b.ID_Banco=con.ID_Banco)
 				left join Cargas_Nomina cn on(con.rut=cn.rut)
-				left join Entregas_Nomina en on(en.id_contrato=con.id_contrato)
+				--left join Entregas_Nomina en on(en.id_contrato=con.id_contrato)
 				where cli.activo=1
 				--and status_contrato='Firmado'
 				and u.id_perfil=13";

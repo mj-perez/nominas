@@ -35,7 +35,7 @@ class nominalist extends CI_Controller {
 	 	$table_columns = array("Estado Actual","Empresa Grupo","Cliente","Proyecto","Responsable Comercial","Rut","Nombres","Apellido Paterno","Apellido Materno","Fecha de Nacimiento","Sexo","Nacionalidad","Estado Civil"
 	 	,"Direccion","Comuna","Region","Telefono Fijo","Celular","E-mail","Talla Pantalon","Talla Polera","Talla Calzado","Cargo","Cadena","Local/Ruta","Tipo de Contrato","Fecha de Termino","Antiguedad","Antiguedad Lineal"
 		,"Vacaciones","Afp","Isapre","Forma de Pago","Banco","Nº de Cuenta","Entrega Celular","Entrega Tablet","Entrega Notebook","Entrega Credencial","Entrega Uniforme","Entrega EPP","Entrega Acceso club 360","Entrega Cloud"
-		,"Acceso Intranet","Acceso Apenet","Cargas Familiares","Aplica fuero","Aplica Sala Cuna","Prestamos Caja","Observaciones Generales");
+		,"Acceso Intranet","Acceso Apenet","Cargas Legales","Aplica fuero","Aplica Sala Cuna","Prestamos Caja","Observaciones Generales");
 		$excel_row = 0;
 	 	foreach($table_columns as $field)
 	 	{	 
@@ -103,7 +103,7 @@ class nominalist extends CI_Controller {
 	 		$object->getActiveSheet()->getColumnDimension($columnID)->setAutoSize(true);
 
 		}
-	 	$object->getActiveSheet()->getStyle('A1:Z1')->applyFromArray(array('font' => array(
+	 	$object->getActiveSheet()->getStyle('A1:BF1')->applyFromArray(array('font' => array(
             'bold'=> true,
             'size'  => 13,
         )));

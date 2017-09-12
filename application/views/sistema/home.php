@@ -30,7 +30,7 @@
              <form method="post" action="login">
                       <li>Bienvenido(a) <strong  Style="color:#ffffff;"><?php echo $nombre;?></strong> </li>
                       <div class="nav__iniciar-sesion-next">
-                        <button class="btn btn-default btn-flat" id="btn_ini"  type="submit" style="height:29px; width:125px text-align:center;">
+                        <button class="form-control btn btn-primary" id="btn_ini"  type="submit" style="height:29px; width:120px; text-align:center; background-color: #3c5475;">
                         CERRAR SESIÓN</button>
                       </div>
              </form>
@@ -43,7 +43,7 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">Menu</li>
         <li><a href="nominalist/listNominas"><i class="fa fa-link"></i> <span>Lista de contratados</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Rutas</span>
+        <li><a href="#"><i class="fa fa-link"></i> <span>Reporte coberturas</span>
           </a>
         </li>
       </ul>
