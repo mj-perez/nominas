@@ -17,9 +17,13 @@ class nominalist extends CI_Controller {
 	    if(isset($_SESSION["sesion"])){	
 			$data["nombre"]=$_SESSION["nombre"];
 			$data["usuario"]=$_SESSION["usuario"];
+			$this->load->view('contenido');
+			$this->load->view('layout/layout_nominas',$data);
+
 			$data['contratos']= $this->nomina->contratos();
 			$data['clientes'] = $this->listar->clientes();
 			$data['usuarios'] = $this->listar->usuarios();
+			$this->load->view('layout/aside',$data);
 			$this->load->view('nomina/nominaslistado',$data);
 		}else{
 			redirect(site_url("menu"));
@@ -114,6 +118,41 @@ class nominalist extends CI_Controller {
 	 	header('Content-Type: application/vnd.ms-excel');
 	 	header('Content-Disposition: attachment;filename="Lista de Contratos.xls"');
 	 	$object_writer->save('php://output');
+	}
+	function listNominasBonos(){
+	    if(isset($_SESSION["sesion"])){	
+			$data["nombre"]=$_SESSION["nombre"];
+			$data["usuario"]=$_SESSION["usuario"];
+			$this->load->view('contenido');
+			$this->load->view('layout/layout_nominas',$data);
+
+			$data['contratos']= $this->nomina->contratos();
+			$data['clientes'] = $this->listar->clientes();
+			$data['usuarios'] = $this->listar->usuarios();
+			$this->load->view('layout/aside',$data);
+			$this->load->view('nomina/nominaslistadobonos',$data);
+		}else{
+			redirect(site_url("menu"));
+		}
+	}
+
+	function reportes(){
+	    if(isset($_SESSION["sesion"])){	
+			$data["nombre"]=$_SESSION["nombre"];
+			$data["usuario"]=$_SESSION["usuario"];
+			$this->load->view('contenido');
+			
+
+			$data['contratos']= $this->nomina->contratos();
+			$data['clientes'] = $this->listar->clientes();
+			$data['usuarios'] = $this->listar->usuarios();
+			$this->load->view('layout/layout_nominas',$data);
+			$this->load->view('layout/aside',$data);
+			$this->load->view('nomina/reportes',$data);
+
+		}else{
+			redirect(site_url("menu"));
+		}
 	}
 	 	
 }

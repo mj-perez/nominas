@@ -1,67 +1,19 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Lista de Contratados</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="/nominas/assets/css/bootstrap.min.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="/nominas/assets/css/font-awesome.min.css"> 
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="/nominas/assets/css/ionicons.min.css">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="/nominas/assets/css/dataTables.bootstrap.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="/nominas/assets/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="/nominas/assets/css/skin-blue.min.css">
-  <!-- iCheck for checkboxes and radio inputs -->
-  <link rel="stylesheet" href="/nominas/assets/css/all.css">
-
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-</head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
   <header class="main-header">
-	 <a class="logo">
-      <img src="<?php echo  site_url(); ?>/assets/img/logo-progestion2.png"></a>
-  </a>
-    <nav class="navbar navbar-static-top">   
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
-           <form class="" method="post" action="../login">
-                      <li>Bienvenido(a) <strong  Style="color:#ffffff;"><?php echo $nombre;?></strong> </li>
-                      <div class="nav__iniciar-sesion-next">
-                        <button class="form-control btn btn-primary" id="btn_ini"  type="submit" style="height:30px; width:120px; text-align:center; background-color: #3c5475;" >
-                        CERRAR SESIÓN</button>
-                      </div>
-             </form>
-            </ul>
-      </div>
-    </nav>
-  </header>
-  <aside class="main-sidebar">
-    <section class="sidebar">
-      <ul class="sidebar-menu">
-		<li class="header">Menu</li>
-        <li><a href=""><i class="fa fa-link"></i> <span>Lista de contratados</span></a></li>
-        <li>
-          <a href="#"><i class="fa fa-link"></i> <span>Reporte coberturas</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-        </li>
-      </ul>
-    </section>
-  </aside>  
+    <!-- Logo -->
+    <a href="../../index2.html" class="logo">
+         <span class="logo-mini"><b>Pro</b>G</span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><b>Grupo</b>Progestion</span>
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+         </a>
+</header>
+  
   <div class="content-wrapper">  
     <section class="content-header">
       <h1>
@@ -104,137 +56,267 @@
 		  </td>
 	</form>
  </table>
- <div class="table-responsive" style= "width: 100%; height: 10%; overflow: scroll; padding: 2%">
-    <table id="tabla_nominas" class="table table-bordered table-striped" align="center">
-    	<tr> 
-    		<th>ESTADO ACTUAL</th><th>EMPRESA GRUPO</th><th>CLIENTE</th><th>PROYECTO</th>
-    		<th>RESPONSABLE COMERCIAL</th><th>RUT</th><th>NOMBRES</th><th>APELLIDO PATERNO</th>
-    		<th>APELLIDO MATERNO</th><th>FECHA NACIMIENTO</th><th>SEXO</th><th>NACIONALIDAD</th>
-    		<th>ESTADO CIVIL</th><th>DIRECCION</th><th>COMUNA</th><th>REGIÓN</th>
-    		<th>TELÉFONO FIJO</th><th>CELULAR</th><th>EMAIL</th><th>TALLA PANTALÓN</th>
-    		<th>TALLA POLERA</th><th>N° CALZADO</th><th>CARGO</th><th>CADENA</th><th>LOCAL/RUTA</th>
-    		<th>TIPO CONTRATO</th><th>FECHA INICIO</th><th>FECHA TERMINO</th><th>ANTIGÜEDAD</th>
-        <th>ANTIGÜEDAD LINEAL</th>
-    		<th>VACACIONES PROPORCIONALES LINEALES</th><th>AFP</th><th>PREVISIÓN DE SALUD</th>
-    		<th>FORMA DE PAGO</th><th>BANCO</th><th>N° CUENTA</th>
-    		<th>ENTREGA CELULAR</th><th>ENTREGA TABLET</th><th>ENTREGA NOTEBOOK</th><th>ENTREGA CREDENCIAL</th>
-    		<th>ENTREGA UNIFORME</th><th>ENTREGA EPP</th><th>ENTREGA ACCESO CLUB 360</th>
-    		<th>ENTREGA CLOUD</th><th>ACCESO INTRANET</th><th>ACCESO APENET</th>
-    		<th>CARGAS LEGALES</th><th>APLICA FUERO</th><th>APLICA SALA CUNA</th>
-    		<th>PRESTAMOS CAJA</th><th>OBSERVACIONES GENERALES</th>
-    	</tr>
-		
-		
 
-    	<?php
+<div class="col-xl-12">
+    <table id="tabla_nominas" class="stripe row-border order-column" >
+  	   <thead>
+            <tr> 
+                <th>Rut</th>
+                <th>Nombres</th>
+                <th>Apellido Pa</th>
+    		    <th>CodigoNomina</th>
+                <th>Empresa</th>
+                <th>Estado del Contrato</th>
+                <th>Cliente</th>
+                <th>Proyecto</th>
+    		    <th>Coordinador</th>
+                <th>Cadena***</th>
+                <th>Local***</th>
+                <th>Fecha de Inicio</th>
+    		    <th>Fecha Termino</th>
+                <th>Tipo contrato</th>
+                <th>Cargo</th>
+                <th>Codigo Remuneracion(?)</th>
+    		    <th>Supervisor</th>
+                <th>Días Trabajados</th>
+                <!-- <th>Nombre Concatenar(?)</th> -->
+                <th>Categoría(?)</th>
+    		    <th>Sueldo Base</th>
+                <th>Sueldo Proporcional</th>
+                <th>Gratificaciòn</th>
+                <th>Bono Cualitativo</th>
+    		    <th>Bono Cuantitativo</th>
+                <th>Colacion***</th>
+                <th>Movilizacion</th>
+                <th>Antiguedad</th>
+                <th>Antiguedad Lineal</th>
+                <th>Apellido Ma</th>
+    		    <th>Sexo</th>
+                <th>Fecha nacimiento</th>
+                <th>Nacionalidad</th>
+    		    <th>Estado Civil</th>
+                <th>Direccion</th>
+                <th>Comuna</th>
+    		    <th>Region</th>
+                <th>Ciudad</th>
+                <th>Telefono Fijo</th>
+                <th>Celular</th>
+    		    <th>Mail</th>
+                <th>Talla Pantalon</th>
+                <th>Talla Polera</th>
+    		    <th>Talla camisa</th>
+                <th>Talla zapato</th>
+                <th>AFP</th>
+    		    <th>Isapre</th>
+                <th>Forma de Pago</th>
+                <th>Banco</th>
+    		    <th>Nº de cuenta</th>
+                <th>Bonos</th>
+                <th>Vacaciones Proporcionales</th>
+                <th>Horas Extras</th>
+                <th>Valor horas extras</th>
+                <th>Aguinaldo</th>
+                <th>Total imponible</th>
+                <th>Movilizacion variable</th>
+                <th>Total haberes</th>
+                <th>Viaticos</th>
+                <th>Descuento previsional</th>
+                <th>Descuento de SIS</th>
+                <th>Descuento Mutual</th>
+                <th>Descuento seguro de cesantia</th>
+                <th>Provicion vacaciones</th>
+                <th>Provicion Finiquitos</th>
+                <th>Total costo personal</th>
+                <th>Comocion total agencia(?)</th>
+                <th>Costo Cliente(?)</th>
+                <th>Llegada full time (?)</th>
+                <th>Llegada part time (?)</th>
+                <th>Llegada supervisor</th>
+                <th>Entrega Celular</th>
+                <th>Documento Celular</th>
+                <th>Entrega Tablet </th>
+                <th>Documento Tablet </th>
+                <th>Entrega Notebook</th>
+                <th>Documento Notebook</th>
+                <th>Entrega Credencial</th>
+                <th>Documento Credencial</th>
+                <th>Entrega Uniforme</th>
+                <th>Documento Uniforme</th>
+                <th>Entrega EPP (?)</th>
+                <th>Documento EPP (?)</th>
+                <th>Entrega Club 360</th>
+                <th>Documento Club 360</th>
+                <th>Entrega cloud</th>
+                <th>Documento cloud</th>
+                <th>Entega Intranet</th>
+                <th>Documento Intranet</th>
+                <th>Entrega Apenet</th>
+                <th>Documento Apenet</th>
+                <th>Cargas Familiares</th>
+                <th>Fuero</th>
+                <th>Sala de cuna</th>
+                <th>Prestamo Caja</th>
+                <th>Observaciones Generales(?)</th>
+                </tr>
+        </thead>
+        
+<tbody>
+<?php
 
-    		foreach($contratos as $c) {
-    			echo "<tr>";
-    			echo "<td>".$c['Estado_Actual']."</td><td>".strtoupper($c['egrupo'])."</td><td>".strtoupper($c['cliente'])."</td>";
-    			echo "<td>".strtoupper($c['nombre_proyecto'])."</td><td>".strtoupper($c['responsable'])."</td><td>".strtoupper($c['rut'])."</td>";
-    			echo "<td>".strtoupper($c['nombres'])."</td><td>".strtoupper($c['ap_paterno'])."</td><td>".strtoupper($c['ap_materno'])."</td>";
-    			echo "<td>".strtoupper($c['Fecha_Nacimiento'])."</td><td>".strtoupper($c['sexo'])."</td><td>".strtoupper($c['Nacionalidad'])."</td>";
-    			echo "<td>".strtoupper($c['Estado_Civil'])."</td><td>".strtoupper($c['Direccion'])."</td><td>".strtoupper($c['comuna'])."</td>";
-    			echo "<td>".strtoupper($c['region'])."</td><td>".strtoupper($c['fijo'])."</td><td>".strtoupper($c['celular'])."</td>";
-    			echo "<td>".strtoupper($c['email'])."</td><td>".strtoupper($c['talla_pantalon'])."</td><td>".strtoupper($c['talla_polera'])."</td>";
-    			echo "<td>".strtoupper($c['talla_calzado'])."</td><td>".strtoupper($c['cargo'])."</td><td>".strtoupper($c['cadena'])."</td>";
-    			echo "<td>".strtoupper($c['local'])."</td><td>".strtoupper($c['tipo_contrato'])."</td><td>".strtoupper($c['Fecha_Inicio'])."</td><td>".strtoupper($c['Fecha_Termino'])."</td>";
-    			echo "<td>".strtoupper($c['Antiguedad'])."</td><td>".strtoupper($c['Antiguedad_lineal'])."</td><td></td>";
-    			echo "<td>".strtoupper($c['afp'])."</td><td>".strtoupper($c['Prevision_Salud'])."</td><td>".strtoupper($c['fpago'])."</td>";
-    			echo "<td>".strtoupper($c['banco'])."</td><td>".strtoupper($c['ncuenta'])."</td>";
-    			echo "<td><input type='radio' name='rd_entcelular' class='flat-red' value='1'>SI<br> 
-    					<input type='radio' name='rd_entcelular' class='flat-red' value='0'>NO</td>";
-    			echo "<td><input type='radio' name='rd_enttablet' class='flat-red' value='1'>SI<br> 
-    					<input type='radio' name='rd_enttablet' class='flat-red' value='0'>NO</td>";
-    			echo "<td><input type='radio' name='rd_entnote' class='flat-red' value='1'>SI<br> 
-    					<input type='radio' name='rd_entnote' class='flat-red' value='0'>NO</td>";
-    			echo "<td><input type='radio' name='rd_entcredencial' class='flat-red' value='1'>SI<br> 
-    					<input type='radio' name='rd_entcredencial' class='flat-red' value='0'>NO</td>";
-    			echo "<td><input type='radio' name='rd_entuniforme' class='flat-red' value='1'>SI<br> 
-    					<input type='radio' name='rd_entuniforme' class='flat-red' value='0'>NO</td>";
-    			echo "<td><input type='radio' name='rd_entepp' class='flat-red' value='1'>SI<br> 
-    					<input type='radio' name='rd_entepp' class='flat-red' value='0'>NO</td>";
-    			echo "<td><input type='radio' name='rd_entclub360' class='flat-red' value='1'>SI<br> 
-    					<input type='radio' name='rd_entclub360' class='flat-red' value='0'>NO</td>";
-    			echo "<td><input type='radio' name='rd_entcloud' class='flat-red' value='1'>SI<br> 
-    					<input type='radio' name='rd_entcloud' class='flat-red' value='0'>NO</td>";
-    			echo "<td><input type='radio' name='rd_entintranet' class='flat-red' value='1'>SI<br> 
-    					<input type='radio' name='rd_entintranet' class='flat-red' value='0'>NO</td>";
-    			echo "<td><input type='radio' name='rd_entapenet' class='flat-red' value='1'>SI<br> 
-    					<input type='radio' name='rd_entapenet' class='flat-red' value='0'>NO</td>";
-    			echo "<td><select>
-    					<option value=''>Seleccione</option>
-						<option value='0'>0</option>
-    					<option value='1'>1</option>
-    					<option value='2'>2</option>
-    					<option value='3'>3</option>
-						<option value='4'>4</option>
-						<option value='5'>5</option>
-						<option value='6'>6</option>						
-    					</select></td>";
-    			echo "<td><select>
-    					<option value=''>Seleccione</option>
-    					<option value='Maternal'>MATERNAL</option>
-    					<option value='Sindical'>SINDICAL</option>
-    					<option value='Otro'>OTRO</option>
-    					</select></td>";
-    			echo "<td><input type='radio' name='rd_entcelular' class='flat-red' value='1'>SI<br> 
-    					<input type='radio' name='rd_entcelular' class='flat-red' value='0'>NO</td>";
-    			echo "<td><input type='radio' name='rd_salacuna' class='flat-red' value='1'>SI<br> 
-    					<input type='radio' name='rd_salacuna' class='flat-red' value='0'>NO</td>";
-    			echo "<td><textarea name='txt_obs_general'></textarea></td>";
-    			echo "</tr>";
-    		}
-			
-			
-    	?>
-
+foreach($contratos as $c) {
+echo "     <tr>
+                <td>".strtoupper($c['rut'])."           </td>
+                <td>".strtoupper($c['nombres'])."       </td>
+                <td>".strtoupper($c['ap_paterno'])."    </td>        
+                <td>CodigoNomina                        </td>
+                <td>".strtoupper($c['egrupo'])."        </td>
+                <td>".$c['Estado_Actual']."             </td>
+                <td>".strtoupper($c['cliente'])."       </td>
+                <td>".strtoupper($c['nombre_proyecto'])."</td>
+                <td>".strtoupper($c['responsable'])."   </td>
+                <td>".strtoupper($c['cadena'])."        </td>
+                <td>".strtoupper($c['local'])."         </td>
+                <td>".strtoupper($c['Fecha_Inicio'])."</td>
+                <td>".strtoupper($c['Fecha_Termino'])." </td>
+                <td>".strtoupper($c['tipo_contrato'])." </td>
+                <td>".strtoupper($c['cargo'])."         </td>
+                <td>Codigo Remuneracion                 </td>
+                <td>Supervisor(?)                       </td>
+                <td><input type='text' id='row-1-age' name='row-1-age' placeholder='Días Trabajados'></td>
+                <td>Categoria(?)                        </td>
+                <td>Sueldo Base                         </td>
+                <td><input type='text' id='row-1-age' name='row-1-age' placeholder='(SB/30)*DT'></td>
+                <td><input type='text' id='row-1-age' name='row-1-age' placeholder='(SBP*0,25)'></td>
+                <td><input type='text' id='row-1-age' name='row-1-age' placeholder='(BCL/30)*DT'></td>
+                <td><input type='text' id='row-1-age' name='row-1-age' placeholder='(BCT/30)*DT'></td>
+                <td>Colacion                            </td>
+                <td><input type='text' id='row-1-age' name='row-1-age' placeholder='(MV/30)*DT'></td>
+                <td>".strtoupper($c['Antiguedad'])."</td>
+                <td>".strtoupper($c['Antiguedad_lineal'])."</td>
+                <td>".strtoupper($c['ap_materno'])."</td>
+                <td>".strtoupper($c['sexo'])."</td>
+                <td>".strtoupper($c['Fecha_Nacimiento'])."</td>
+                <td>".strtoupper($c['Nacionalidad'])."</td>
+                <td>".strtoupper($c['Estado_Civil'])."</td>
+                <td>".strtoupper($c['Direccion'])."</td>
+                <td>".strtoupper($c['comuna'])."</td>
+                <td>".strtoupper($c['region'])."</td>
+                <td>Ciudad                            </td>
+                <td>".strtoupper($c['fijo'])."</td>
+                <td>".strtoupper($c['celular'])."</td>
+                <td>".strtoupper($c['email'])."</td>
+                <td>".strtoupper($c['talla_pantalon'])."</td>
+                <td>".strtoupper($c['talla_polera'])."</td>
+                <td>".strtoupper($c['talla_calzado'])."</td>
+                <td>Talla zapato                      </td>
+                <td>".strtoupper($c['afp'])."</td>
+                <td>".strtoupper($c['Prevision_Salud'])."</td>
+                <td>".strtoupper($c['fpago'])."</td>
+                <td>".strtoupper($c['banco'])."</td>
+                <td>".strtoupper($c['ncuenta'])."</td>
+                <td><input type='text' id='row-1-age' name='row-1-age' placeholder='Bonos(?)'></td>
+                <td>".strtoupper($c['vacaciones'])."</td>
+                <td><input type='text' id='row-1-age' name='row-1-age' placeholder='Horas Extras'></td>
+                <td><input type='text' id='row-1-age' name='row-1-age' placeholder='(0,007778*HE)*DT'></td>
+                <td><input type='text' id='row-1-age' name='row-1-age' placeholder='Aguinaldo'></td>
+                <td><input type='text' id='row-1-age' name='row-1-age' placeholder='SBP+BCL+BCT+BN+VHE+AG'></td>
+                <td><input type='text' id='row-1-age' name='row-1-age' placeholder='Movilizaion variable'></td>
+                <td><input type='text' id='row-1-age' name='row-1-age' placeholder='TIMP+COL+MV+MV'></td>
+                <td><input type='text' id='row-1-age' name='row-1-age' placeholder='Viaticos'></td>
+                <td><input type='text' id='row-1-age' name='row-1-age' placeholder='Descuento Previcional'></td>
+                <td><input type='text' id='row-1-age' name='row-1-age' placeholder='Descuento Sis'></td>
+                <td><input type='text' id='row-1-age' name='row-1-age' placeholder='Descuento Mutual'></td>
+                <td><input type='text' id='row-1-age' name='row-1-age' placeholder='Descuento seguro de cesantia'></td>
+                <td><input type='text' id='row-1-age' name='row-1-age' placeholder='Provicion Vacaciones'></td>
+                <td><input type='text' id='row-1-age' name='row-1-age' placeholder='Provicion Finiquito'></td>
+                <td><input type='text' id='row-1-age' name='row-1-age' placeholder='Total costo personal'></td>
+                <td><input type='text' id='row-1-age' name='row-1-age' placeholder='Comicion totoal Agencia'></td>
+                <td><input type='text' id='row-1-age' name='row-1-age' placeholder='CostoCliente??'></td>
+                <td><input type='text' id='row-1-age' name='row-1-age' placeholder='Legada full time'></td>
+                <td><input type='text' id='row-1-age' name='row-1-age' placeholder='Llegada parti time'></td>
+                <td><input type='text' id='row-1-age' name='row-1-age' placeholder='Llegada supervisor'></td>
+                <td><input type='checkbox' value=''></td>
+                <td><input type='file' value=''></td>
+                <td><input type='checkbox' value=''></td>
+                <td><input type='file' value=''></td>
+                <td><input type='checkbox' value=''></td>
+                <td><input type='file' value=''></td>
+                <td><input type='checkbox' value=''></td>
+                <td><input type='file' value=''></td>
+                <td><input type='checkbox' value=''></td>
+                <td><input type='file' value=''></td>
+                <td><input type='checkbox' value=''></td>
+                <td><input type='file' value=''></td>
+                <td><input type='checkbox' value=''></td>
+                <td><input type='file' value=''></td>
+                <td><input type='checkbox' value=''></td>
+                <td><input type='file' value=''></td>
+                <td><input type='checkbox' value=''></td>
+                <td><input type='file' value=''></td>
+                <td><input type='checkbox' value=''></td>
+                <td><input type='file' value=''></td>
+                <td><input type='number' id='row-1-age' name='row-1-age' placeholder='Numero de Cargas Familiares'></td>
+                <td><input type='checkbox' value=''></td>
+                <td><input type='checkbox' value=''></td>
+                <td><input type='text' id='row-1-age' name='row-1-age' placeholder='Prestamo de Caja Chica'></td>
+                <td><input type='text' id='row-1-age' name='row-1-age' placeholder='Comentario y/u Observaciones'></td>       </tr>";}?>
+        </tbody>
     </table>
-</div>
-</div>
-</div>
-	
-<!-- jQuery 3 -->
-<script src="/nominas/assets/js/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="/nominas/assets/js/bootstrap.min.js"></script>
-<!-- DataTables -->
-<script src="/nominas/assets/js/jquery.dataTables.min.js"></script>
-<script src="/nominas/assets/js/dataTables.bootstrap.min.js"></script>
-<!-- SlimScroll -->
-<script src="/nominas/assets/js/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="/nominas/assets/js/fastclick.js"></script>
-<!-- AdminLTE App -->
-<script src="/nominas/assets/js/adminlte.min.js"></script>
-<!-- iCheck 1.0.1 -->
-<script src="/nominas/assets/js/icheck.min.js"></script>
-<!-- AdminLTE for demo purposes 
-<script src="../../dist/js/demo.js"></script>-->
-<!-- page script -->
-<script>
-  $(function () {
-    $('#tabla_nominas').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
-    })
-  $(function () {
-   $('input[type="radio"].flat-red').iCheck({
-      radioClass   : 'iradio_flat-aero'
-   }) 
-   }) 
-	
-</script>
+<style type="text/css">
+      th, td { white-space: nowrap; }
+    div.dataTables_wrapper {
+        width: 950px;
+        margin: 0 auto;
+    }
+td.details-control {
+    background: url('../resources/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    background: url('../resources/details_close.png') no-repeat center center;
+}
+</style>
 </body>
-</html>
-
-
-
-
-
+<script type="text/javascript">
     
+ $(document).ready(function() {
+    var table = $('#tabla_nominas').DataTable( {
+      searching   : true,  
+      info        : true,
+      lengthMenu : [[5, 15, 25,50, -1], [5,15, 25, 50, "All"]],
+      buttons: [
+                'csv', 'excel', 'pdf', 'print', 'reset', 'reload'
+            ],
+      scrollX     : true,
+      autoWidth   : true,
+      fixedColumns:   {
+            leftColumns: 3
+        },
+        "language": {
+        "sProcessing":    "Procesando...",
+        "sLengthMenu":    "Mostrar _MENU_ registros",
+        "sZeroRecords":   "No se encontraron resultados",
+        "sEmptyTable":    "Ningún dato disponible en esta tabla",
+        "sInfo":          "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+        "sInfoEmpty":     "Mostrando registros del 0 al 0 de un total de 0 registros",
+        "sInfoFiltered":  "(filtrado de un total de _MAX_ registros)",
+        "sInfoPostFix":   "",
+        "sSearch":        "Buscar:",
+        "sUrl":           "",
+        "sInfoThousands":  ",",
+        "sLoadingRecords": "Cargando...",
+        "oPaginate": {
+            "sFirst":    "Primero",
+            "sLast":    "Último",
+            "sNext":    "Siguiente",
+            "sPrevious": "Anterior"
+        },
+        "oAria": {
+            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+        }
+    }
+    } );
+} );
+    
+</script>

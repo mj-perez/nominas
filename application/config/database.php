@@ -41,8 +41,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |	['swap_pre'] A default table prefix that should be swapped with the dbprefix
 |	['encrypt']  Whether or not to use an encrypted connection.
 |
-|			'mysql' (deprecated), 'sqlsrv' and 'pdo/sqlsrv' drivers accept TRUE/FALSE
-|			'mysqli' and 'pdo/mysql' drivers accept an array with the following options:
+	|			'mysql' (deprecated), 'sqlsrv' and 'pdo/sqlsrv' drivers accept TRUE/FALSE
+	|			'mysqli' and 'pdo/mysql' drivers accept an array with the following options:
 |
 |				'ssl_key'    - Path to the private key file
 |				'ssl_cert'   - Path to the public key certificate file
@@ -74,11 +74,11 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> '',
-	'hostname' => 'DESKTOP-A0T3I4D',
+	'dsn'	   => '',
+	'hostname' => 'localhost',
 	'username' => 'sa',
-	'password' => 'LINA123',
-	'database' => 'RRHH_Chile_prueba',
+	'password' => '123456',
+	'database' => 'RRHH_Chile',
 	'dbdriver' => 'sqlsrv',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -88,7 +88,7 @@ $db['default'] = array(
 	'char_set' => 'utf8',
 	'dbcollat' => 'utf8_general_ci',
 	'swap_pre' => '',
-	'encrypt' => FALSE,
+	'encrypt'  => FALSE,
 	'compress' => FALSE,
 	'stricton' => FALSE,
 	'failover' => array(),

@@ -1,81 +1,113 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Sistema de nominas</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-  <!-- Font Awesome -->
-  <!--<link rel="stylesheet" href="assets/css/font-awesome.min.css">-->
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="assets/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="assets/css/AdminLTE.min.css">
-  <link rel="stylesheet" href="assets/css/skin-blue.min.css">
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-</head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
-  <header class="main-header">
-    <a class="logo">
-      <img src="assets/img/logo-progestion2.png"></a>
-    </a>
-    <nav class="navbar navbar-static-top" role="navigation">
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
-             <form method="post" action="login">
-                      <li>Bienvenido(a) <strong  Style="color:#ffffff;"><?php echo $nombre;?></strong> </li>
-                      <div class="nav__iniciar-sesion-next">
-                        <button class="form-control btn btn-primary" id="btn_ini"  type="submit" style="height:29px; width:120px; text-align:center; background-color: #3c5475;">
-                        CERRAR SESIÓN</button>
-                      </div>
-             </form>
-         </ul>
-      </div>
-    </nav>
-  </header>
-  <aside class="main-sidebar">
-    <section class="sidebar">
-      <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">Menu</li>
-        <li><a href="nominalist/listNominas"><i class="fa fa-link"></i> <span>Lista de contratados</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Reporte coberturas</span>
-          </a>
-        </li>
-      </ul>
-    </section>
-  </aside>
 
+  <header class="main-header">
+    <!-- Logo -->
+    <a href="../../index2.html" class="logo">
+         <span class="logo-mini"><b>Pro</b>G</span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><b>Grupo</b>Progestion</span>
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+         </a>
+</header>
 
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
+        Dashboard
+        <small>Control panel</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-        <li class="active">Here</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
       </ol>
     </section>
-    <section class="content container-fluid">
-    </section>
-  </div>
 
+    <!-- Main content -->
+    <section class="content">
+      <!-- Small boxes (Stat box) -->
+      <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>150</h3>
 
-  <div class="control-sidebar-bg"></div>
-</div>
+              <p>New Orders</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-bag"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>53<sup style="font-size: 20px">%</sup></h3>
 
+              <p>Bounce Rate</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>44</h3>
 
+              <p>User Registrations</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3>65</h3>
 
-<!-- jQuery 3 -->
-<script src="assets/js/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="assets/js/bootstrap.min.js"></script>
-<!-- AdminLTE App -->
-<script src="assets/js/adminlte.min.js"></script>
-
-</body>
-</html>
+              <p>Unique Visitors</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+      <!-- /.row -->
+      <!-- Main row -->
+      <div class="row">
+        <!-- Left col -->
+        <section class="col-lg-7 connectedSortable">
+          <!-- Custom tabs (Charts with tabs)-->
+          <div class="nav-tabs-custom">
+            <!-- Tabs within a box -->
+            <ul class="nav nav-tabs pull-right">
+              <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
+              <li><a href="#sales-chart" data-toggle="tab">Donut</a></li>
+              <li class="pull-left header"><i class="fa fa-inbox"></i> Sales</li>
+            </ul>
+            <div class="tab-content no-padding">
+              <!-- Morris chart - Sales -->
+              <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>
+              <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
+            </div>
+          </div>
+          <!-- /.nav-tabs-custom --

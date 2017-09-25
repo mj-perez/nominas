@@ -7,6 +7,9 @@ class menu extends CI_Controller {
 		if(isset($_SESSION["sesion"])){
 			$data["nombre"]=$_SESSION["nombre"];
 			$data["usuario"]=$_SESSION["usuario"];
+			$this->load->view('contenido');
+		    $this->load->view('layout/layout_nominas',$data);
+		    $this->load->view('layout/aside',$data);
 			$this->load->view('sistema/home',$data);
 		} else {
 			if(isset($_POST["txt_usuario"]) && isset($_POST["txt_contra"])){
@@ -23,10 +26,13 @@ class menu extends CI_Controller {
 					$_SESSION["usuario"]=$usuario;
 					$data["usuario"]=$_SESSION["usuario"];
 					$data["nombre"]=strtoupper($nombre);
+					$this->load->view('contenido');
+					$this->load->view('layout/layout_nominas',$data);
+					$this->load->view('layout/aside',$data);
 					$this->load->view('sistema/home',$data);
 				} else {
 					echo "<script> alert('usuario y/o contraseña incorrectos, ingrese nuevamente'); 
-					window.location.href='login'</script>";
+					window.location.href='nominas'</script>";
 				}
 			
 			}else {
