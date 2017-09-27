@@ -40,23 +40,8 @@
           <ul class="treeview-menu">
             <li><a href="<?php echo base_url("nominalist/listNominas");?>"><i class="fa fa-circle-o"></i> Lista de Contratos</a></li>
             <li><a href="<?php echo base_url("nominalist/listNominasBONOS");?>"><i class="fa fa-circle-o"></i> Tabla Bonos</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> Flot</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> Inline charts</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-th"></i>
-            <span>Mantenedores</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
-            <li><a href="morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
-            <li><a href="flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
-            <li><a href="inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
+            <li><a href="<?php echo base_url("nominalist/rutas");?>"><i class="fa fa-circle-o"></i>Rutas</a></li>
+            <li><a href="<?php echo base_url("nominalist/chequearnominas");?>"><i class="fa fa-circle-o"></i>Chequear Nominas</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -68,9 +53,24 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url("nominalist/reportes");?>"><i class="fa fa-circle-o"></i> ChartJS</a></li>
-            <li><a href="morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
-            <li><a href="flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
+            <li><a href="<?php echo base_url("nominalist/reportes");?>"><i class="fa fa-circle-o"></i> Clientes</a></li>
+            <li><a href="morris.html"><i class="fa fa-circle-o"></i> Empresa</a></li>
+            <li><a href="flot.html"><i class="fa fa-circle-o"></i></a></li>
+            <li><a href="inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-th"></i>
+            <span>Mantenedores</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="chartjs.html"><i class="fa fa-circle-o"></i> Bonos</a></li>
+            <li><a href="morris.html"><i class="fa fa-circle-o"></i> Feriados</a></li>
+            <li><a href="flot.html"><i class="fa fa-circle-o"></i> Categoria</a></li>
             <li><a href="inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
           </ul>
         </li>

@@ -29,6 +29,49 @@ class nominalist extends CI_Controller {
 			redirect(site_url("menu"));
 		}
 		}
+
+		function buscarUsuario(){		
+		if(isset($_SESSION["sesion"])){
+			$id_usuario= $_POST['usuarios'];
+			if($id_usuario!= null){
+				$data["nombre"]=$_SESSION["nombre"];
+				$data["usuario"]=$_SESSION["usuario"];
+				$this->load->view('contenido');
+				$this->load->view('layout/layout_nominas',$data);
+
+				$data['clientes'] = $this->listar->clientes();
+				$data['usuarios'] = $this->listar->usuarios();
+				$data['contratos'] = $this->nomina->buscar_contratosusuario($id_usuario);
+				$this->load->view('layout/aside',$data);
+				$this->load->view('nomina/nominaslistado',$data);
+			}else{
+				redirect(site_url("nominalist/listNominas"));
+			}
+		}else{
+			redirect(site_url("menu"));
+		}
+	}
+
+	function buscarCliente(){
+      if(isset($_SESSION["sesion"])){
+			$id_cliente= $_POST['clientes'];
+			if($id_cliente!= null){
+				$data["nombre"]=$_SESSION["nombre"];
+				$data["usuario"]=$_SESSION["usuario"];
+				$this->load->view('contenido');
+				$this->load->view('layout/layout_nominas',$data);
+				$data['clientes'] = $this->listar->clientes();
+				$data['usuarios'] = $this->listar->usuarios();
+				$data['contratos'] = $this->nomina->buscar_contratoscliente($id_cliente);
+				$this->load->view('layout/aside',$data);
+				$this->load->view('nomina/nominaslistado',$data);
+			}else{
+				redirect(site_url("nominalist/listNominas"));
+			}
+		}else{
+			redirect(site_url("menu"));
+		}
+	}
 		
 	 public function exportardatos(){
 		$this->load->library('phpexcel');
@@ -125,7 +168,7 @@ class nominalist extends CI_Controller {
 			$data["usuario"]=$_SESSION["usuario"];
 			$this->load->view('contenido');
 			$this->load->view('layout/layout_nominas',$data);
-
+			$data['bono']= $this->nomina->bono();
 			$data['contratos']= $this->nomina->contratos();
 			$data['clientes'] = $this->listar->clientes();
 			$data['usuarios'] = $this->listar->usuarios();
@@ -141,14 +184,29 @@ class nominalist extends CI_Controller {
 			$data["nombre"]=$_SESSION["nombre"];
 			$data["usuario"]=$_SESSION["usuario"];
 			$this->load->view('contenido');
-			
-
 			$data['contratos']= $this->nomina->contratos();
 			$data['clientes'] = $this->listar->clientes();
 			$data['usuarios'] = $this->listar->usuarios();
 			$this->load->view('layout/layout_nominas',$data);
 			$this->load->view('layout/aside',$data);
 			$this->load->view('nomina/reportes',$data);
+
+		}else{
+			redirect(site_url("menu"));
+		}
+	}
+
+	function rutas(){
+	    if(isset($_SESSION["sesion"])){	
+			$data["nombre"]=$_SESSION["nombre"];
+			$data["usuario"]=$_SESSION["usuario"];
+			$this->load->view('contenido');
+			$data['rutas']= $this->nomina->rutas();
+			$data['clientes'] = $this->listar->clientes();
+			$data['usuarios'] = $this->listar->usuarios();
+			$this->load->view('layout/layout_nominas',$data);
+			$this->load->view('layout/aside',$data);
+			$this->load->view('nomina/rutas',$data);
 
 		}else{
 			redirect(site_url("menu"));

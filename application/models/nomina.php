@@ -441,8 +441,26 @@ class nomina extends CI_model {
         return $resultado;
    
     }
+
+    function Rutas(){
+    	$query="SELECT Local, b.Bandera, Nombre, r.Region, c.Comuna,Direccion from locales as l
+inner join qGeo_comunas c on(l.ID_Comuna = c.ID_Comuna)
+inner join SGI_Geo_Regiones r on ( l.ID_Region = r.ID_Region)
+inner join Locales_Banderas b on ( l.ID_Bandera = b.ID_Bandera)";
+    	$consulta = $this->db->query($query);
+        $resultado = $consulta -> result_array();
+        return $resultado;
+    }
 	
-	
+	function bono(){
+    	$query="SELECT [ID_Bono]
+      ,[Bono]
+      ,[vigencia]
+  FROM [dbo].[bonos] where VIGENCIA = 1 ";
+    	$consulta = $this->db->query($query);
+        $resultado = $consulta -> result_array();
+        return $resultado;
+    }
 }
 	
 	
