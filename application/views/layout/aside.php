@@ -39,8 +39,8 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="<?php echo base_url("nominalist/listNominas");?>"><i class="fa fa-circle-o"></i> Lista de Contratos</a></li>
-            <li><a href="<?php echo base_url("nominalist/listNominasBONOS");?>"><i class="fa fa-circle-o"></i> Tabla Bonos</a></li>
-            <li><a href="<?php echo base_url("nominalist/rutas");?>"><i class="fa fa-circle-o"></i>Rutas</a></li>
+            <li><a href="<?php echo base_url("nominalist/chequeonimonas");?>"><i class="fa fa-circle-o"></i>Historicos de Nominas</a></li>
+            <li><a href="<?php echo base_url("nominalist/listNominasBonos");?>"><i class="fa fa-circle-o"></i>Rutas</a></li>
             <li><a href="<?php echo base_url("nominalist/chequearnominas");?>"><i class="fa fa-circle-o"></i>Chequear Nominas</a></li>
           </ul>
         </li>

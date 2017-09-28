@@ -27,6 +27,7 @@ class nomina extends CI_model {
 				 p.nombre_proyecto,
 				 u.nombre+' '+u.ap_paterno as responsable,
 				 p.rut,
+				 con.ID_Contrato,
 				 p.ap_paterno,
 				 p.ap_materno,
 				 p.nombres,

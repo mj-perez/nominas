@@ -23,13 +23,13 @@
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="/nominas/assets/css/skin-blue.min.css">
   <!-- iCheck for checkboxes and radio inputs -->
-  <link rel="stylesheet" href="/nominas/assets/css/_all.css">
+  <!-- <link rel="stylesheet" href="/nominas/assets/css/_all.css"> -->
 
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <!-- jQuery 3 -->
-<script src="/nominas/assets/js/jquery.min.js"></script>
+<script src="/nominas/assets/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="/nominas/assets/js/bootstrap.min.js"></script>
 <!-- DataTables -->
@@ -52,7 +52,7 @@
 <!-- jvectormap -->
 <script src="/nominas/assets/jquery-jvectormap-1.2.2.min.js"></script>
 <script src="/nominas/assets/jquery-jvectormap-world-mill-en.js"></script>
-
+<!--  -->
 <script src="/nominas/assets/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <script src="/nominas/assets/jquery-knob/dist/jquery.knob.min.js"></script>
 

@@ -79,7 +79,7 @@
                 # code...
             echo"
             <tr>
-                <td><input type='checkbox' value='registro'></td>
+                <td><button type='button' class='btn btn-default' data-toggle='modal' data-target='#modal-default'><i class='glyphicon glyphicon-list-alt'></i></button></td>
                 <td>".strtoupper($c['rut'])."</td>
                 <td>".strtoupper($c['Nombre_Concatenar'])."</td>
                 <td>".strtoupper($c['cargo'])."</td>";
@@ -91,6 +91,26 @@
             ";}?>
         </tbody> 
 </table>
+<div class='modal fade' id='modal-default'>
+          <div class='modal-dialog'>
+            <div class='modal-content'>
+              <div class='modal-header'>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                  <span aria-hidden='true'>&times;</span></button>
+                <h4 class='modal-title'>Default Modal</h4>
+              </div>
+              <div class='modal-body'>
+                <p>One fine body&hellip;</p>
+              </div>
+              <div class='modal-footer'>
+                <button type='button' class='btn btn-default pull-left' data-dismiss='modal'>Cancelar</button>
+                <button type='button' class='btn btn-primary'>Ingresar</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
 </div>
 
 </section></body></html>
@@ -125,7 +145,7 @@ tr.shown td.details-control {
       scrollX     : true,
       autoWidth   : true,
       fixedColumns:   {
-            leftColumns: 4
+            leftColumns: 
         },
         "language": {
         "sProcessing":    "Procesando...",

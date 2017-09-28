@@ -19,7 +19,7 @@ class nominalist extends CI_Controller {
 			$data["usuario"]=$_SESSION["usuario"];
 			$this->load->view('contenido');
 			$this->load->view('layout/layout_nominas',$data);
-
+			$data['bono']= $this->nomina->bono();
 			$data['contratos']= $this->nomina->contratos();
 			$data['clientes'] = $this->listar->clientes();
 			$data['usuarios'] = $this->listar->usuarios();
@@ -174,6 +174,7 @@ class nominalist extends CI_Controller {
 			$data['usuarios'] = $this->listar->usuarios();
 			$this->load->view('layout/aside',$data);
 			$this->load->view('nomina/nominaslistadobonos',$data);
+
 		}else{
 			redirect(site_url("menu"));
 		}
@@ -196,7 +197,7 @@ class nominalist extends CI_Controller {
 		}
 	}
 
-	function rutas(){
+	function chequeonimonas(){
 	    if(isset($_SESSION["sesion"])){	
 			$data["nombre"]=$_SESSION["nombre"];
 			$data["usuario"]=$_SESSION["usuario"];
@@ -206,11 +207,21 @@ class nominalist extends CI_Controller {
 			$data['usuarios'] = $this->listar->usuarios();
 			$this->load->view('layout/layout_nominas',$data);
 			$this->load->view('layout/aside',$data);
-			$this->load->view('nomina/rutas',$data);
+			$this->load->view('nomina/chequeonimonas',$data);
 
 		}else{
 			redirect(site_url("menu"));
 		}
 	}
+
+	public function cheklinea(){
+		$this->load->model("nomina");
+		$se=$this->nomina->contratos();
+		$var = '';
+		foreach ($se as $s) {
+			$var .=$s['ID_Contrato']."/";
+		} echo $var;
+	}
+
 	 	
 }
