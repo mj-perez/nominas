@@ -68,7 +68,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="chartjs.html"><i class="fa fa-circle-o"></i> Bonos</a></li>
+            <li><a href="<?php echo base_url("cmantenedor/listBono");?>"><i class="fa fa-circle-o"></i> Bonos</a></li>
             <li><a href="morris.html"><i class="fa fa-circle-o"></i> Feriados</a></li>
             <li><a href="flot.html"><i class="fa fa-circle-o"></i> Categoria</a></li>
             <li><a href="inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>

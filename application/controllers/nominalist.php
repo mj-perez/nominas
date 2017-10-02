@@ -19,10 +19,12 @@ class nominalist extends CI_Controller {
 			$data["usuario"]=$_SESSION["usuario"];
 			$this->load->view('contenido');
 			$this->load->view('layout/layout_nominas',$data);
+			// $this->load->model("mantenedor");
 			$data['bono']= $this->nomina->bono();
 			$data['contratos']= $this->nomina->contratos();
 			$data['clientes'] = $this->listar->clientes();
 			$data['usuarios'] = $this->listar->usuarios();
+			// $data['listar']= $this->mantenedor->listarBono();
 			$this->load->view('layout/aside',$data);
 			$this->load->view('nomina/nominaslistado',$data);
 		}else{
@@ -38,7 +40,6 @@ class nominalist extends CI_Controller {
 				$data["usuario"]=$_SESSION["usuario"];
 				$this->load->view('contenido');
 				$this->load->view('layout/layout_nominas',$data);
-
 				$data['clientes'] = $this->listar->clientes();
 				$data['usuarios'] = $this->listar->usuarios();
 				$data['contratos'] = $this->nomina->buscar_contratosusuario($id_usuario);
@@ -222,6 +223,55 @@ class nominalist extends CI_Controller {
 			$var .=$s['ID_Contrato']."/";
 		} echo $var;
 	}
+
+function listarbonos(){
+        $id_bono=$_POST['id'];
+        $this->load->model("mantenedor");
+        $data = $this->mantenedor->listarBono($id_bono);
+        echo "
+        <div class='modal-dialog'>
+            <div class='modal-content'>
+              <div class='modal-header'>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                  <span aria-hidden='true'>&times;</span></button>
+                <h4 class='modal-title'>Asignar Bonos</h4>
+            </div>
+        	<div class='modal-body'>
+                <p>Selecione los bonos correspondiente a la persona</p>
+            <div class='box'>
+            	<div class='box-body'>
+            	         <table class='table table-bordered table-striped' id='example1'>
+                	    	<thead>
+                    	    	<tr>
+		                            <th>ID Bono</th>
+		                            <th>Nombre Bono</th>
+		                            <th></th>
+		                            <th>Monto</th>                      
+                        		</tr>
+                    		</thead>";
+    foreach($data as $m){
+        if($m['vigencia']==1){$vigencia='Vigente';}else{$vigencia='No Vigente';}
+        	echo"<tr>
+                    <td>".$m['Bono']."</td>
+                    <td>".$m['Cliente']."</td>
+                    <td ><input id='chk-bono-".$m['ID_BonoCliente']."' type='checkbox' value=''></td>
+                    <td ><input type='number' id='txt-mt-".$m['ID_BonoCliente']."' name='row-1-age' placeholder='Monto'></td>
+                </tr>";
+        }
+ 			echo"
+ 							</table>
+ </div>
+                 </div>
+              </div>
+              <div class='modal-footer'>
+                <button type='button' class='btn btn-default pull-left' data-dismiss='modal'>Close</button>
+                <button type='button' class='btn btn-primary'>Ingresar</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>";
+          
+}
 
 	 	
 }

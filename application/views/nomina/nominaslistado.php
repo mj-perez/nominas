@@ -15,20 +15,20 @@
          </a>
 </header>
   
-  <div class="content-wrapper">  
-    <section class="content-header">
+<div class="content-wrapper" >  
+    <section class="content-header table_responsive">
       <h1>Lista de Contratados</h1>
       <br>
     <div class="row">
-    <div class="col-xs-12">
-    <div class="box box-info">
+        <div class="col-xs-12">
+            <div id="boxmodal1" class="box box-info">
             <div class="box-header">
               <h3 class="box-title">Lista Nominas de contratos
                 <small>Registro de datos de nomina</small>
               </h3>
               <!-- tools box -->
               <div class="pull-right box-tools">
-                <button type="button" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip"
+                <button type="button" id="btnmodal1" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip"
                         title="Collapse">
                   <i class="fa fa-minus"></i></button>
               </div>
@@ -36,8 +36,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body pad">
-              <form>
-                <table>   
+<table>   
        <td width="3%">
         </td> <td width="30%"><h5 class="tituloclientes" align="left"><font color="black">Buscar Clientes</font></h5>
         <form id="form1" name="form1" method="post" action="<?php echo  site_url();?>/nominalist/buscarCliente">
@@ -64,13 +63,11 @@
        <td width="25%"><h5 class="titulousuarios" align="left"><font color="black">Limpiar Filtros</font></h5>
           <form class='form-horizontal' name ='form3' id='form3' method='POST' action="<?php echo  site_url();?>nominalist/listnominas">
            <button id="btn_ini" name="btn_ini" type="submit" class="btn btn-info btn-sm" title='exportar'  onclick="document.getElementById(form3).submit();"><i class="glyphicon glyphicon-refresh"></i></button>
-        
         </form>     
        </td>            
-    </div>  
-           
-    </form>
- </table>
+    
+</table>
+
  <br>
 <table id="tabla_nominas" class="stripe row-border order-column" >
        <thead>
@@ -108,6 +105,7 @@
                 <th>Banco</th>
                 <th>Nº de cuenta</th>
                 <th>Vacaciones Proporcionales</th>
+                <th>Bonos</th>
                 <th>Horas Extras</th>
                 <th>Valor horas extras</th>
                 <th>Aguinaldo</th>
@@ -174,7 +172,7 @@
 foreach($contratos as $c) {
 echo "     
             <tr>
-                <td ><input id='chk-".$c['ID_Contrato']."' onclick='linea(".$c['ID_Contrato'].")' type='checkbox' value=''></td>
+                <td ><input id='chk-".$c['ID_Contrato']."' type='checkbox' value=''></td>
                 <td style='font-size:80%;'>".strtoupper($c['rut'])."</td>
                 <td style='text-align:left;'>".strtoupper($c['Nombre_Concatenar'])."</td>
                 <td >".$c['Estado_Actual']." </td>
@@ -187,41 +185,42 @@ echo "
                 <td >".strtoupper($c['cliente'])."</td>
                 <td >".strtoupper($c['nombre_proyecto'])."</td>
                 <td >".strtoupper($c['responsable'])."</td>
-                <td >".strtoupper($c['egrupo'])."</td>
-                
+                <td >".strtoupper($c['egrupo'])."</td>              
              <td><button type='button' class='btn btn-default' data-toggle='modal' data-target='#modal-default'><i class='glyphicon glyphicon-list-alt'></i></button></td>
                 <td >Supervisor(?)</td>
-                <td ><input type='text' id='txt-dt".$c['ID_Contrato']."' name='row-1-age' placeholder='Días Trabajados'></td>
+                <td ><input type='text' id='txt-dt".$c['ID_Contrato']."' name='row-1-age' placeholder='Días Trabajados' disabled></td>
                 <td >Codigo Remuneracion</td>
                 <td >Categoria(?)                        </td>
-                <td >Sueldo Base                         </td>
-                <td ><input type='text' id='txt-spro".$c['ID_Contrato']."' id='row-1-age' name='row-1-age' placeholder='(SB/30)*DT'></td>
-                <td ><input type='text' id='txt-g".$c['ID_Contrato']."' name='row-1-age' placeholder='(SBP*0,25)'></td>
-                <td ><input type='text' id='txt-bcl".$c['ID_Contrato']."' name='row-1-age' placeholder='(BCL/30)*DT'></td>
-                <td ><input type='text' id='txt-bct".$c['ID_Contrato']."' name='row-1-age' placeholder='(BCT/30)*DT'></td>
+                <td >".strtoupper($c['Sueldo_Base'])."</td>
+                <td ><input type='text' id='txt-spro".$c['ID_Contrato']."' id='row-1-age' name='row-1-age' placeholder='(SB/30)*DT' onblur='calculoSP(this.value, 'total')' disabled></td>
+                <td ><input type='text' id='txt-g".$c['ID_Contrato']."' name='row-1-age' placeholder='(SBP*0,25)' disabled></td>
+                <td ><input type='text' id='txt-bcl".$c['ID_Contrato']."' name='row-1-age' placeholder='(BCL/30)*DT' disabled></td>
+                <td ><input type='text' id='txt-bct".$c['ID_Contrato']."' name='row-1-age' placeholder='(BCT/30)*DT' disabled></td>
                 <td >Colacion                            </td>
-                <td ><input type='text' id='txt-m".$c['ID_Contrato']."' name='row-1-age' placeholder='(MV/30)*DT'></td>
+                <td ><input type='text' id='txt-m".$c['ID_Contrato']."' name='row-1-age' placeholder='(MV/30)*DT' disabled></td>
                 <td >".strtoupper($c['afp'])."</td>
                 <td >".strtoupper($c['Prevision_Salud'])."</td>
                 <td >".strtoupper($c['fpago'])."</td>
                 <td >".strtoupper($c['banco'])."</td>
                 <td >".strtoupper($c['ncuenta'])."</td>
                 <td >".strtoupper($c['vacaciones'])."</td>
-                <td ><input type='text' id='txt-he".$c['ID_Contrato']."' name='row-1-age' placeholder='Horas Extras'></td>
-                <td ><input type='text' id='txt-vhe".$c['ID_Contrato']."' name='row-1-age' placeholder='(0,007778*HE)*DT'></td>
-                <td ><input type='text' id='txt-a".$c['ID_Contrato']."' name='row-1-age' placeholder='Aguinaldo'></td>
-                <td ><input type='text' id='txt-timp".$c['ID_Contrato']."' name='row-1-age' placeholder='SBP+BCL+BCT+BN+VHE+AG'></td>
-                <td ><input type='text' id='txt-mv".$c['ID_Contrato']."' name='row-1-age' placeholder='Movilizaion variable'></td>
-                <td ><input type='text' id='txt-th".$c['ID_Contrato']."' name='row-1-age' placeholder='TIMP+COL+MV+MV'></td>
-                <td ><input type='text' id='txt-v".$c['ID_Contrato']."' name='row-1-age' placeholder='Viaticos'></td>
-                <td ><input type='text' id='txt-dp".$c['ID_Contrato']."' name='row-1-age' placeholder='Descuento Previcional'></td>
-                <td ><input type='text' id='txt-ds".$c['ID_Contrato']."' name='row-1-age' placeholder='Descuento Sis'></td>
-                <td ><input type='text' id='txt-dm".$c['ID_Contrato']."' name='row-1-age' placeholder='Descuento Mutual'></td>
-                <td ><input type='text' id='txt-dsc".$c['ID_Contrato']."' name='row-1-age' placeholder='Descuento seguro de cesantia'></td>
+                
+                <td><button type='button' class='btn btn-default' data-toggle='modal' data-target='#modal-bonos' onclick='buscarbonos(".$c['ID_Cliente'].")'><i class='glyphicon glyphicon-list-alt'></i></button></td>
+                <td ><input type='text' id='txt-he".$c['ID_Contrato']."' name='row-1-age' placeholder='Horas Extras' disabled></td>
+                <td ><input type='text' id='txt-vhe".$c['ID_Contrato']."' name='row-1-age' placeholder='(0,007778*HE)*DT' disabled></td>
+                <td ><input type='text' id='txt-a".$c['ID_Contrato']."' name='row-1-age' placeholder='Aguinaldo' disabled></td>
+                <td ><input type='text' id='txt-timp".$c['ID_Contrato']."' name='row-1-age' placeholder='SBP+BCL+BCT+BN+VHE+AG' disabled></td>
+                <td ><input type='text' id='txt-mv".$c['ID_Contrato']."' name='row-1-age' placeholder='Movilizaion variable' disabled></td>
+                <td ><input type='text' id='txt-th".$c['ID_Contrato']."' name='row-1-age' placeholder='TIMP+COL+MV+MV' disabled></td>
+                <td ><input type='text' id='txt-v".$c['ID_Contrato']."' name='row-1-age' placeholder='Viaticos' disabled></td>
+                <td ><input type='text' id='txt-dp".$c['ID_Contrato']."' name='row-1-age' placeholder='Descuento Previcional' disabled></td>
+                <td ><input type='text' id='txt-ds".$c['ID_Contrato']."' name='row-1-age' placeholder='Descuento Sis' disabled></td>
+                <td ><input type='text' id='txt-dm".$c['ID_Contrato']."' name='row-1-age' placeholder='Descuento Mutual' disabled></td>
+                <td ><input type='text' id='txt-dsc".$c['ID_Contrato']."' name='row-1-age' placeholder='Descuento seguro de cesantia' disabled></td>
                 <td ><input type='checkbox' value=''></td>
                 <td ><input type='checkbox' value=''></td>
-                <td ><input type='number' id='txt-ncf".$c['ID_Contrato']."' name='row-1-age' placeholder='Numero de Cargas Familiares'></td>
-                <td ><input type='number' id='txt-pcj".$c['ID_Contrato']."' name='row-1-age' placeholder='prestamoCajaChica'></td>
+                <td ><input type='number' id='txt-ncf".$c['ID_Contrato']."' name='row-1-age' placeholder='Numero de Cargas Familiares' disabled></td>
+                <td ><input type='number' id='txt-pcj".$c['ID_Contrato']."' name='row-1-age' placeholder='prestamoCajaChica' disabled></td>
                 <td >".strtoupper($c['Fecha_Nacimiento'])."</td>
                 <td >".strtoupper($c['Nacionalidad'])."</td>
                 <td >".strtoupper($c['sexo'])."</td>
@@ -235,14 +234,14 @@ echo "
                 <td >".strtoupper($c['talla_pantalon'])."</td>
                 <td >".strtoupper($c['talla_polera'])."</td>
                 <td >".strtoupper($c['talla_calzado'])."</td>
-                <td ><input type='text' id='txt-pv".$c['ID_Contrato']."' name='row-1-age' placeholder='Provicion Vacaciones'></td>
-                <td ><input type='text' id='txt-pf".$c['ID_Contrato']."' name='row-1-age' placeholder='Provicion Finiquito'></td>
-                <td ><input type='text' id='txt-tcp".$c['ID_Contrato']."' name='row-1-age' placeholder='Total costo personal'></td>
-                <td ><input type='text' id='txt-cta".$c['ID_Contrato']."' name='row-1-age' placeholder='Comicion totoal Agencia'></td>
-                <td ><input type='text' id='txt-cc".$c['ID_Contrato']."' name='row-1-age' placeholder='CostoCliente??'></td>
-                <td ><input type='text' id='txt-llt".$c['ID_Contrato']."' name='row-1-age' placeholder='Legada full time'></td>
-                <td ><input type='text' id='txt-lpt".$c['ID_Contrato']."' name='row-1-age' placeholder='Llegada parti time'></td>
-                <td ><input type='text' id='txt-ls".$c['ID_Contrato']."' name='row-1-age' placeholder='Llegada supervisor'></td>
+                <td ><input type='text' id='txt-pv".$c['ID_Contrato']."' name='row-1-age' placeholder='Provicion Vacaciones' disabled ></td>
+                <td ><input type='text' id='txt-pf".$c['ID_Contrato']."' name='row-1-age' placeholder='Provicion Finiquito' disabled></td>
+                <td ><input type='text' id='txt-tcp".$c['ID_Contrato']."' name='row-1-age' placeholder='Total costo personal' disabled></td>
+                <td ><input type='text' id='txt-cta".$c['ID_Contrato']."' name='row-1-age' placeholder='Comicion totoal Agencia' disabled></td>
+                <td ><input type='text' id='txt-cc".$c['ID_Contrato']."' name='row-1-age' placeholder='CostoCliente??' disabled></td>
+                <td ><input type='text' id='txt-llt".$c['ID_Contrato']."' name='row-1-age' placeholder='Legada full time' disabled></td>
+                <td ><input type='text' id='txt-lpt".$c['ID_Contrato']."' name='row-1-age' placeholder='Llegada parti time' disabled></td>
+                <td ><input type='text' id='txt-ls".$c['ID_Contrato']."' name='row-1-age' placeholder='Llegada supervisor' disabled></td>
                 <td ><input type='checkbox' value=''></td>
                 <td ><input type='file' value=''></td>
                 <td ><input type='checkbox' value=''></td>
@@ -263,69 +262,82 @@ echo "
                 <td ><input type='file' value=''></td>
                 <td ><input type='checkbox' value=''></td>
                 <td ><input type='file' value=''></td>
-                <td ><input type='text' id='txt-ls".$c['ID_Contrato']."' name='row-1-age' placeholder='Comentario y/u Observaciones'></td>
+                <td ><input type='text' id='txt-co".$c['ID_Contrato']."' name='row-1-age' placeholder='Comentario y/u Observaciones' disabled></td>
             </tr>";}?>
        </tbody>
     </table>
+</div>
+        <div class="col-xs-12">
+            <div class="btn-group"> 
+                <button type="button" id="sig-btn" class="btn btn-primary">Siguiente</button> 
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- </div></div></div></div></div></div></div> -->
 <div class='modal fade' id='modal-default'>
-          <div class='modal-dialog'>
-            <div class='modal-content'>
-              <div class='modal-header'>
-                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-                  <span aria-hidden='true'>&times;</span></button>
-                <h4 class='modal-title'>Informacion de Local y Cadena</h4>
-              </div>
-              <div class='modal-body'>
-                 <div class="col-xs-3">
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+          <span aria-hidden='true'>&times;</span></button>
+            <h4 class='modal-title'>Informacion de Local y Cadena</h4>
+      </div>
+        <div class='modal-body'> 
+            <div class="col-xs-3">
                 <label>
-                <p>Región:<form id="form2" name="form2" method="post" action="<?php echo  site_url();?>nominalist/buscarUsuario">
-         <select id="usuarios" name="usuarios" style="width:130px" class="form-control" onchange="document.getElementById('form2').submit();">
-            <option value="">Seleccione</option>
-            <?php
-                foreach ($usuarios as $u) {
-                    echo "<option value='".$u["id_usuario"]."'>".strtoupper($u["usuario"])."</option>";
-                }   
-            ?>
-        </select>
-</p></form></div></label><div class="col-xs-3"><label>
-                <p>Comuna:<form id="form2" name="form2" method="post" action="<?php echo  site_url();?>nominalist/buscarUsuario">
-         <select id="usuarios" name="usuarios" style="width:130px" class="form-control" onchange="document.getElementById('form2').submit();">
-            <option value="">Seleccione</option>
-            <?php
-                foreach ($usuarios as $u) {
-                    echo "<option value='".$u["id_usuario"]."'>".strtoupper($u["usuario"])."</option>";
-                }   
-            ?>
-        </select>
-</p></form></div></label><div class="col-xs-3">
-
-
-<label>
-                <p>Local:<form id="form2" name="form2" method="post" action="<?php echo  site_url();?>nominalist/buscarUsuario">
-         <select id="usuarios" name="usuarios" style="width:130px" class="form-control" onchange="document.getElementById('form2').submit();">
-            <option value="">Seleccione</option>
-            <?php
-                foreach ($usuarios as $u) {
-                    echo "<option value='".$u["id_usuario"]."'>".strtoupper($u["usuario"])."</option>";
-                }   
-            ?>
-        </select>
-</p></form></div></label><div class="col-xs-3"><label>
-                <p>Cadena:<form id="form2" name="form2" method="post" action="<?php echo  site_url();?>nominalist/buscarUsuario">
-         <select id="usuarios" name="usuarios" style="width:130px" class="form-control" onchange="document.getElementById('form2').submit();">
-            <option value="">Seleccione</option>
-            <?php
-                foreach ($usuarios as $u) {
-                    echo "<option value='".$u["id_usuario"]."'>".strtoupper($u["usuario"])."</option>";
-                }   
-            ?>
-        </select>
-</p>
-                </label></div>
-                <br>
-                 <br>
-                <h3>Días de Trabajo:</h3>
-                
+                <p>Horario: <form id="form2" name="form2" method="post" action="<?php echo  site_url();?>nominalist/buscarUsuario">
+                    <select id="usuarios" name="usuarios" style="width:130px" class="form-control" onchange="document.getElementById('form2').submit();"> 
+                        <option value="">Seleccione</option> 
+                        <?php foreach ($usuarios as $u) {echo "<option value='".$u["id_usuario"]."'>".strtoupper($u["usuario"])."</option>"; } ?>
+                    </select>
+                    </form>
+                </p>
+                </label>
+            </div>
+            <div class="col-xs-3">
+                <label>
+                    <p>Jornada:
+                    <form id="form2" name="form2" method="post" action="<?php echo  site_url();?>nominalist/buscarUsuario"> 
+                    <select id="usuarios" name="usuarios" style="width:130px" class="form-control" onchange="document.getElementById('form2').submit();"> 
+                        <option value="">Seleccione</option> 
+                        <?php foreach ($usuarios as $u) {echo "<option value='".$u["id_usuario"]."'>".strtoupper($u["usuario"])."</option>";}?>
+                    </select>
+                    </form>
+                    </p>
+                </label>
+            </div>
+            <div class="col-xs-3">
+                <label> 
+                    <p>Local:
+                        <form id="form2" name="form2" method="post" action="<?php echo  site_url();?>nominalist/buscarUsuario"> 
+                            <select id="usuarios" name="usuarios" style="width:130px" class="form-control" onchange="document.getElementById('form2').submit();"> 
+                                <option value="">Seleccione</option> 
+                                <?php foreach ($usuarios as $u) {echo "<option value='".$u["id_usuario"]."'>".strtoupper($u["usuario"])."</option>"; } ?> 
+                            </select>
+                        </form>
+                    </p>
+                </label>
+            </div>
+            <div class="col-xs-3">
+                <label> 
+                    <p>Cadena:
+                        <form id="form2" name="form2" method="post" action="<?php echo  site_url();?>nominalist/buscarUsuario">
+                            <select id="usuarios" name="usuarios" style="width:130px" class="form-control" onchange="document.getElementById('form2').submit();"> 
+                                <option value="">Seleccione</option> 
+                                <?php foreach ($usuarios as $u) {echo "<option value='".$u["id_usuario"]."'>".strtoupper($u["usuario"])."</option>";}?>
+                            </select>
+                        </form>
+                    </p>
+                </label>
+            </div> 
+            <br>
+            <br>
+            <h3>Días de Trabajo:</h3>    
                 <table  class="stripe row-border order-column">
                     <thead>
                     <tr>
@@ -361,86 +373,18 @@ echo "
           <!-- /.modal-dialog -->
         </div>
 
-
- <div class="col-xs-12">
-    <div class="btn-group">
-        <!-- <form class='form-horizontal' name ='form3' id='form3' method='POST' action="<?php echo  site_url();?>nominalist/exportardatos"> 
-            <button id="btn_ini" name="btn_ini" type="submit" class="btn btn-success " title='exportar'  onclick="document.getElementById(form3).submit();"><i class="fa fa-file-excel-o"></i> Exportar</button> 
-        </form> -->
-    </div>
-        <div class="btn-group"> 
-        <button type="button" id="sig-btn" class="btn btn-primary">Siguiente</button> 
-        </form>
-    </div>
-
-
-
-
-
-
-</form>
-</div>
-</div>
+<div class='modal fade' id='modal-bonos' >
 </div>
 
-<div class="box box-info collapsed-box">
-            <div class="box-header ">
-              <h3 class="box-title">Listado de Bonos
-                <small>Registro de Bonos</small>
-              </h3>
-              <!-- tools box -->
-              <div class="pull-right box-tools ">
-                <button type="button" class="btn btn-info btn-sm disabled" data-widget="collapse" data-toggle="tooltip"
-                        title="Collapse">
-                  <i class="fa fa-minus"></i></button>
-              </div>
-              <!-- /. tools -->
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body pad">
-              <form>
-                <table id="exa" class="display" cellspacing="0" width="100%">
-      <thead>
 
-            <tr>
-                <th>Rut</th>
-                <th>Nombre Completo</th> 
-                <th>Cargo</th>
-                <?php 
-                foreach ($bono as $b) {
-                    echo"<th>".strtoupper($b['Bono'])."</th>
-                
-                 ";}?>
-                </tr>
-        </thead>
-        <tbody>
-            <?php  foreach ($contratos as $c) {
-                # code...
-            echo"
-            <tr>
-                <td>".strtoupper($c['rut'])."</td>
-                <td>".strtoupper($c['Nombre_Concatenar'])."</td>
-                <td>".strtoupper($c['cargo'])."</td>";
-            foreach ($bono as $b) {
-                    echo"<td><input type='text' value=''></td>
-                
-                 ";}
-            echo"</tr>
-            ";}?>
-        </tbody> 
-</table>
-<form class='form-horizontal' name ='form3' id='form3' method='POST' action="<?php echo  site_url();?>nominalist/ingresarnominas"> <button type="button" class="btn btn-primary">Ingresar Nomina</button> </form>
-        
-      </form>
-    </div>
-  </div>
-
-
+</section>
+</div>
+</div>
 <style type="text/css">
       th, td { white-space: nowrap; }
     div.dataTables_wrapper {
         width: 1000px;
-        margin: 0 auto;
+        
     }
 td {
     cursor: pointer;
@@ -458,6 +402,34 @@ tr {
 
 
 <script type="text/javascript">
+
+$('#t1').on('input', function() {
+    atualizarTotal();
+});
+$('#t2').on('input', function() {
+    atualizarTotal();
+});
+
+function atualizarTotal(){
+    valorQnt = $('#t1').val();
+    valorPreco = $('#t2').val();
+    $('#total').val((parseInt(valorQnt)/30) * parseInt(valorPreco));
+}
+
+function buscarbonos(id){
+    $.ajax({
+            url: "http://localhost/nominas/nominalist/listarbonos",
+            type: "POST",
+            data: "id="+id, 
+            success: function(data) {
+           $("#modal-bonos").html(data);  
+           // $("#modal-bonos").modal('show');
+             // alert(data);
+              }
+        });
+}
+
+
     
  $(document).ready(function() {
     var table = $('#tabla_nominas').DataTable( {
@@ -498,6 +470,7 @@ tr {
     }
     } );
 } );
+
     
 </script>
 <script>
@@ -507,11 +480,8 @@ tr {
       searching   : true,  
       info        : true,
       lengthMenu : [[5, 15, 25,50, -1], [5,15, 25, 50, "All"]],
-      buttons: [
-                'csv', 'excel', 'pdf', 'print', 'reset', 'reload'
-            ],
-      scrollX     : true,
-      autoWidth   : true,
+      scroll: true,
+    
       fixedColumns:   {
             leftColumns: 4
         },
@@ -544,21 +514,96 @@ tr {
     
 </script>
 <script type="text/javascript">
-    
+
     $("#sig-btn").click(function(){
-    if( $(this).is(':checked') ) alert("checked");
+    if( $(this).is(':button') ) {
+        $('#btnmodal1').attr('disabled', !this.button);
+        $("#boxbono").show(); 
+        $('#btnbono').removeAttr('collapse', !this.div);
+        alert("asdasda"); 
+    }
 });
 
 
+// $().ready(function(){
+//      $('#btnbono').attr('disabled', !this.button);
+//      $('#btnbono').removeAttr('collapse', !this.div);
+// });
 
-$("#checked").onclick( function(){
+
+// $('#chk-').click( function(){
+//    if( $(this).is(':checked') ) {
+//         alert('chechgdked');
+//     }else{
+//         alert('unchecked');
+//    }
+// });
+
+
+
+<?php foreach ($contratos as $c) { echo"
+    $('#chk-".$c["ID_Contrato"]."').click( function(){
    if( $(this).is(':checked') ) {
-        alert("chechgdked");
+        $('#txt-dt".$c["ID_Contrato"]."').removeAttr('disabled', !this.text);
+        $('#txt-spro".$c["ID_Contrato"]."').removeAttr('disabled', !this.text);
+        $('#txt-g".$c["ID_Contrato"]."').removeAttr('disabled', !this.text);
+        $('#txt-bcl".$c["ID_Contrato"]."').removeAttr('disabled', !this.text);
+        $('#txt-bct".$c["ID_Contrato"]."').removeAttr('disabled', !this.text);
+        $('#txt-m".$c["ID_Contrato"]."').removeAttr('disabled', !this.text);
+        $('#txt-he".$c["ID_Contrato"]."').removeAttr('disabled', !this.text);
+        $('#txt-vhe".$c["ID_Contrato"]."').removeAttr('disabled', !this.text);
+        $('#txt-a".$c["ID_Contrato"]."').removeAttr('disabled', !this.text);
+        $('#txt-timp".$c["ID_Contrato"]."').removeAttr('disabled', !this.text);
+        $('#txt-mv".$c["ID_Contrato"]."').removeAttr('disabled', !this.text);
+        $('#txt-th".$c["ID_Contrato"]."').removeAttr('disabled', !this.text);
+        $('#txt-v".$c["ID_Contrato"]."').removeAttr('disabled', !this.text);
+        $('#txt-dp".$c["ID_Contrato"]."').removeAttr('disabled', !this.text);
+        $('#txt-ds".$c["ID_Contrato"]."').removeAttr('disabled', !this.text);
+        $('#txt-dm".$c["ID_Contrato"]."').removeAttr('disabled', !this.text);
+        $('#txt-dsc".$c["ID_Contrato"]."').removeAttr('disabled', !this.text);
+        $('#txt-ncf".$c["ID_Contrato"]."').removeAttr('disabled', !this.text);
+        $('#txt-pcj".$c["ID_Contrato"]."').removeAttr('disabled', !this.text);
+        $('#txt-pv".$c["ID_Contrato"]."').removeAttr('disabled', !this.text);
+        $('#txt-pf".$c["ID_Contrato"]."').removeAttr('disabled', !this.text);
+        $('#txt-tcp".$c["ID_Contrato"]."').removeAttr('disabled', !this.text);
+        $('#txt-cta".$c["ID_Contrato"]."').removeAttr('disabled', !this.text);
+        $('#txt-cc".$c["ID_Contrato"]."').removeAttr('disabled', !this.text);
+        $('#txt-llt".$c["ID_Contrato"]."').removeAttr('disabled', !this.text);
+        $('#txt-lpt".$c["ID_Contrato"]."').removeAttr('disabled', !this.text);
+        $('#txt-ls".$c["ID_Contrato"]."').removeAttr('disabled', !this.text);
+        $('#txt-co".$c["ID_Contrato"]."').removeAttr('disabled', !this.text);
     }else{
-        alert("unchecked");
+    $('#txt-dt".$c["ID_Contrato"]."').attr('disabled', !this.text);
+        $('#txt-spro".$c["ID_Contrato"]."').attr('disabled', !this.text);
+        $('#txt-g".$c["ID_Contrato"]."').attr('disabled', !this.text);
+        $('#txt-bcl".$c["ID_Contrato"]."').attr('disabled', !this.text);
+        $('#txt-bct".$c["ID_Contrato"]."').attr('disabled', !this.text);
+        $('#txt-m".$c["ID_Contrato"]."').attr('disabled', !this.text);
+        $('#txt-he".$c["ID_Contrato"]."').attr('disabled', !this.text);
+        $('#txt-vhe".$c["ID_Contrato"]."').attr('disabled', !this.text);
+        $('#txt-a".$c["ID_Contrato"]."').attr('disabled', !this.text);
+        $('#txt-timp".$c["ID_Contrato"]."').attr('disabled', !this.text);
+        $('#txt-mv".$c["ID_Contrato"]."').attr('disabled', !this.text);
+        $('#txt-th".$c["ID_Contrato"]."').attr('disabled', !this.text);
+        $('#txt-v".$c["ID_Contrato"]."').attr('disabled', !this.text);
+        $('#txt-dp".$c["ID_Contrato"]."').attr('disabled', !this.text);
+        $('#txt-ds".$c["ID_Contrato"]."').attr('disabled', !this.text);
+        $('#txt-dm".$c["ID_Contrato"]."').attr('disabled', !this.text);
+        $('#txt-dsc".$c["ID_Contrato"]."').attr('disabled', !this.text);
+        $('#txt-ncf".$c["ID_Contrato"]."').attr('disabled', !this.text);
+        $('#txt-pcj".$c["ID_Contrato"]."').attr('disabled', !this.text);
+        $('#txt-pv".$c["ID_Contrato"]."').attr('disabled', !this.text);
+        $('#txt-pf".$c["ID_Contrato"]."').attr('disabled', !this.text);
+        $('#txt-tcp".$c["ID_Contrato"]."').attr('disabled', !this.text);
+        $('#txt-cta".$c["ID_Contrato"]."').attr('disabled', !this.text);
+        $('#txt-cc".$c["ID_Contrato"]."').attr('disabled', !this.text);
+        $('#txt-llt".$c["ID_Contrato"]."').attr('disabled', !this.text);
+        $('#txt-lpt".$c["ID_Contrato"]."').attr('disabled', !this.text);
+        $('#txt-ls".$c["ID_Contrato"]."').attr('disabled', !this.text);
+        $('#txt-co".$c["ID_Contrato"]."').attr('disabled', !this.text); 
    }
 });
-
+";}?>
 
 $(document).ready(function() {
     var table = $('#dias').DataTable( {
@@ -589,5 +634,7 @@ $(document).ready(function() {
     }
     } );
 } );
+
+
 
 </script>
