@@ -31,27 +31,27 @@ class nominalist extends CI_Controller {
 			redirect(site_url("menu"));
 		}
 		}
-
-		function buscarUsuario(){		
-		if(isset($_SESSION["sesion"])){
-			$id_usuario= $_POST['usuarios'];
-			if($id_usuario!= null){
-				$data["nombre"]=$_SESSION["nombre"];
-				$data["usuario"]=$_SESSION["usuario"];
-				$this->load->view('contenido');
-				$this->load->view('layout/layout_nominas',$data);
-				$data['clientes'] = $this->listar->clientes();
-				$data['usuarios'] = $this->listar->usuarios();
-				$data['contratos'] = $this->nomina->buscar_contratosusuario($id_usuario);
-				$this->load->view('layout/aside',$data);
-				$this->load->view('nomina/nominaslistado',$data);
-			}else{
-				redirect(site_url("nominalist/listNominas"));
-			}
+	
+	function daNomina(){
+	    if(isset($_SESSION["sesion"])){	
+			$data["nombre"]=$_SESSION["nombre"];
+			$data["usuario"]=$_SESSION["usuario"];
+			$this->load->view('contenido');
+			$this->load->view('layout/layout_nominas',$data);
+			// $this->load->model("mantenedor");
+			$data['bono']= $this->nomina->bono();
+			$data['contratos']= $this->nomina->contratos();
+			$data['clientes'] = $this->listar->clientes();
+			$data['usuarios'] = $this->listar->usuarios();
+			// $data['listar']= $this->mantenedor->listarBono();
+			$this->load->view('layout/aside',$data);
+			$this->load->view('nomina/dashNomina',$data);
 		}else{
 			redirect(site_url("menu"));
 		}
-	}
+		}
+
+
 
 	function buscarCliente(){
       if(isset($_SESSION["sesion"])){
@@ -61,6 +61,7 @@ class nominalist extends CI_Controller {
 				$data["usuario"]=$_SESSION["usuario"];
 				$this->load->view('contenido');
 				$this->load->view('layout/layout_nominas',$data);
+				//$data['contratos']= $this->nomina->contratos();
 				$data['clientes'] = $this->listar->clientes();
 				$data['usuarios'] = $this->listar->usuarios();
 				$data['contratos'] = $this->nomina->buscar_contratoscliente($id_cliente);
@@ -73,7 +74,29 @@ class nominalist extends CI_Controller {
 			redirect(site_url("menu"));
 		}
 	}
-		
+
+	// 	function buscarUsuario(){		
+	// 	if(isset($_SESSION["sesion"])){
+	// 		$id_usuario= $_POST['usuarios'];
+	// 		if($id_usuario!= null){
+	// 			$data["nombre"]=$_SESSION["nombre"];
+	// 			$data["usuario"]=$_SESSION["usuario"];
+	// 			$this->load->view('contenido');
+	// 			$this->load->view('layout/layout_nominas',$data);
+	// 			$data['clientes'] = $this->listar->clientes();
+	// 			$data['usuarios'] = $this->listar->usuarios();
+	// 			$data['contratos'] = $this->nomina->buscar_contratosusuario($id_usuario);
+	// 			$this->load->view('layout/aside',$data);
+	// 			$this->load->view('nomina/nominaslistado',$data);
+	// 		}else{
+	// 			redirect(site_url("nominalist/listNominas"));
+	// 		}
+	// 	}else{
+	// 		redirect(site_url("menu"));
+	// 	}
+	// }
+
+
 	 public function exportardatos(){
 		$this->load->library('phpexcel');
 		$this->load->model("nomina");				

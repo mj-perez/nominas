@@ -1,7 +1,7 @@
 <header class="main-header">
     <!-- Logo -->
     <a href="<?php echo base_url("menu/index");?>" class="logo">
-      <img src="<?php echo  site_url(); ?>/assets/img/logo-progestion2.png">
+      <img src="<?php echo  site_url(); ?>/assets/img/logo.png" class="img-circle" width="30" height="30">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>Pro</b>G</span>
       <!-- logo for regular state and mobile devices -->

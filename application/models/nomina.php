@@ -30,6 +30,10 @@ class nomina extends CI_model {
 				 p.rut,
 				 con.ID_Contrato,
 				 con.Sueldo_Base,
+				 con.Bono_Cuantitativo,
+				 con.Bono_Cualitativo,
+				 con.Movilizacion,
+				 con.Colacion,
 				 p.ap_paterno,
 				 p.ap_materno,
 				 p.nombres,
@@ -135,9 +139,16 @@ class nomina extends CI_model {
 				 end as Estado_Actual,
 				 e.egrupo ,
 				 cli.cliente,
+				 cli.ID_Cliente,
 				 p.nombre_proyecto,
 				 u.nombre+' '+u.ap_paterno as responsable,
 				 p.rut,
+				 con.ID_Contrato,
+				 con.Sueldo_Base,
+				 con.Bono_Cuantitativo,
+				 con.Bono_Cualitativo,
+				 con.Movilizacion,
+				 con.Colacion,
 				 p.ap_paterno,
 				 p.ap_materno,
 				 p.nombres,
@@ -189,7 +200,7 @@ class nomina extends CI_model {
 				 i.isapre as Prevision_Salud,
 				 isnull(pa.fpago,'-') as fpago ,
 				 isnull(b.Banco,'-') as banco,
-				 isnull(con.ncuenta,'-') as ncuenta
+				 isnull(con.ncuenta,'-') as ncuenta,
 				 --en.Celular,
 				 --en.Tablet,
 				 --en.Notebook,
@@ -200,10 +211,10 @@ class nomina extends CI_model {
 				 --en.Acceso_Cloud,
 				 --en.Acceso_Intranet,
 				 --en.Acceso_Apenet,
-				 --cn.cant_cargasfamiliares as Cargas_Familiares,
-				 --cn.fuero,
-				 --cn.sala_cuna,
-				 --cn.Prestamo_Caja
+				 cn.cant_cargasfamiliares as Cargas_Familiares,
+				 cn.fuero,
+				 cn.sala_cuna,
+				 cn.Prestamo_Caja
 				 --en.obs_generales
 				from SGI_Contratos con
 				inner join SGI_EGrupo e on(con.id_egrupo=e.id_egrupo)
@@ -222,9 +233,12 @@ class nomina extends CI_model {
 				left join SGI_Isapres i on(i.id_isapre=con.id_salud)
 				left join SGI_FPagos pa on(pa.id_fpago=con.id_fpago)
 				left join SGI_Bancos b on(b.ID_Banco=con.ID_Banco)
-				--left join Cargas_Nomina cn on(con.rut=cn.rut)
+				left join Cargas_Nomina cn on(con.rut=cn.rut)
 				--left join Entregas_Nomina en on(en.id_contrato=con.id_contrato)
-				where cli.id_cliente=".$id_cliente;
+				where cli.activo=1
+				--and status_contrato='Firmado'
+				and u.id_perfil=13
+				and cli.id_cliente=".$id_cliente;
         $res = $this->db->query($query);
         return $res->result_array();
 	}
@@ -241,9 +255,16 @@ class nomina extends CI_model {
 				 end as Estado_Actual,
 				 e.egrupo ,
 				 cli.cliente,
+				 cli.ID_Cliente,
 				 p.nombre_proyecto,
 				 u.nombre+' '+u.ap_paterno as responsable,
 				 p.rut,
+				 con.ID_Contrato,
+				 con.Sueldo_Base,
+				 con.Bono_Cuantitativo,
+				 con.Bono_Cualitativo,
+				 con.Movilizacion,
+				 con.Colacion,
 				 p.ap_paterno,
 				 p.ap_materno,
 				 p.nombres,
@@ -284,7 +305,7 @@ class nomina extends CI_model {
 				 when  datediff(month,con.Fecha_Ingreso,getdate())>=12 then
 				 datediff(month,con.Fecha_Ingreso,getdate())/12 
 				 end as Antiguedad, 
-				 case 
+				  case 
 				 when  datediff(month,con.Fecha_Ingreso,getdate())<12 then
 				 datediff(month,con.Fecha_Ingreso,getdate())
 				 when  datediff(month,con.Fecha_Ingreso,getdate())>=12 then
@@ -295,7 +316,7 @@ class nomina extends CI_model {
 				 i.isapre as Prevision_Salud,
 				 isnull(pa.fpago,'-') as fpago ,
 				 isnull(b.Banco,'-') as banco,
-				 isnull(con.ncuenta,'-') as ncuenta
+				 isnull(con.ncuenta,'-') as ncuenta,
 				 --en.Celular,
 				 --en.Tablet,
 				 --en.Notebook,
@@ -306,10 +327,10 @@ class nomina extends CI_model {
 				 --en.Acceso_Cloud,
 				 --en.Acceso_Intranet,
 				 --en.Acceso_Apenet,
-				 --cn.cant_cargasfamiliares as Cargas_Familiares,
-				 --cn.fuero,
-				 --cn.sala_cuna,
-				 --cn.Prestamo_Caja
+				 cn.cant_cargasfamiliares as Cargas_Familiares,
+				 cn.fuero,
+				 cn.sala_cuna,
+				 cn.Prestamo_Caja
 				 --en.obs_generales
 				from SGI_Contratos con
 				inner join SGI_EGrupo e on(con.id_egrupo=e.id_egrupo)
@@ -328,8 +349,10 @@ class nomina extends CI_model {
 				left join SGI_Isapres i on(i.id_isapre=con.id_salud)
 				left join SGI_FPagos pa on(pa.id_fpago=con.id_fpago)
 				left join SGI_Bancos b on(b.ID_Banco=con.ID_Banco)
-				--left join Cargas_Nomina cn on(con.rut=cn.rut)
+				left join Cargas_Nomina cn on(con.rut=cn.rut)
 				--left join Entregas_Nomina en on(en.id_contrato=con.id_contrato)
+				where cli.activo=1
+				--and status_contrato='Firmado'
 				where p.id_usuario=".$id_usuario;
         $res = $this->db->query($query);
         return $res->result_array();

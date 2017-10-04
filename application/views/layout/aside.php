@@ -1,4 +1,6 @@
-  <aside class="main-sidebar">
+<body class="hold-transition skin-blue sidebar-mini sidebar-collapse">  
+  
+  <aside class="main-sidebar ">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <!-- Sidebar user panel -->
@@ -17,7 +19,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">Menu Principal</li>
-        <li class="treeview">
+       <!--  <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Clientes</span>
             <span class="pull-right-container">
@@ -28,7 +30,7 @@
             <li><a href="<?php echo base_url("menu/index");?>"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
             <li><a href="<?php echo base_url("menu/index");?>"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
           </ul>
-        </li>
+        </li> -->
         <li class="treeview">
           <a href="#">
             <i class="fa fa-files-o"></i>
@@ -55,8 +57,7 @@
           <ul class="treeview-menu">
             <li><a href="<?php echo base_url("nominalist/reportes");?>"><i class="fa fa-circle-o"></i> Clientes</a></li>
             <li><a href="morris.html"><i class="fa fa-circle-o"></i> Empresa</a></li>
-            <li><a href="flot.html"><i class="fa fa-circle-o"></i></a></li>
-            <li><a href="inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
+            
           </ul>
         </li>
         <li class="treeview">
@@ -68,10 +69,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url("cmantenedor/listBono");?>"><i class="fa fa-circle-o"></i> Bonos</a></li>
+            <li><a href="<?php echo base_url("cmantenedor/listBono");?>"><i class="fa fa-circle-o"></i>Bonos</a></li>
             <li><a href="morris.html"><i class="fa fa-circle-o"></i> Feriados</a></li>
             <li><a href="flot.html"><i class="fa fa-circle-o"></i> Categoria</a></li>
-            <li><a href="inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
+            <li><a href="inline.html"><i class="fa fa-circle-o"></i> Clientes</a></li>
           </ul>
         </li>
         <!-- <li class="treeview">

@@ -1,102 +1,75 @@
-
-<!DOCTYPE html>
-<html>
-<body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
-
-  <header class="main-header">
-    <!-- Logo -->
-    <a href="<?php echo base_url("menu/index");?>" class="logo">
-         <span class="logo-mini"><b>Pro</b>G</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Grupo</b>Progestion</span>
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-         </a>
-</header>
-
+  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Dashboard
-        <small>Control panel</small>
+        Sistema de Nomina
+        <small>ProgestionBeta 1.0</small>
       </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
-      </ol>
     </section>
-
     <!-- Main content -->
     <section class="content">
-      <!-- Small boxes (Stat box) -->
+      <!-- Info boxes -->
       <div class="row">
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-aqua">
-            <div class="inner">
-              <h3>150</h3>
+        <div class="col-md-3">
+          <div class="info-box">
+            <span class="info-box-icon bg-aqua"><i class="fa fa-user-times"></i></span>
 
-              <p>New Orders</p>
+            <div class="info-box-content">
+              <span class="info-box-text">Total Finiquitado</span>
+              <span class="info-box-number">41090<small></small></span>
             </div>
-            <div class="icon">
-              <i class="fa fa-industry"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <!-- /.info-box-content -->
           </div>
+          <!-- /.info-box -->
         </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
+        <!-- /.col -->
+        <div class="col-md-3">
+          <div class="info-box">
+            <span class="info-box-icon bg-green"><i class="fa fa-users"></i></span>
 
-              <p>Bounce Rate</p>
+            <div class="info-box-content">
+              <span class="info-box-text">Cantidad de persona Contratadas</span>
+              <span class="info-box-number">4410</span>
             </div>
-            <div class="icon">
-              <i class="fa  fa-dollar"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <!-- /.info-box-content -->
           </div>
+          <!-- /.info-box -->
         </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3>44</h3>
+        <div class="col-md-3">
+          <div class="info-box">
+            <span class="info-box-icon bg-yellow"><i class="fa fa-black-tie"></i></span>
 
-              <p>User Registrations</p>
+            <div class="info-box-content">
+              <span class="info-box-text">C. Contrato Fijo</span>
+              <span class="info-box-number">4110</span>
             </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <!-- /.info-box-content -->
           </div>
+          <!-- /.info-box -->
         </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-red">
-            <div class="inner">
-              <h3>65</h3>
+        <div class="col-md-3">
+          <div class="info-box">
+            <span class="info-box-icon bg-red"><i class="fa fa-industry"></i></span>
 
-              <p>Unique Visitors</p>
+            <div class="info-box-content">
+              <span class="info-box-text">C. Contato indefinido</span>
+              <span class="info-box-number">510</span>
             </div>
-            <div class="icon">
-              <i class="fa fa-warning"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <!-- /.info-box-content -->
           </div>
+          <!-- /.info-box -->
         </div>
-        <!-- ./col -->
+        <!-- /.col -->
       </div>
       <!-- /.row -->
+
       <div class="row">
         <div class="col-md-12">
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title"><i class="fa fa-area-chart"> Monthly Recap Report</h3></i>
+              <h3 class="box-title">Report Nomina</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -120,7 +93,7 @@
               <div class="row">
                 <div class="col-md-8">
                   <p class="text-center">
-                    <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong>
+                    <strong>Rango Fecha: 1 Abril, 2017 - 30 Junio, 2014</strong>
                   </p>
 
                   <div class="chart">
@@ -136,40 +109,40 @@
                   </p>
 
                   <div class="progress-group">
-                    <span class="progress-text">Add Products to Cart</span>
-                    <span class="progress-number"><b>190</b>/200</span>
+                    <span class="progress-text">Nominas Aprobadas</span>
+                    <span class="progress-number"><b>160</b>/200</span>
 
                     <div class="progress sm">
-                      <div class="progress-bar progress-bar-aqua" style="width: 50%"></div>
+                      <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
                     </div>
                   </div>
                   <!-- /.progress-group -->
                   <div class="progress-group">
-                    <span class="progress-text">Complete Purchase</span>
-                    <span class="progress-number"><b>310</b>/400</span>
+                    <span class="progress-text">Nominas Reprobadas</span>
+                    <span class="progress-number"><b>10</b>/100</span>
 
                     <div class="progress sm">
-                      <div class="progress-bar progress-bar-red" style="width: 80%"></div>
+                      <div class="progress-bar progress-bar-red" style="width: 20%"></div>
                     </div>
                   </div>
                   <!-- /.progress-group -->
-                  <div class="progress-group">
-                    <span class="progress-text">Visit Premium Page</span>
+                  <!-- <div class="progress-group">
+                    <span class="progress-text">Vis</span>
                     <span class="progress-number"><b>480</b>/800</span>
 
                     <div class="progress sm">
-                      <div class="progress-bar progress-bar-green" style="width: 20%"></div>
+                      <div class="progress-bar progress-bar-green" style="width: 80%"></div>
                     </div>
-                  </div>
+                  </div> -->
                   <!-- /.progress-group -->
-                  <div class="progress-group">
+                  <!-- div class="progress-group">
                     <span class="progress-text">Send Inquiries</span>
                     <span class="progress-number"><b>250</b>/500</span>
 
                     <div class="progress sm">
-                      <div class="progress-bar progress-bar-yellow" style="width: 92%"></div>
+                      <div class="progress-bar progress-bar-yellow" style="width: 80%"></div>
                     </div>
-                  </div>
+                  </div> -->
                   <!-- /.progress-group -->
                 </div>
                 <!-- /.col -->
@@ -183,7 +156,7 @@
                   <div class="description-block border-right">
                     <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 17%</span>
                     <h5 class="description-header">$35,210.43</h5>
-                    <span class="description-text">TOTAL REVENUE</span>
+                    <span class="description-text">Total Nomina</span>
                   </div>
                   <!-- /.description-block -->
                 </div>
@@ -192,7 +165,7 @@
                   <div class="description-block border-right">
                     <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> 0%</span>
                     <h5 class="description-header">$10,390.90</h5>
-                    <span class="description-text">TOTAL COST</span>
+                    <span class="description-text">Total Costo Personal</span>
                   </div>
                   <!-- /.description-block -->
                 </div>
@@ -200,8 +173,8 @@
                 <div class="col-sm-3 col-xs-6">
                   <div class="description-block border-right">
                     <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 20%</span>
-                    <h5 class="description-header">$24,813.53</h5>
-                    <span class="description-text">TOTAL PROFIT</span>
+                    <h5 class="description-header">$24,813</h5>
+                    <span class="description-text">Comicion Total Agencia</span>
                   </div>
                   <!-- /.description-block -->
                 </div>
@@ -209,8 +182,8 @@
                 <div class="col-sm-3 col-xs-6">
                   <div class="description-block">
                     <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> 18%</span>
-                    <h5 class="description-header">1200</h5>
-                    <span class="description-text">GOAL COMPLETIONS</span>
+                    <h5 class="description-header">$14,863.00</h5>
+                    <span class="description-text">Total remuneracion</span>
                   </div>
                   <!-- /.description-block -->
                 </div>
@@ -223,5 +196,4 @@
         </div>
         <!-- /.col -->
       </div>
-          </div>
-<script src="/nominas/assets/dist/js/pages/dashboard2.js"></script>
+      <!-- /.row -->

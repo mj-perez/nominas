@@ -3,15 +3,6 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-  <header class="main-header">
-    <!-- Logo -->
-    <a href="../../index2.html" class="logo">
-         <span class="logo-mini"><b>Pro</b>G</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Grupo</b>Progestion</span>
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-         </a>
-</header>
   
 <div class="content-wrapper">
   <section class="content-header">
@@ -93,10 +84,10 @@
                 <th>Provicion vacaciones</th>
                 <th>Provicion Finiquitos</th>
                 <th>Total costo personal</th>
-                <th>Comocion total agencia(?)</th>
-                <th>Costo Cliente(?)</th>
-                <th>Llegada full time (?)</th>
-                <th>Llegada part time (?)</th>
+                <th>Comocion total agencia</th>
+                <th>Costo Cliente</th>
+                <th>Llegada full time</th>
+                <th>Llegada part time</th>
                 <th>Llegada supervisor</th>
                 <th>Entrega Celular</th>      
                 <th>Entrega Tablet </th>      

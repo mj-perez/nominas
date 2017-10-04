@@ -10,7 +10,7 @@ class menu extends CI_Controller {
 			$this->load->view('contenido');
 		    $this->load->view('layout/layout_nominas',$data);
 		    $this->load->view('layout/aside',$data);
-			$this->load->view('sistema/home',$data);
+			// $this->load->view('sistema/home',$data);
 		} else {
 			if(isset($_POST["txt_usuario"]) && isset($_POST["txt_contra"])){
 				$this->load->model("funcion_login");
@@ -29,7 +29,7 @@ class menu extends CI_Controller {
 					$this->load->view('contenido');
 					$this->load->view('layout/layout_nominas',$data);
 					$this->load->view('layout/aside',$data);
-					$this->load->view('sistema/home',$data);
+					// $this->load->view('sistema/home',$data);
 				} else {
 					echo "<script> alert('usuario y/o contraseña incorrectos, ingrese nuevamente'); 
 					window.location.href='nominas'</script>";

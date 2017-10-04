@@ -5,15 +5,15 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-  <header class="main-header">
-    <!-- Logo -->
+<!--   <header class="main-header">
+
     <a href="../../index2.html" class="logo">
          <span class="logo-mini"><b>Pro</b>G</span>
-      <!-- logo for regular state and mobile devices -->
+
       <span class="logo-lg"><b>Grupo</b>Progestion</span>
-      <!-- mini logo for sidebar mini 50x50 pixels -->
+
          </a>
-</header>
+</header> -->
   
 <div class="content-wrapper" >  
     <section class="content-header table_responsive">
@@ -43,28 +43,18 @@
         <select id="clientes" name="clientes" style="width:200px" class="form-control" onchange="document.getElementById('form1').submit();">
             <option value="">Seleccione</option>
             <?php
-                foreach ($clientes as $c) {
-                    echo "<option value='".$c["id_cliente"]."'>".strtoupper($c["cliente"])."</option>";}?>
+                foreach ($clientes as $cl) {
+                    echo "<option value='".$cl["id_cliente"]."'>".strtoupper($cl["cliente"])."</option>";}?>
         </select> 
         </form>
         </td>
-         <td width="25%"><h5 class="titulousuarios" align="left"><font color="black">Buscar Ejecutivos</font></h5>
-         <form id="form2" name="form2" method="post" action="<?php echo  site_url();?>nominalist/buscarUsuario">
-         <select id="usuarios" name="usuarios" style="width:200px" class="form-control" onchange="document.getElementById('form2').submit();">
-            <option value="">Seleccione</option>
-            <?php
-                foreach ($usuarios as $u) {
-                    echo "<option value='".$u["id_usuario"]."'>".strtoupper($u["usuario"])."</option>";
-                }   
-            ?>
-        </select>
-        </form>     
-       </td>
-       <td width="25%"><h5 class="titulousuarios" align="left"><font color="black">Limpiar Filtros</font></h5>
+         
+       <td width="25%"><h5 class="titulousuarios" align="left"><font color="black">Limpiar</font></h5>
           <form class='form-horizontal' name ='form3' id='form3' method='POST' action="<?php echo  site_url();?>nominalist/listnominas">
            <button id="btn_ini" name="btn_ini" type="submit" class="btn btn-info btn-sm" title='exportar'  onclick="document.getElementById(form3).submit();"><i class="glyphicon glyphicon-refresh"></i></button>
         </form>     
-       </td>            
+       </td>
+
     
 </table>
 
@@ -72,7 +62,7 @@
 <table id="tabla_nominas" class="stripe row-border order-column" >
        <thead>
             <tr>
-                <th></th> 
+                <th><input type='checkbox' onclick="marcar(this);" value=''></th> 
                 <th>Rut</th>
                 <th>Nombres Completo</th>
                 <th>Estado del Contrato</th>
@@ -90,8 +80,8 @@
                 <!-- <th>Local</th> -->
                 <th>Supervisor</th>
                 <th>Días Trabajados</th>
-                <th>Codigo Remuneracion(?)</th>
-                <th>Categoría(?)</th>
+                <th>Codigo Remuneracion</th>
+                <th>Categoría</th>
                 <th>Sueldo Base</th>
                 <th>Sueldo Proporcional</th>
                 <th>Gratificaciòn</th>
@@ -111,8 +101,8 @@
                 <th>Aguinaldo</th>
                 <th>Total imponible</th>
                 <th>Movilizacion variable</th>
-                <th>Total haberes</th>
                 <th>Viaticos</th>
+                <th>Total haberes</th>
                 <th>Descuento previsional</th>
                 <th>Descuento de SIS</th>
                 <th>Descuento Mutual</th>
@@ -137,10 +127,10 @@
                 <th>Provicion vacaciones</th>
                 <th>Provicion Finiquitos</th>
                 <th>Total costo personal</th>
-                <th>Comocion total agencia(?)</th>
-                <th>Costo Cliente(?)</th>
-                <th>Llegada full time (?)</th>
-                <th>Llegada part time (?)</th>
+                <th>Comocion total agencia</th>
+                <th>Costo Cliente</th>
+                <th>Llegada full time </th>
+                <th>Llegada part time </th>
                 <th>Llegada supervisor</th>
                 <th>Entrega Celular</th>
                 <th>Documento Celular</th>
@@ -152,8 +142,8 @@
                 <th>Documento Credencial</th>
                 <th>Entrega Uniforme</th>
                 <th>Documento Uniforme</th>
-                <th>Entrega EPP (?)</th>
-                <th>Documento EPP (?)</th>
+                <th>Entrega EPP </th>
+                <th>Documento EPP </th>
                 <th>Entrega Club 360</th>
                 <th>Documento Club 360</th>
                 <th>Entrega cloud</th>
@@ -162,7 +152,7 @@
                 <th>Documento Intranet</th>
                 <th>Entrega Apenet</th>
                 <th>Documento Apenet</th>
-                <th>Observaciones Generales(?)</th>
+                <th>Observaciones Generales</th>
                 </tr>
         </thead>
         
@@ -187,36 +177,35 @@ echo "
                 <td >".strtoupper($c['responsable'])."</td>
                 <td >".strtoupper($c['egrupo'])."</td>              
              <td><button type='button' class='btn btn-default' data-toggle='modal' data-target='#modal-default'><i class='glyphicon glyphicon-list-alt'></i></button></td>
-                <td >Supervisor(?)</td>
-                <td ><input type='text' id='txt-dt".$c['ID_Contrato']."' name='row-1-age' placeholder='Días Trabajados' disabled></td>
+                <td >Supervisor</td>
+                <td ><input type='text' id='txt-dt".$c['ID_Contrato']."' onblur='calculo(".$c['ID_Contrato'].")'  value='30' placeholder='Días Trabajados' disabled></td>
                 <td >Codigo Remuneracion</td>
-                <td >Categoria(?)                        </td>
-                <td >".strtoupper($c['Sueldo_Base'])."</td>
-                <td ><input type='text' id='txt-spro".$c['ID_Contrato']."' id='row-1-age' name='row-1-age' placeholder='(SB/30)*DT' onblur='calculoSP(this.value, 'total')' disabled></td>
-                <td ><input type='text' id='txt-g".$c['ID_Contrato']."' name='row-1-age' placeholder='(SBP*0,25)' disabled></td>
-                <td ><input type='text' id='txt-bcl".$c['ID_Contrato']."' name='row-1-age' placeholder='(BCL/30)*DT' disabled></td>
-                <td ><input type='text' id='txt-bct".$c['ID_Contrato']."' name='row-1-age' placeholder='(BCT/30)*DT' disabled></td>
-                <td >Colacion                            </td>
-                <td ><input type='text' id='txt-m".$c['ID_Contrato']."' name='row-1-age' placeholder='(MV/30)*DT' disabled></td>
+                <td >Categoria                        </td>
+                <td >".strtoupper($c['Sueldo_Base'])."<input type='hidden' value='".strtoupper($c['Sueldo_Base'])."' id='inp-sb".$c['ID_Contrato']."'></td>
+                <td ><label id='txt-spro".$c['ID_Contrato']."'></td>
+                <td ><label id='txt-g".$c['ID_Contrato']."'></td>
+                <td >".strtoupper($c['Bono_Cualitativo'])."<input type='hidden' value='".strtoupper($c['Bono_Cualitativo'])."' id='txt-bcl".$c['ID_Contrato']."'></td>
+                <td >".strtoupper($c['Bono_Cuantitativo'])."<input type='hidden' value='".strtoupper($c['Bono_Cuantitativo'])."' id='txt-bct".$c['ID_Contrato']."'></td>
+                <td >".strtoupper($c['Colacion'])."<input type='hidden' value='".strtoupper($c['Colacion'])."' id='txt-cl".$c['ID_Contrato']."'></td>
+                <td >".strtoupper($c['Movilizacion'])."<input type='hidden' value='".strtoupper($c['Movilizacion'])."' id='txt-m".$c['ID_Contrato']."'></td>
                 <td >".strtoupper($c['afp'])."</td>
                 <td >".strtoupper($c['Prevision_Salud'])."</td>
                 <td >".strtoupper($c['fpago'])."</td>
                 <td >".strtoupper($c['banco'])."</td>
                 <td >".strtoupper($c['ncuenta'])."</td>
-                <td >".strtoupper($c['vacaciones'])."</td>
-                
+                <td >".strtoupper($c['vacaciones'])."</td>                
                 <td><button type='button' class='btn btn-default' data-toggle='modal' data-target='#modal-bonos' onclick='buscarbonos(".$c['ID_Cliente'].")'><i class='glyphicon glyphicon-list-alt'></i></button></td>
-                <td ><input type='text' id='txt-he".$c['ID_Contrato']."' name='row-1-age' placeholder='Horas Extras' disabled></td>
-                <td ><input type='text' id='txt-vhe".$c['ID_Contrato']."' name='row-1-age' placeholder='(0,007778*HE)*DT' disabled></td>
-                <td ><input type='text' id='txt-a".$c['ID_Contrato']."' name='row-1-age' placeholder='Aguinaldo' disabled></td>
-                <td ><input type='text' id='txt-timp".$c['ID_Contrato']."' name='row-1-age' placeholder='SBP+BCL+BCT+BN+VHE+AG' disabled></td>
-                <td ><input type='text' id='txt-mv".$c['ID_Contrato']."' name='row-1-age' placeholder='Movilizaion variable' disabled></td>
-                <td ><input type='text' id='txt-th".$c['ID_Contrato']."' name='row-1-age' placeholder='TIMP+COL+MV+MV' disabled></td>
-                <td ><input type='text' id='txt-v".$c['ID_Contrato']."' name='row-1-age' placeholder='Viaticos' disabled></td>
-                <td ><input type='text' id='txt-dp".$c['ID_Contrato']."' name='row-1-age' placeholder='Descuento Previcional' disabled></td>
-                <td ><input type='text' id='txt-ds".$c['ID_Contrato']."' name='row-1-age' placeholder='Descuento Sis' disabled></td>
-                <td ><input type='text' id='txt-dm".$c['ID_Contrato']."' name='row-1-age' placeholder='Descuento Mutual' disabled></td>
-                <td ><input type='text' id='txt-dsc".$c['ID_Contrato']."' name='row-1-age' placeholder='Descuento seguro de cesantia' disabled></td>
+                <td ><input type='text' id='txt-he".$c['ID_Contrato']."' onblur='calculoHE(".$c['ID_Contrato'].")' placeholder='Horas Extras' disabled></td>
+                <td ><label id='txt-vhe".$c['ID_Contrato']."' disabled></td>
+                <td ><input type='text' id='txt-a".$c['ID_Contrato']."' onblur='calculo(".$c['ID_Contrato'].")' placeholder='Aguinaldo' disabled></td>
+                <td ><label id='txt-timp".$c['ID_Contrato']."' disabled></td>
+                <td ><input type='text' id='txt-mv".$c['ID_Contrato']."'  placeholder='Movilizaion variable' disabled></td>
+                <td ><input type='text' id='txt-v".$c['ID_Contrato']."' onblur='calculoTH(".$c['ID_Contrato'].")' placeholder='Viaticos' disabled></td>
+                <td ><label id='txt-th".$c['ID_Contrato']."' disabled></td>
+                <td >11,44%</td>
+                <td >1,41%</td>
+                <td >1,8%</td>
+                <td >3,0%</td>
                 <td ><input type='checkbox' value=''></td>
                 <td ><input type='checkbox' value=''></td>
                 <td ><input type='number' id='txt-ncf".$c['ID_Contrato']."' name='row-1-age' placeholder='Numero de Cargas Familiares' disabled></td>
@@ -238,10 +227,10 @@ echo "
                 <td ><input type='text' id='txt-pf".$c['ID_Contrato']."' name='row-1-age' placeholder='Provicion Finiquito' disabled></td>
                 <td ><input type='text' id='txt-tcp".$c['ID_Contrato']."' name='row-1-age' placeholder='Total costo personal' disabled></td>
                 <td ><input type='text' id='txt-cta".$c['ID_Contrato']."' name='row-1-age' placeholder='Comicion totoal Agencia' disabled></td>
-                <td ><input type='text' id='txt-cc".$c['ID_Contrato']."' name='row-1-age' placeholder='CostoCliente??' disabled></td>
-                <td ><input type='text' id='txt-llt".$c['ID_Contrato']."' name='row-1-age' placeholder='Legada full time' disabled></td>
-                <td ><input type='text' id='txt-lpt".$c['ID_Contrato']."' name='row-1-age' placeholder='Llegada parti time' disabled></td>
-                <td ><input type='text' id='txt-ls".$c['ID_Contrato']."' name='row-1-age' placeholder='Llegada supervisor' disabled></td>
+                <td ><input type='text' id='txt-cc".$c['ID_Contrato']."' name='row-1-age' placeholder='Costo Cliente' disabled></td>
+                <td ><input  type='datetime-local'  id='txt-llt".$c['ID_Contrato']."' name='row-1-age' placeholder='Legada full time' disabled></td>
+                <td ><input type='datetime-local' id='txt-lpt".$c['ID_Contrato']."' name='row-1-age' placeholder='Llegada parti time' disabled></td>
+                <td ><input type='datetime-local' id='txt-ls".$c['ID_Contrato']."' name='row-1-age' placeholder='Llegada supervisor' disabled></td>
                 <td ><input type='checkbox' value=''></td>
                 <td ><input type='file' value=''></td>
                 <td ><input type='checkbox' value=''></td>
@@ -263,13 +252,13 @@ echo "
                 <td ><input type='checkbox' value=''></td>
                 <td ><input type='file' value=''></td>
                 <td ><input type='text' id='txt-co".$c['ID_Contrato']."' name='row-1-age' placeholder='Comentario y/u Observaciones' disabled></td>
-            </tr>";}?>
+            </tr>";}?><a href="<?php echo base_url("menu/index");?>">
        </tbody>
     </table>
 </div>
         <div class="col-xs-12">
             <div class="btn-group"> 
-                <button type="button" id="sig-btn" class="btn btn-primary">Siguiente</button> 
+                <a href="<?php echo base_url("nominalist/daNomina");?>"><button type="button" id="sig-btn" class="btn btn-primary">Ingresar</button> </a>
             </div>
         </div>
     </div>
@@ -337,35 +326,11 @@ echo "
             </div> 
             <br>
             <br>
-            <h3>Días de Trabajo:</h3>    
-                <table  class="stripe row-border order-column">
-                    <thead>
-                    <tr>
-                        <th width="10%" align="center">Lunes</th>
-                        <th width="10%" align="center">Martes</th> 
-                        <th width="10%" align="center">Miercoles</th>
-                        <th width="10%" align="center">Jueves</th>
-                        <th width="10%" align="center">Viernes</th>
-                        <th width="10%" align="center">Sabado</th>
-                        <th width="10%" align="center">Domingo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><input type="checkbox" align="center" class="minimal"></td>
-                        <td><input type="checkbox" align="center" class="minimal"></td>
-                        <td><input type="checkbox" align="center" class="minimal"></td>
-                        <td><input type="checkbox" align="center" class="minimal"></td>
-                        <td><input type="checkbox" align="center" class="minimal"></td>
-                        <td><input type="checkbox" align="center" class="minimal"></td>
-                        <td><input type="checkbox" align="center" class="minimal"></td>
-                    </tr>
-                </tbody>
-                </table>
               </div>
               <div class='modal-footer'>
                 <button type='button' class='btn btn-default pull-left' data-dismiss='modal'>Cancelar</button>
-                <button type='button' class='btn btn-primary'>Ingresar</button>
+                <a href="<?php echo base_url("menu/index");?>"><button type='button' class='btn btn-primary'>Ingresar</button></a>
+
               </div>
             </div>
             <!-- /.modal-content -->
@@ -383,8 +348,7 @@ echo "
 <style type="text/css">
       th, td { white-space: nowrap; }
     div.dataTables_wrapper {
-        width: 1000px;
-        
+        width: 1150px; 
     }
 td {
     cursor: pointer;
@@ -403,18 +367,73 @@ tr {
 
 <script type="text/javascript">
 
-$('#t1').on('input', function() {
-    atualizarTotal();
-});
-$('#t2').on('input', function() {
-    atualizarTotal();
-});
+function marcar(source) 
+    {
+        checkboxes=document.getElementsByTagName('input'); //obtenemos todos los controles del tipo Input
+        for(i=0;i<checkboxes.length;i++) //recoremos todos los controles
+        {
+            if(checkboxes[i].type == "checkbox") //solo si es un checkbox entramos
+            {
+                checkboxes[i].checked=source.checked  ;
+                 //si es un checkbox le damos el valor del checkbox que lo llamó (Marcar/Desmarcar Todos)
+            }else{
 
-function atualizarTotal(){
-    valorQnt = $('#t1').val();
-    valorPreco = $('#t2').val();
-    $('#total').val((parseInt(valorQnt)/30) * parseInt(valorPreco));
-}
+            }
+        }
+    }
+
+function calculo(id) {
+    var dt = parseInt($("#txt-dt"+id).val());
+    var sb = parseInt($("#inp-sb"+id).val());
+    var spro = (sb/30)*dt;
+    var sprosd = spro.toFixed(2);
+    $("#txt-spro"+id).text(sprosd);
+    var gr = spro*0.25;
+    var grsd = gr.toFixed(2);
+    $("#txt-g"+id).text(grsd);
+    var he = $("#txt-he"+id).val();
+    var dt = $("#txt-dt"+id).val();
+    var vhe = (he*0.007778)*dt;
+    var vhesd = vhe.toFixed(2);
+    $("#txt-vhe"+id).text(vhesd);
+    var ag = parseInt($("#txt-a"+id).val());
+    var bct = parseInt($("#txt-bcl"+id).val());
+    var bcl = parseInt($("#txt-bct"+id).val());
+    var timp = parseInt(sprosd)+parseInt(ag)+parseInt(bcl)+parseInt(bct)+parseInt(vhesd);
+    $("#txt-timp"+id).text(timp);
+ }
+
+ function calculoHE(id) {
+    //calculo valor horas extras
+    var he = $("#txt-he"+id).val();
+    var dt = $("#txt-dt"+id).val();
+    var vhe = (he*0.007778)*dt;
+    var vhesd = vhe.toFixed(2);
+    $("#txt-vhe"+id).text(vhesd);
+
+ }
+
+ function calculoTH(id) {
+    var he = $("#txt-he"+id).val();
+    var dt = $("#txt-dt"+id).val();
+    var vhe = (he*0.007778)*dt;
+    var vhesd = vhe.toFixed(2);
+    $("#txt-vhe"+id).text(vhesd);
+    var dt = parseInt($("#txt-dt"+id).val());
+    var sb = parseInt($("#inp-sb"+id).val());
+    var spro = (sb/30)*dt;
+    var sprosd = spro.toFixed(2);
+    var ag = parseInt($("#txt-a"+id).val());
+    var bct = parseInt($("#txt-bcl"+id).val());
+    var bcl = parseInt($("#txt-bct"+id).val());
+    var timp = parseInt(sprosd)+parseInt(ag)+parseInt(bcl)+parseInt(bct)+parseInt(vhesd);
+    var mv = $("#txt-mv"+id).val();
+    var cl = $("#txt-cl"+id).val();
+    var m = $("#txt-m"+id).val();
+    var v = $("#txt-v"+id).val();
+    var thb = parseInt(mv)+parseInt(v)+parseInt(cl)+parseInt(m)+parseInt(timp);
+    $("#txt-th"+id).text(thb);
+ }
 
 function buscarbonos(id){
     $.ajax({
@@ -520,7 +539,7 @@ function buscarbonos(id){
         $('#btnmodal1').attr('disabled', !this.button);
         $("#boxbono").show(); 
         $('#btnbono').removeAttr('collapse', !this.div);
-        alert("asdasda"); 
+        alert("Nominas Ingresadas"); 
     }
 });
 
@@ -600,8 +619,8 @@ function buscarbonos(id){
         $('#txt-llt".$c["ID_Contrato"]."').attr('disabled', !this.text);
         $('#txt-lpt".$c["ID_Contrato"]."').attr('disabled', !this.text);
         $('#txt-ls".$c["ID_Contrato"]."').attr('disabled', !this.text);
-        $('#txt-co".$c["ID_Contrato"]."').attr('disabled', !this.text); 
-   }
+        $('#txt-co".$c["ID_Contrato"]."').attr('disabled', !this.text);
+          }
 });
 ";}?>
 
