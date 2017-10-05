@@ -4,13 +4,16 @@
       <td><h1>Lista de Contratados</h1></td>
        <td width="25%">
           <td><a class="btn btn-app" href="/nominas/assets/plantilla/PlantillaNomina.xlsx" download="PlantilladeNomina">
-                <i class="glyphicon glyphicon-download-alt"></i> Descargar Plantilla
+                <i class="glyphicon glyphicon-download-alt" href=""></i> Descargar Plantilla
               </a></td>
         </form>     
        </td>
-        <td><a class="btn btn-app" href="/nominas/assets/plantilla/PlantillaNomina.xlsx" download="PlantilladeNomina">
-                <i class="glyphicon glyphicon-import"></i>Importar Nomina
-              </a></td>
+        <td>
+          <form id="formu2" class="bus" action="<?php echo  site_url();?>nominalist/agregarnominamasiva" method="POST" enctype="multipart/form-data">       
+          <label for="excel" class="label label-primary">
+          <i class="glyphicon glyphicon-download-alt" href=""></i> Importar Nomina
+          </label>
+          <input type="file" id="excel" name="excel" onchange="formato('#excel');" />
        
        </table>
        <br>
@@ -105,7 +108,62 @@
         </thead>
         
         <tbody>
+          <?php 
+            if(isset($nombre2)){
+              $contador= count($nombre2);
 
+              echo "<div class='alert alert-info'>
+                    <button type='button' class='close' data-dismiss='alert' aria-label='close' <span aria-hidden='true'>&times;</span></button>
+                      <strong>".$nombre.": </strong> Usted a agregado ".$contador." nominas.
+                    </div>";
+             for ($i=0; $i < $contador; $i++) {               
+               echo"<tr>
+                <td>".$numeroNomina[$i]."</td>
+                <td>".$nombre2[$i]."</td>
+                <td>".$ApellidoP[$i]."</td>
+                <td>".$ApellidoM[$i]."</td>
+                <td>".$rut[$i]."</td>
+                <td>".$supervisor[$i]."</td>
+                <td>".$cadena[$i]."</td>
+                <td>".$local[$i]."</td>
+                <td>".$ciudad[$i]."</td>
+                <td>".$cargo[$i]."</td>
+                <td>".$co[$i]."</td>
+                <td>".$tipo_contrato[$i]."</td>
+                <td>".$inicio[$i]."</td>
+                <td>".$termino[$i]."</td>
+                <td>".$diastrab[$i]."</td>
+                <td>".$sueldobase[$i]."</td>
+                <td>".$sueldobaseprop[$i]."</td>
+                <td>".$gratifica[$i]."</td>
+                <td>".$bonocual[$i]."</td>
+                <td>".$bonocuan[$i]."</td>
+                <td>".$cumplimiento[$i]."</td>
+                <td>".$bonos[$i]."</td>
+                <td>".$horaextras[$i]."</td>
+                <td>".$valorextras[$i]."</td>
+                <td>".$aguinaldo[$i]."</td>
+                <td>".$total_impo[$i]."</td>
+                <td>".$colacion[$i]."</td>
+                <td>".$movi[$i]."</td>
+                <td>".$movi_adi[$i]."</td>
+                <td>".$viatico[$i]."</td>
+                <td>".$total_haber[$i]."</td>
+                <td>".$desc_provi[$i]."</td>
+                <td>".$sueldo_liquido[$i]."</td>
+                <td>".$sis[$i]."</td>
+                <td>".$mutual[$i]."</td>
+                <td>".$seg_cesantia[$i]."</td>
+                <td>".$provi_vacaciones[$i]."</td>
+                <td>".$provi_finiquito[$i]."</td>
+                <td>".$banefe[$i]."</td>
+                <td>".$total_costo[$i]."</td>
+                <td>".$comision[$i]."</td>
+                <td>".$costocliente[$i]."</td>
+                </tr>";
+             }
+            }
+          ?>
        </tbody>
     </table>
 </div>
@@ -138,9 +196,56 @@ tr {
    width: 1px;
    text-align: center;
 }
+.label-primary {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.label-primary:focus,
+.label-primary:hover {
+    background-color: green;
+    }
+
+input[type="file"] {
+    display: none;
+}
+
+/* The close button */
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+    color: black;
+}
 </style>
 </body>
 <script type="text/javascript">
+
+    function formato(excel){
+        if($(excel).val()!=''){
+            var f=($(excel).val().substring($(excel).val().lastIndexOf("."))).toLowerCase();
+            var validar=true;
+            if(f==".xls" || f==".xlsx"){ validar=true;} else {validar=false;}
+            if(validar==false){
+                alert("El formato de archivo no corresponde, adjunte uno con extensión .xls o .xlsx");
+                document.getElementById("excel").value="";
+            }else if(validar==true){
+                document.getElementById("formu2").submit();  
+            }
+
+        }
+    }
     
     $(document).ready(function() {
     var table = $('#tabla_nominas').DataTable( {

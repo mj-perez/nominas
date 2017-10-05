@@ -30,7 +30,7 @@ class nominalist extends CI_Controller {
 		}else{
 			redirect(site_url("menu"));
 		}
-		}
+	}
 	
 	function daNomina(){
 	    if(isset($_SESSION["sesion"])){	
@@ -313,6 +313,122 @@ function listarbonos(){
           </div>";
           
 }
+	function agregarnominamasiva(){
+		if(isset($_FILES['excel'])){
+			//Creacion de variables
+		 	$excel = $_FILES['excel']['name'];
+		 	//Guarda Excel
+		 	$destino = $this->subirReferidos($excel);
+		 	$final = "img/excel_nominas/".$destino;
+		 	//llama librerias	 
+		 	$this->load->library('phpexcel');
+		 	//Lectura de excel
+		 	$objReader = new PHPExcel_Reader_Excel2007();
+		 	$object = $objReader->load("img/excel_nominas/".$excel);
+		 	$object->setActiveSheetIndex(0);	
+		 	$columna =10; 	
+		 	$c=0;
+		 	$parametro=0;
+		 	while($parametro==0){	
+		 		//valida que existan datos en columna nombre, si no existe, cierra el insertado del excel
+		 		if($object->getActiveSheet()->getCell('B'.$columna)->getCalculatedValue()==NULL)
+		 		{
+		 			$parametro=1;
+		 		}else{
+		 			//guarda datos de la fila del excel en una variable
+		 			$data['numeroNomina'][$c]=$object->getActiveSheet()->getCell('A'.$columna)->getCalculatedValue();
+		 			$data['nombre2'][$c]=$object->getActiveSheet()->getCell('B'.$columna)->getCalculatedValue();
+		 			$data['ApellidoP'][$c]=$object->getActiveSheet()->getCell('C'.$columna)->getCalculatedValue();
+		 			$data['ApellidoM'][$c]=$object->getActiveSheet()->getCell('D'.$columna)->getCalculatedValue(); 	
+		 			$data['rut'][$c]=$object->getActiveSheet()->getCell('E'.$columna)->getCalculatedValue(); 	
+		 			$data['supervisor'][$c]=$object->getActiveSheet()->getCell('F'.$columna)->getCalculatedValue(); 	
+		 			$data['cadena'][$c]=$object->getActiveSheet()->getCell('G'.$columna)->getCalculatedValue(); 	
+		 			$data['local'][$c]=$object->getActiveSheet()->getCell('H'.$columna)->getCalculatedValue(); 	
+		 			$data['ciudad'][$c]=$object->getActiveSheet()->getCell('I'.$columna)->getCalculatedValue(); 	
+		 			$data['cargo'][$c]=$object->getActiveSheet()->getCell('J'.$columna)->getCalculatedValue(); 	
+		 			$data['co'][$c]=$object->getActiveSheet()->getCell('K'.$columna)->getCalculatedValue();
+		 			$data['tipo_contrato'][$c]=$object->getActiveSheet()->getCell('L'.$columna)->getCalculatedValue();  	
+		 			$data['inicio'][$c]=$object->getActiveSheet()->getCell('M'.$columna)->getCalculatedValue(); 		 			
+		 			$data['termino'][$c]=$object->getActiveSheet()->getCell('N'.$columna)->getCalculatedValue(); 		 			
+		 			$data['diastrab'][$c]=$object->getActiveSheet()->getCell('O'.$columna)->getCalculatedValue(); 	
+		 			$data['sueldobase'][$c]=$object->getActiveSheet()->getCell('P'.$columna)->getCalculatedValue(); 	
+		 			$data['sueldobaseprop'][$c]=$object->getActiveSheet()->getCell('Q'.$columna)->getCalculatedValue(); 	
+		 			$data['gratifica'][$c]=$object->getActiveSheet()->getCell('R'.$columna)->getCalculatedValue(); 	
+		 			$data['bonocual'][$c]=$object->getActiveSheet()->getCell('S'.$columna)->getCalculatedValue(); 	
+		 			$data['bonocuan'][$c]=$object->getActiveSheet()->getCell('T'.$columna)->getCalculatedValue(); 	
+		 			$data['cumplimiento'][$c]=$object->getActiveSheet()->getCell('U'.$columna)->getCalculatedValue(); 	
+		 			$data['bonos'][$c]=$object->getActiveSheet()->getCell('V'.$columna)->getCalculatedValue(); 	
+		 			$data['horaextras'][$c]=$object->getActiveSheet()->getCell('W'.$columna)->getCalculatedValue(); 	
+		 			$data['valorextras'][$c]=$object->getActiveSheet()->getCell('X'.$columna)->getCalculatedValue(); 	
+		 			$data['aguinaldo'][$c]=$object->getActiveSheet()->getCell('Y'.$columna)->getCalculatedValue(); 	
+		 			$data['total_impo'][$c]=$object->getActiveSheet()->getCell('Z'.$columna)->getCalculatedValue(); 	
+		 			$data['colacion'][$c]=$object->getActiveSheet()->getCell('AA'.$columna)->getCalculatedValue(); 	
+		 			$data['movi'][$c]=$object->getActiveSheet()->getCell('AB'.$columna)->getCalculatedValue(); 	
+		 			$data['movi_adi'][$c]=$object->getActiveSheet()->getCell('AC'.$columna)->getCalculatedValue(); 	
+		 			$data['viatico'][$c]=$object->getActiveSheet()->getCell('AD'.$columna)->getCalculatedValue(); 	
+		 			$data['total_haber'][$c]=$object->getActiveSheet()->getCell('AE'.$columna)->getCalculatedValue(); 	
+		 			$data['desc_provi'][$c]=$object->getActiveSheet()->getCell('AF'.$columna)->getCalculatedValue(); 	
+		 			$data['sueldo_liquido'][$c]=$object->getActiveSheet()->getCell('AG'.$columna)->getCalculatedValue(); 	
+		 			$data['sis'][$c]=$object->getActiveSheet()->getCell('AH'.$columna)->getCalculatedValue(); 	
+		 			$data['mutual'][$c]=$object->getActiveSheet()->getCell('AI'.$columna)->getCalculatedValue(); 	
+		 			$data['seg_cesantia'][$c]=$object->getActiveSheet()->getCell('AJ'.$columna)->getCalculatedValue(); 	
+		 			$data['provi_vacaciones'][$c]=$object->getActiveSheet()->getCell('AK'.$columna)->getCalculatedValue(); 	
+		 			$data['provi_finiquito'][$c]=$object->getActiveSheet()->getCell('AL'.$columna)->getCalculatedValue(); 	
+		 			$data['banefe'][$c]=$object->getActiveSheet()->getCell('AM'.$columna)->getCalculatedValue(); 	
+		 			$data['total_costo'][$c]=$object->getActiveSheet()->getCell('AN'.$columna)->getCalculatedValue(); 	
+		 			$data['comision'][$c]=$object->getActiveSheet()->getCell('AO'.$columna)->getCalculatedValue(); 	
+		 			$data['costocliente'][$c]=$object->getActiveSheet()->getCell('AP'.$columna)->getCalculatedValue(); 	
+		 			$c++; 		
+		 			$columna++;	
+		 		}	 		
+		 	}
+		 	//elimina el archivo excel
+		 	unlink("img/excel_nominas/".$excel);
+		 	 	
+		 	$data["nombre"]=$_SESSION["nombre"];
+			$data["usuario"]=$_SESSION["usuario"];
+			$data['contador']= count($data['nombre2']);
+			$this->load->view('contenido');
+			$this->load->view('layout/layout_nominas',$data);
+			$data['bono']= $this->nomina->bono();
+			$data['contratos']= $this->nomina->contratos();
+			$data['clientes'] = $this->listar->clientes();
+			$data['usuarios'] = $this->listar->usuarios();
+			$this->load->view('layout/aside',$data);
+			$this->load->view('nomina/ImportNomina',$data);
+		}else{
+			$data["nombre"]=$_SESSION["nombre"];
+			$data["usuario"]=$_SESSION["usuario"];
+			$this->load->view('contenido');
+			$this->load->view('layout/layout_nominas',$data);
+			$data['bono']= $this->nomina->bono();
+			$data['contratos']= $this->nomina->contratos();
+			$data['clientes'] = $this->listar->clientes();
+			$data['usuarios'] = $this->listar->usuarios();
+			$this->load->view('layout/aside',$data);
+			$this->load->view('nomina/ImportNomina',$data);
+		}
+	}
 
+	function subirReferidos($nombre){
+		$ruta="excel";
+		$config['upload_path'] = "img/excel_nominas/";
+		$config['file_name'] = $nombre;
+		$config['allowed_types'] = "*";
+		$config['overwrite'] = TRUE;
+		//echo $ruta; echo "<br>"; echo $config['file_name'];exit;
+		$this->load->library('upload', $config);
+		if (!$this->upload->do_upload($ruta)) {
+					//*** ocurrio un error
+			$dat['uploadError'] = $this->upload->display_errors();
+			echo $this->upload->display_errors();
+			return;
+		}
+		$data = $this->upload->data();
+		//var_dump($data);exit;
+		$nom=$data['file_name'];
+		//echo $nom;exit;
+		return $nom;
+	}
 	 	
 }
