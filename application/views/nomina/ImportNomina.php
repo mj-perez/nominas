@@ -3,15 +3,15 @@
         <table>
       <td><h1>Lista de Contratados</h1></td>
        <td width="25%">
-          <form class='form-horizontal'>
-           <button id="btn_ini" name="btn_ini" type="submit" class="btn btn-app btn-sm" title='exportar'>Descargar Plantilla<i class="glyphicon glyphicon-download-alt"></i><a href="nominas/assets/plantilla/PlantillaNomina.xlsx" download="PlantilladeNomina"></button></a>
+          <td><a class="btn btn-app" href="/nominas/assets/plantilla/PlantillaNomina.xlsx" download="PlantilladeNomina">
+                <i class="glyphicon glyphicon-download-alt"></i> Descargar Plantilla
+              </a></td>
         </form>     
        </td>
-       <td>
-          <form class='form-horizontal' name ='form3' id='form3' method='POST' action="<?php echo  site_url();?>nominalist/listnominas">
-           <button id="btn_ini" name="btn_ini" value="Importar Nominas" type="submit" class="btn btn-app btn-xs" title='exportar' >Importar Nominas<i class="glyphicon glyphicon-import"></i></button>
-        </form>     
-       </td>
+        <td><a class="btn btn-app" href="/nominas/assets/plantilla/PlantillaNomina.xlsx" download="PlantilladeNomina">
+                <i class="glyphicon glyphicon-import"></i>Importar Nomina
+              </a></td>
+       
        </table>
        <br>
     <div class="row">
