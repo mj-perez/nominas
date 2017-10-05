@@ -51,6 +51,24 @@ class nominalist extends CI_Controller {
 		}
 		}
 
+	function ImportaNominas(){
+	    if(isset($_SESSION["sesion"])){	
+			$data["nombre"]=$_SESSION["nombre"];
+			$data["usuario"]=$_SESSION["usuario"];
+			$this->load->view('contenido');
+			$this->load->view('layout/layout_nominas',$data);
+			// $this->load->model("mantenedor");
+			$data['bono']= $this->nomina->bono();
+			$data['contratos']= $this->nomina->contratos();
+			$data['clientes'] = $this->listar->clientes();
+			$data['usuarios'] = $this->listar->usuarios();
+			// $data['listar']= $this->mantenedor->listarBono();
+			$this->load->view('layout/aside',$data);
+			$this->load->view('nomina/ImportNomina',$data);
+		}else{
+			redirect(site_url("menu"));
+		}
+		}
 
 
 	function buscarCliente(){

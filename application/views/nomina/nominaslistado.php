@@ -223,8 +223,8 @@ echo "
                 <td >".strtoupper($c['talla_pantalon'])."</td>
                 <td >".strtoupper($c['talla_polera'])."</td>
                 <td >".strtoupper($c['talla_calzado'])."</td>
-                <td ><input type='text' id='txt-pv".$c['ID_Contrato']."' name='row-1-age' placeholder='Provicion Vacaciones' disabled ></td>
-                <td ><input type='text' id='txt-pf".$c['ID_Contrato']."' name='row-1-age' placeholder='Provicion Finiquito' disabled></td>
+                <td ><label id='txt-pv".$c['ID_Contrato']."' placeholder='Provicion Vacaciones' disabled ></td>
+                <td ><label id='txt-pf".$c['ID_Contrato']."' placeholder='Provicion Finiquito' disabled></td>
                 <td ><input type='text' id='txt-tcp".$c['ID_Contrato']."' name='row-1-age' placeholder='Total costo personal' disabled></td>
                 <td ><input type='text' id='txt-cta".$c['ID_Contrato']."' name='row-1-age' placeholder='Comicion totoal Agencia' disabled></td>
                 <td ><input type='text' id='txt-cc".$c['ID_Contrato']."' name='row-1-age' placeholder='Costo Cliente' disabled></td>
@@ -417,12 +417,11 @@ function calculo(id) {
     var he = $("#txt-he"+id).val();
     var dt = $("#txt-dt"+id).val();
     var vhe = (he*0.007778)*dt;
-    var vhesd = vhe.toFixed(2);
-    $("#txt-vhe"+id).text(vhesd);
+    var vhesd = vhe.toFixed(0);
     var dt = parseInt($("#txt-dt"+id).val());
     var sb = parseInt($("#inp-sb"+id).val());
     var spro = (sb/30)*dt;
-    var sprosd = spro.toFixed(2);
+    var sprosd = spro.toFixed(0);
     var ag = parseInt($("#txt-a"+id).val());
     var bct = parseInt($("#txt-bcl"+id).val());
     var bcl = parseInt($("#txt-bct"+id).val());
@@ -433,7 +432,34 @@ function calculo(id) {
     var v = $("#txt-v"+id).val();
     var thb = parseInt(mv)+parseInt(v)+parseInt(cl)+parseInt(m)+parseInt(timp);
     $("#txt-th"+id).text(thb);
+    var pf = thb/12;
+    $("#txt-pf"+id).text(pf);
+    var pv = (timp/30)*1.75;
+    var pvsd = pv.toFixed(0);
+    $("#txt-pv"+id).text(pvsd);
  }
+
+ // function CalculoPF(id) {
+
+ //    var he = $("#txt-he"+id).val();
+ //    var dt = $("#txt-dt"+id).val();
+ //    var vhe = (he*0.007778)*dt;
+ //    var vhesd = vhe.toFixed(2);
+ //    var dt = parseInt($("#txt-dt"+id).val());
+ //    var sb = parseInt($("#inp-sb"+id).val());
+ //    var spro = (sb/30)*dt;
+ //    var sprosd = spro.toFixed(2);
+ //    var ag = parseInt($("#txt-a"+id).val());
+ //    var bct = parseInt($("#txt-bcl"+id).val());
+ //    var bcl = parseInt($("#txt-bct"+id).val());
+ //    var timp = parseInt(sprosd)+parseInt(ag)+parseInt(bcl)+parseInt(bct)+parseInt(vhesd);
+ //    var mv = $("#txt-mv"+id).val();
+ //    var cl = $("#txt-cl"+id).val();
+ //    var m = $("#txt-m"+id).val();
+ //    var v = $("#txt-v"+id).val();
+ //    var thb = parseInt(mv)+parseInt(v)+parseInt(cl)+parseInt(m)+parseInt(timp);
+    
+ // }
 
 function buscarbonos(id){
     $.ajax({

@@ -1,3 +1,6 @@
+
+
+
 <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">  
   
   <aside class="main-sidebar ">
@@ -42,7 +45,7 @@
           <ul class="treeview-menu">
             <li><a href="<?php echo base_url("nominalist/listNominas");?>"><i class="fa fa-circle-o"></i> Lista de Contratos</a></li>
             <li><a href="<?php echo base_url("nominalist/chequeonimonas");?>"><i class="fa fa-circle-o"></i>Historicos de Nominas</a></li>
-            <li><a href="<?php echo base_url("nominalist/listNominasBonos");?>"><i class="fa fa-circle-o"></i>Rutas</a></li>
+            <li><a href="<?php echo base_url("nominalist/ImportaNominas");?>"><i class="fa fa-circle-o"></i>Nomina Masiva</a></li>
             <li><a href="<?php echo base_url("nominalist/chequearnominas");?>"><i class="fa fa-circle-o"></i>Chequear Nominas</a></li>
           </ul>
         </li>
