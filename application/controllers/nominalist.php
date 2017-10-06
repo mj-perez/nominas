@@ -347,9 +347,15 @@ function listarbonos(){
 		 			$data['ciudad'][$c]=$object->getActiveSheet()->getCell('I'.$columna)->getCalculatedValue(); 	
 		 			$data['cargo'][$c]=$object->getActiveSheet()->getCell('J'.$columna)->getCalculatedValue(); 	
 		 			$data['co'][$c]=$object->getActiveSheet()->getCell('K'.$columna)->getCalculatedValue();
-		 			$data['tipo_contrato'][$c]=$object->getActiveSheet()->getCell('L'.$columna)->getCalculatedValue();  	
-		 			$data['inicio'][$c]=$object->getActiveSheet()->getCell('M'.$columna)->getCalculatedValue(); 		 			
-		 			$data['termino'][$c]=$object->getActiveSheet()->getCell('N'.$columna)->getCalculatedValue(); 		 			
+		 			$data['tipo_contrato'][$c]=$object->getActiveSheet()->getCell('L'.$columna)->getCalculatedValue();
+		 			$excelDate=$object->getActiveSheet()->getCell('M'.$columna)->getCalculatedValue();   
+		 			$data['inicio'][$c] = \PHPExcel_Style_NumberFormat::toFormattedString($excelDate, 'DD/MM/YYYY'); 
+		 			$excelDate2=$object->getActiveSheet()->getCell('N'.$columna)->getCalculatedValue();		 
+		 			if($excelDate2=='' || strtoupper($excelDate2)=='INDEFINIDO'){	
+		 				$data['termino'][$c]='';		
+					}else{
+						$data['termino'][$c]=\PHPExcel_Style_NumberFormat::toFormattedString($excelDate2, 'DD/MM/YYYY');
+					}
 		 			$data['diastrab'][$c]=$object->getActiveSheet()->getCell('O'.$columna)->getCalculatedValue(); 	
 		 			$data['sueldobase'][$c]=$object->getActiveSheet()->getCell('P'.$columna)->getCalculatedValue(); 	
 		 			$data['sueldobaseprop'][$c]=$object->getActiveSheet()->getCell('Q'.$columna)->getCalculatedValue(); 	
@@ -384,7 +390,7 @@ function listarbonos(){
 		 	}
 		 	//elimina el archivo excel
 		 	unlink("img/excel_nominas/".$excel);
-		 	 	
+
 		 	$data["nombre"]=$_SESSION["nombre"];
 			$data["usuario"]=$_SESSION["usuario"];
 			$data['contador']= count($data['nombre2']);
@@ -430,5 +436,90 @@ function listarbonos(){
 		//echo $nom;exit;
 		return $nom;
 	}
-	 	
+
+	function insertarnominamasiva(){
+		if(isset($_SESSION["sesion"])){	
+			for ($i=0; $i < $contador; $i++) { 
+				$nombre=$_POST['txt-name-'.$i];
+				$app=$_POST['txt-ap-'.$i];
+				$apm=$_POST['txt-am-'.$i];
+				$rut=$_POST['txt-rut-'.$i];
+				$supervisor=$_POST['txt-sp-'.$i];
+				$cadena=$_POST['txt-cad-'.$i];
+				$local=$_POST['txt-loc-'.$i];
+				$ciudad=$_POST['txt-ciu-'.$i];
+				$cargo=$_POST['txt-carg-'.$i];
+				$co=$_POST['txt-co-'.$i];
+				$contrato=$_POST['txt-tpc-'.$i];
+				$inicio=$_POST['txt-fi-'.$i];
+				$termino=$_POST['txt-ft-'.$i];
+				$dias=$_POST['txt-dt-'.$i];
+				$sueldobase=$this->limpiadatos($_POST['txt-sb-'.$i]);
+				$sueldobaseprop=$this->limpiadatos($_POST['txt-sbp-'.$i]);
+				$grati=$this->limpiadatos($_POST['txt-g-'.$i]);
+				$bocuali=$this->limpiadatos($_POST['txt-bcl-'.$i]);
+				$bocuan=$this->limpiadatos($_POST['txt-bct-'.$i]);
+				$cumpli=$this->limpiadatos($_POST['txt-cump-'.$i]);
+				$bonos=$this->limpiadatos($_POST['txt-bs-'.$i]);
+				$horasextras=$_POST['txt-he-'.$i];
+				$valorhoras=$_POST['txt-vhe-'.$i];
+				$aguinaldo=$_POST['txt-ag-'.$i];
+				$imponible=$_POST['txt-timp-'.$i];
+				$colacion=$_POST['txt-col-'.$i];
+				$movi=$_POST['txt-m-'.$i];
+				$movivari=$_POST['txt-mv-'.$i];
+				$viatico=$_POST['txt-via-'.$i];
+				$haberes=$_POST['txt-thb-'.$i];
+				$descuento=$_POST['txt-spv-'.$i];
+				$liquido=$_POST['txt-slq-'.$i];
+				$sis=$_POST['txt-sis-'.$i];
+				$mutual=$_POST['txt-mtl-'.$i];
+				$seguro=$_POST['txt-sgc-'.$i];				
+				$vacaciones=$_POST['txt-psv-'.$i];
+				$finiquito=$_POST['txt-psf-'.$i];
+				$banefe=$_POST['txt-baf-'.$i];
+				$costopersonal=$_POST['txt-tlc-'.$i];
+				$agencia=$_POST['txt-cms-'.$i];
+				$costofinal=$_POST['txt-ctc-'.$i];
+				$obser=$_POST['txt-Obs-'.$i];
+				$fulltime=$_POST['txt-llgf-'.$i];
+				$parttime=$_POST['txt-llgp-'.$i];
+				$llegsuper=$_POST['txt-llgs-'.$i];
+				$checelu=$_POST['chk-cel-'.$i];
+				$doccelu=$_POST['file-cel-'.$i];
+				$chetab=$_POST['chk-tabl-'.$i];
+				$doctab=$_POST['file-tabl-'.$i];
+				$chenot=$_POST['chk-not-'.$i];
+				$docnot=$_POST['file-not-'.$i];
+				$checre=$_POST['chk-cred-'.$i];
+				$doccre=$_POST['file-cred-'.$i];
+				$cheuni=$_POST['chk-unif-'.$i];
+				$docuni=$_POST['file-unif-'.$i];
+				$cheepp=$_POST['chk-epp-'.$i];
+				$docepp=$_POST['file-epp-'.$i];
+				$che360=$_POST['chk-c360'.$i];				
+				$doc360=$_POST['file-c360-'.$i];
+				$checlo=$_POST['chk-clou-'.$i];
+				$docclo=$_POST['file-clou-'.$i];
+				$cheint=$_POST['chk-intr-'.$i];
+				$docint=$_POST['file-intr-'.$i];
+				$cheape=$_POST['chk-ape-'.$i];
+				$docape=$_POST['file-ape-'.$i];	
+				$this->load->model("nomina");
+				$mensaje=$this->nomina->insertarmasivo($nombre,$app,$apm,$rut,$supervisor,$cadena,$local,$ciudad,$cargo,$co,$contrato,$inicio,$termino,$dias,$sueldobase,$sueldobaseprop,$grati,$bocuali,$bocuan,$cumpli,$bonos,$horasextras,$valorhoras,$aguinaldo,$imponible,$colacion,$movi,$movivari,$viatico,$haberes,$descuento,$liquido,$sis,$mutual,$seguro,$vacaciones,$finiquito,$banefe,$costopersonal,$agencia,$costofinal,$obser,$fulltime,$parttime,$llegsuper,$checelu,$doccelu,$chetab,$doctab,$chenot,$docnot,$checre,$doccre,$cheuni,$docuni,$cheepp,$docepp,$che360,$doc360,$checlo,$docclo,$cheint,$docint,$cheape,$docape);
+				var_dump($mensaje);exit;
+				redirect(site_url(""))
+
+
+			}
+		}else{
+			redirect(site_url("nominalist/agregarnominamasiva"));
+		}
+	}
+
+	function limpiadatos($var){
+		$patron = "/[.$,' ]/i";    
+		$cadena_nueva = preg_replace($patron, "", $var);
+		return $cadena_nueva;
+	}
 }
