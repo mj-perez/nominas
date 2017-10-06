@@ -34,7 +34,7 @@
 <script src="/nominas/assets/js/bootstrap.min.js"></script>
 <!-- DataTables -->
 <script src="<?php echo base_url("assets/js/jquery.dataTables.min.js");?>"></script>
-<script src="<?php echo base_url("assets/js/dataTables.bootstrap.min.js");?>"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
 <script src="http://www.cscc.edu/_resources/app-data/datatables/media/js/jquery.js"></script>
 <script src="http://www.cscc.edu/_resources/app-data/datatables/media/js/jquery.dataTables.js"></script>
 
@@ -54,7 +54,7 @@
 <script src="/nominas/assets/jquery-jvectormap-world-mill-en.js"></script>
 <!--  -->
 <script src="/nominas/assets/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-<script src="/nominas/assets/jquery-knob/dist/jquery.knob.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.0/material.min.css"></script>
 
 <script src="https://cdn.datatables.net/fixedcolumns/3.1.0/js/dataTables.fixedColumns.js"></script>
 <script src="https://cdn.datatables.net/fixedcolumns/3.1.0/js/dataTables.fixedColumns.min.js"></script>

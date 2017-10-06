@@ -228,9 +228,9 @@ echo "
                 <td ><input type='text' id='txt-tcp".$c['ID_Contrato']."' name='row-1-age' placeholder='Total costo personal' disabled></td>
                 <td ><input type='text' id='txt-cta".$c['ID_Contrato']."' name='row-1-age' placeholder='Comicion totoal Agencia' disabled></td>
                 <td ><input type='text' id='txt-cc".$c['ID_Contrato']."' name='row-1-age' placeholder='Costo Cliente' disabled></td>
-                <td ><input  type='datetime-local'  id='txt-llt".$c['ID_Contrato']."' name='row-1-age' placeholder='Legada full time' disabled></td>
-                <td ><input type='datetime-local' id='txt-lpt".$c['ID_Contrato']."' name='row-1-age' placeholder='Llegada parti time' disabled></td>
-                <td ><input type='datetime-local' id='txt-ls".$c['ID_Contrato']."' name='row-1-age' placeholder='Llegada supervisor' disabled></td>
+                <td ><input  type='datetime-local'  id='txt-llt".$c['ID_Contrato']."' placeholder='Legada full time' disabled></td>
+                <td ><input type='datetime-local' id='txt-lpt".$c['ID_Contrato']."' placeholder='Llegada parti time' disabled></td>
+                <td ><input type='datetime-local' id='txt-ls".$c['ID_Contrato']."' placeholder='Llegada supervisor' disabled></td>
                 <td ><input type='checkbox' value=''></td>
                 <td ><input type='file' value=''></td>
                 <td ><input type='checkbox' value=''></td>
