@@ -93,6 +93,28 @@ class nominalist extends CI_Controller {
 		}
 	}
 
+	function seleccionarCliente(){
+      if(isset($_SESSION["sesion"])){
+			$id_cliente= $_POST['clientes'];
+			if($id_cliente!= null){
+				$data["nombre"]=$_SESSION["nombre"];
+				$data["usuario"]=$_SESSION["usuario"];
+				$this->load->view('contenido');
+				$this->load->view('layout/layout_nominas',$data);
+				$data['contratos']= $this->nomina->contratos();
+				$data['clientes'] = $this->listar->clientes();
+				$data['usuarios'] = $this->listar->usuarios();
+				$data['contratos'] = $this->nomina->buscar_contratoscliente($id_cliente);
+				$this->load->view('layout/aside',$data);
+				$this->load->view('nomina/ImportNomina',$data);
+			}else{
+				redirect(site_url("nominalist/ImportaNominas"));
+			}
+		}else{
+			redirect(site_url("menu"));
+		}
+	}
+
 	// 	function buscarUsuario(){		
 	// 	if(isset($_SESSION["sesion"])){
 	// 		$id_usuario= $_POST['usuarios'];
@@ -341,49 +363,55 @@ function listarbonos(){
 		 			$data['ApellidoP'][$c]=$object->getActiveSheet()->getCell('C'.$columna)->getCalculatedValue();
 		 			$data['ApellidoM'][$c]=$object->getActiveSheet()->getCell('D'.$columna)->getCalculatedValue(); 	
 		 			$data['rut'][$c]=$object->getActiveSheet()->getCell('E'.$columna)->getCalculatedValue(); 	
-		 			$data['supervisor'][$c]=$object->getActiveSheet()->getCell('F'.$columna)->getCalculatedValue(); 	
-		 			$data['cadena'][$c]=$object->getActiveSheet()->getCell('G'.$columna)->getCalculatedValue(); 	
-		 			$data['local'][$c]=$object->getActiveSheet()->getCell('H'.$columna)->getCalculatedValue(); 	
-		 			$data['ciudad'][$c]=$object->getActiveSheet()->getCell('I'.$columna)->getCalculatedValue(); 	
-		 			$data['cargo'][$c]=$object->getActiveSheet()->getCell('J'.$columna)->getCalculatedValue(); 	
-		 			$data['co'][$c]=$object->getActiveSheet()->getCell('K'.$columna)->getCalculatedValue();
-		 			$data['tipo_contrato'][$c]=$object->getActiveSheet()->getCell('L'.$columna)->getCalculatedValue();
-		 			$excelDate=$object->getActiveSheet()->getCell('M'.$columna)->getCalculatedValue();   
+		 			$data['supervisor'][$c]=$object->getActiveSheet()->getCell('F'.$columna)->getCalculatedValue();
+		 			$data['cliente'][$c]=$object->getActiveSheet()->getCell('G'.$columna)->getCalculatedValue(); 	
+		 			$data['cadena'][$c]=$object->getActiveSheet()->getCell('H'.$columna)->getCalculatedValue(); 	
+		 			$data['local'][$c]=$object->getActiveSheet()->getCell('I'.$columna)->getCalculatedValue(); 	
+		 			$data['ciudad'][$c]=$object->getActiveSheet()->getCell('J'.$columna)->getCalculatedValue();
+		 			$data['region'][$c]=$object->getActiveSheet()->getCell('K'.$columna)->getCalculatedValue(); 	
+		 			$data['cargo'][$c]=$object->getActiveSheet()->getCell('L'.$columna)->getCalculatedValue();
+		 			$data['jornada'][$c]=$object->getActiveSheet()->getCell('M'.$columna)->getCalculatedValue();
+		 			$data['fpago'][$c]=$object->getActiveSheet()->getCell('N'.$columna)->getCalculatedValue();
+		 			$data['banco'][$c]=$object->getActiveSheet()->getCell('O'.$columna)->getCalculatedValue();
+		 			$data['ncuenta'][$c]=$object->getActiveSheet()->getCell('P'.$columna)->getCalculatedValue();
+		 			$data['co'][$c]=$object->getActiveSheet()->getCell('Q'.$columna)->getCalculatedValue();
+		 			$data['tipo_contrato'][$c]=$object->getActiveSheet()->getCell('R'.$columna)->getCalculatedValue();
+		 			$excelDate=$object->getActiveSheet()->getCell('S'.$columna)->getCalculatedValue();   
 		 			$data['inicio'][$c] = \PHPExcel_Style_NumberFormat::toFormattedString($excelDate, 'DD/MM/YYYY'); 
-		 			$excelDate2=$object->getActiveSheet()->getCell('N'.$columna)->getCalculatedValue();		 
+		 			$excelDate2=$object->getActiveSheet()->getCell('T'.$columna)->getCalculatedValue();		 
 		 			if($excelDate2=='' || strtoupper($excelDate2)=='INDEFINIDO'){	
 		 				$data['termino'][$c]='';		
 					}else{
 						$data['termino'][$c]=\PHPExcel_Style_NumberFormat::toFormattedString($excelDate2, 'DD/MM/YYYY');
 					}
-		 			$data['diastrab'][$c]=$object->getActiveSheet()->getCell('O'.$columna)->getCalculatedValue(); 	
-		 			$data['sueldobase'][$c]=$object->getActiveSheet()->getCell('P'.$columna)->getCalculatedValue(); 	
-		 			$data['sueldobaseprop'][$c]=$object->getActiveSheet()->getCell('Q'.$columna)->getCalculatedValue(); 	
-		 			$data['gratifica'][$c]=$object->getActiveSheet()->getCell('R'.$columna)->getCalculatedValue(); 	
-		 			$data['bonocual'][$c]=$object->getActiveSheet()->getCell('S'.$columna)->getCalculatedValue(); 	
-		 			$data['bonocuan'][$c]=$object->getActiveSheet()->getCell('T'.$columna)->getCalculatedValue(); 	
-		 			$data['cumplimiento'][$c]=$object->getActiveSheet()->getCell('U'.$columna)->getCalculatedValue(); 	
-		 			$data['bonos'][$c]=$object->getActiveSheet()->getCell('V'.$columna)->getCalculatedValue(); 	
-		 			$data['horaextras'][$c]=$object->getActiveSheet()->getCell('W'.$columna)->getCalculatedValue(); 	
-		 			$data['valorextras'][$c]=$object->getActiveSheet()->getCell('X'.$columna)->getCalculatedValue(); 	
-		 			$data['aguinaldo'][$c]=$object->getActiveSheet()->getCell('Y'.$columna)->getCalculatedValue(); 	
-		 			$data['total_impo'][$c]=$object->getActiveSheet()->getCell('Z'.$columna)->getCalculatedValue(); 	
-		 			$data['colacion'][$c]=$object->getActiveSheet()->getCell('AA'.$columna)->getCalculatedValue(); 	
-		 			$data['movi'][$c]=$object->getActiveSheet()->getCell('AB'.$columna)->getCalculatedValue(); 	
-		 			$data['movi_adi'][$c]=$object->getActiveSheet()->getCell('AC'.$columna)->getCalculatedValue(); 	
-		 			$data['viatico'][$c]=$object->getActiveSheet()->getCell('AD'.$columna)->getCalculatedValue(); 	
-		 			$data['total_haber'][$c]=$object->getActiveSheet()->getCell('AE'.$columna)->getCalculatedValue(); 	
-		 			$data['desc_provi'][$c]=$object->getActiveSheet()->getCell('AF'.$columna)->getCalculatedValue(); 	
-		 			$data['sueldo_liquido'][$c]=$object->getActiveSheet()->getCell('AG'.$columna)->getCalculatedValue(); 	
-		 			$data['sis'][$c]=$object->getActiveSheet()->getCell('AH'.$columna)->getCalculatedValue(); 	
-		 			$data['mutual'][$c]=$object->getActiveSheet()->getCell('AI'.$columna)->getCalculatedValue(); 	
-		 			$data['seg_cesantia'][$c]=$object->getActiveSheet()->getCell('AJ'.$columna)->getCalculatedValue(); 	
-		 			$data['provi_vacaciones'][$c]=$object->getActiveSheet()->getCell('AK'.$columna)->getCalculatedValue(); 	
-		 			$data['provi_finiquito'][$c]=$object->getActiveSheet()->getCell('AL'.$columna)->getCalculatedValue(); 	
-		 			$data['banefe'][$c]=$object->getActiveSheet()->getCell('AM'.$columna)->getCalculatedValue(); 	
-		 			$data['total_costo'][$c]=$object->getActiveSheet()->getCell('AN'.$columna)->getCalculatedValue(); 	
-		 			$data['comision'][$c]=$object->getActiveSheet()->getCell('AO'.$columna)->getCalculatedValue(); 	
-		 			$data['costocliente'][$c]=$object->getActiveSheet()->getCell('AP'.$columna)->getCalculatedValue(); 	
+		 			$data['diastrab'][$c]=$object->getActiveSheet()->getCell('U'.$columna)->getCalculatedValue(); 	
+		 			$data['sueldobase'][$c]=$object->getActiveSheet()->getCell('V'.$columna)->getCalculatedValue(); 	
+		 			$data['sueldobaseprop'][$c]=$object->getActiveSheet()->getCell('W'.$columna)->getCalculatedValue(); 	
+		 			$data['gratifica'][$c]=$object->getActiveSheet()->getCell('X'.$columna)->getCalculatedValue(); 	
+		 			$data['bonocual'][$c]=$object->getActiveSheet()->getCell('Y'.$columna)->getCalculatedValue(); 	
+		 			$data['bonocuan'][$c]=$object->getActiveSheet()->getCell('Z'.$columna)->getCalculatedValue(); 	
+		 			$data['cumplimiento'][$c]=$object->getActiveSheet()->getCell('AA'.$columna)->getCalculatedValue(); 	
+		 			$data['bonos'][$c]=$object->getActiveSheet()->getCell('AB'.$columna)->getCalculatedValue(); 	
+		 			$data['horaextras'][$c]=$object->getActiveSheet()->getCell('AC'.$columna)->getCalculatedValue(); 	
+		 			$data['valorextras'][$c]=$object->getActiveSheet()->getCell('AD'.$columna)->getCalculatedValue(); 	
+		 			$data['aguinaldo'][$c]=$object->getActiveSheet()->getCell('AE'.$columna)->getCalculatedValue(); 	
+		 			$data['total_impo'][$c]=$object->getActiveSheet()->getCell('AF'.$columna)->getCalculatedValue(); 	
+		 			$data['colacion'][$c]=$object->getActiveSheet()->getCell('AG'.$columna)->getCalculatedValue(); 	
+		 			$data['movi'][$c]=$object->getActiveSheet()->getCell('AH'.$columna)->getCalculatedValue(); 	
+		 			$data['movi_adi'][$c]=$object->getActiveSheet()->getCell('AI'.$columna)->getCalculatedValue(); 	
+		 			$data['viatico'][$c]=$object->getActiveSheet()->getCell('AJ'.$columna)->getCalculatedValue(); 	
+		 			$data['total_haber'][$c]=$object->getActiveSheet()->getCell('AK'.$columna)->getCalculatedValue(); 	
+		 			$data['desc_provi'][$c]=$object->getActiveSheet()->getCell('AL'.$columna)->getCalculatedValue(); 	
+		 			$data['sueldo_liquido'][$c]=$object->getActiveSheet()->getCell('AM'.$columna)->getCalculatedValue(); 	
+		 			$data['sis'][$c]=$object->getActiveSheet()->getCell('AN'.$columna)->getCalculatedValue(); 	
+		 			$data['mutual'][$c]=$object->getActiveSheet()->getCell('AO'.$columna)->getCalculatedValue(); 	
+		 			$data['seg_cesantia'][$c]=$object->getActiveSheet()->getCell('AP'.$columna)->getCalculatedValue(); 	
+		 			$data['provi_vacaciones'][$c]=$object->getActiveSheet()->getCell('AQ'.$columna)->getCalculatedValue(); 	
+		 			$data['provi_finiquito'][$c]=$object->getActiveSheet()->getCell('AR'.$columna)->getCalculatedValue(); 	
+		 			$data['banefe'][$c]=$object->getActiveSheet()->getCell('AS'.$columna)->getCalculatedValue(); 	
+		 			$data['total_costo'][$c]=$object->getActiveSheet()->getCell('AT'.$columna)->getCalculatedValue(); 	
+		 			$data['comision'][$c]=$object->getActiveSheet()->getCell('AU'.$columna)->getCalculatedValue(); 	
+		 			$data['costocliente'][$c]=$object->getActiveSheet()->getCell('AV'.$columna)->getCalculatedValue(); 	
 		 			$c++; 		
 		 			$columna++;	
 		 		}	 		
@@ -445,10 +473,16 @@ function listarbonos(){
 				$apm=$_POST['txt-am-'.$i];
 				$rut=$_POST['txt-rut-'.$i];
 				$supervisor=$_POST['txt-sp-'.$i];
+				$cliente=$_POST['txt-cli-'.$i];				
 				$cadena=$_POST['txt-cad-'.$i];
 				$local=$_POST['txt-loc-'.$i];
 				$ciudad=$_POST['txt-ciu-'.$i];
+				$region=$_POST['txt-rg-'.$i];
 				$cargo=$_POST['txt-carg-'.$i];
+				$jornada=$_POST['txt-jor-'.$i];
+				$fpago=$_POST['txt-fp-'.$i];
+				$banco=$_POST['txt-bnc-'.$i];
+				$ncuenta=$_POST['txt-nc-'.$i];
 				$co=$_POST['txt-co-'.$i];
 				$contrato=$_POST['txt-tpc-'.$i];
 				$inicio=$_POST['txt-fi-'.$i];
@@ -507,10 +541,7 @@ function listarbonos(){
 				$docape=$_POST['file-ape-'.$i];	
 				$this->load->model("nomina");
 				$mensaje=$this->nomina->insertarmasivo($nombre,$app,$apm,$rut,$supervisor,$cadena,$local,$ciudad,$cargo,$co,$contrato,$inicio,$termino,$dias,$sueldobase,$sueldobaseprop,$grati,$bocuali,$bocuan,$cumpli,$bonos,$horasextras,$valorhoras,$aguinaldo,$imponible,$colacion,$movi,$movivari,$viatico,$haberes,$descuento,$liquido,$sis,$mutual,$seguro,$vacaciones,$finiquito,$banefe,$costopersonal,$agencia,$costofinal,$obser,$fulltime,$parttime,$llegsuper,$checelu,$doccelu,$chetab,$doctab,$chenot,$docnot,$checre,$doccre,$cheuni,$docuni,$cheepp,$docepp,$che360,$doc360,$checlo,$docclo,$cheint,$docint,$cheape,$docape);
-				var_dump($mensaje);exit;
-				redirect(site_url(""))
-
-
+				redirect(site_url(""));
 			}
 		}else{
 			redirect(site_url("nominalist/agregarnominamasiva"));
@@ -518,7 +549,7 @@ function listarbonos(){
 	}
 
 	function limpiadatos($var){
-		$patron = "/[.$,' ]/i";    
+		$patron = "/[.$,'% ]/i";    
 		$cadena_nueva = preg_replace($patron, "", $var);
 		return $cadena_nueva;
 	}

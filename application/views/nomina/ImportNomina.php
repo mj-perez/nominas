@@ -11,7 +11,7 @@
             <div class="box-header">
                <table>
                     <td>
-              <h3 class="box-title">Plantilla Oficial de Nomina
+              <h3 class="box-title">Plantilla Oficial de Nomina 
                 <small>Está plantilla es el formato para el ingreso de las nominas</small>
               </h3></td><td><a href="/nominas/assets/plantilla/PlantillaNomina.xlsx"><button type="button" class="btn btn-block btn-info btn-sm">&nbsp;&nbsp;Descargar&nbsp;&nbsp;</button></a></td>
               <!-- tools box -->
