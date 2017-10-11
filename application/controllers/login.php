@@ -7,9 +7,6 @@ class login extends CI_Controller {
 		session_destroy();
 		$this->load->view('login/login_vista');
 	}
-	
-	
-	
 }
 
 ?>

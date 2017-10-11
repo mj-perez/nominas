@@ -17,7 +17,7 @@
   
 <div class="content-wrapper" >  
     <section class="content-header table_responsive">
-      <h1>Lista de Contratados</h1>
+      <h1>Selecione la lista de nomina que quiere descargar</h1>
       <br>
     <div class="row">
         <div class="col-xs-12">
@@ -27,11 +27,11 @@
                 <small>Registro de datos de nomina</small>
               </h3>
               <!-- tools box -->
-              <div class="pull-right box-tools">
+              <!-- <div class="pull-right box-tools">
                 <button type="button" id="btnmodal1" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip"
                         title="Collapse">
                   <i class="fa fa-minus"></i></button>
-              </div>
+              </div> -->
               <!-- /. tools -->
             </div>
             <!-- /.box-header -->
@@ -62,7 +62,7 @@
 <table id="tabla_nominas" class="stripe row-border order-column" >
        <thead>
             <tr>
-                <th><input type='checkbox' onclick="marcar(this);" value=''></th> 
+                <!-- <th><input type='checkbox' onclick="marcar(this);" value=''></th>  -->
                 <th>Rut</th>
                 <th>Nombres Completo</th>
                 <th>Estado del Contrato</th>
@@ -162,7 +162,7 @@
 foreach($contratos as $c) {
 echo "     
             <tr>
-                <td ><input id='chk-".$c['ID_Contrato']."' type='checkbox' value=''></td>
+                
                 <td style='font-size:80%;'>".strtoupper($c['rut'])."</td>
                 <td style='text-align:left;'>".strtoupper($c['Nombre_Concatenar'])."</td>
                 <td >".$c['Estado_Actual']." </td>
@@ -258,7 +258,7 @@ echo "
 </div>
         <div class="col-xs-12">
             <div class="btn-group"> 
-                <a href="<?php echo base_url("nominalist/daNomina");?>"><button type="button" id="sig-btn" class="btn btn-primary">Ingresar</button> </a>
+                <a href="<?php echo base_url("nominalist/daNomina");?>"><button type="button" id="sig-btn" class="btn btn-primary">Descargar</button> </a>
             </div>
         </div>
     </div>
@@ -348,7 +348,7 @@ echo "
 <style type="text/css">
       th, td { white-space: nowrap; }
     div.dataTables_wrapper {
-        width: 1150px; 
+        width: auto; 
     }
 td {
     cursor: pointer;

@@ -43,10 +43,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url("nominalist/listNominas");?>"><i class="fa fa-circle-o"></i> Lista de Contratos</a></li>
-            <li><a href="<?php echo base_url("nominalist/chequeonimonas");?>"><i class="fa fa-circle-o"></i>Historicos de Nominas</a></li>
-            <li><a href="<?php echo base_url("nominalist/ImportaNominas");?>"><i class="fa fa-circle-o"></i>Nomina Masiva</a></li>
-            <li><a href="<?php echo base_url("nominalist/chequearnominas");?>"><i class="fa fa-circle-o"></i>Chequear Nominas</a></li>
+            <li><a href="<?php echo base_url("nominalist/listNominas");?>"><i class="fa fa-circle-o"></i>Nominas de Clientes</a></li>
+            <li><a href="<?php echo base_url("nominalist/ImportaNominas");?>"><i class="fa fa-circle-o"></i>Ingreso de Nominas</a></li>
+            <li><a href="<?php echo base_url("nominalist/chequeonimonas");?>"><i class="fa fa-circle-o"></i>Historial de Nominas</a></li>
+            <li><a href="<?php echo base_url("nominalist/chequearnominas");?>"><i class="fa fa-circle-o"></i>Estado de nominas</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -59,7 +59,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="<?php echo base_url("nominalist/reportes");?>"><i class="fa fa-circle-o"></i> Clientes</a></li>
-            <li><a href="morris.html"><i class="fa fa-circle-o"></i> Empresa</a></li>
+            <!-- <li><a href="morris.html"><i class="fa fa-circle-o"></i> Empresa</a></li> -->
             
           </ul>
         </li>

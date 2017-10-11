@@ -17,186 +17,199 @@
 
 <table id="example" class="display nowrap" cellspacing="0" width="100%">
         <thead>
-            <tr>
-                <th>Estado</th>
-                <th>Fecha Registro</th> 
-                <th>Rut</th>
-                <th>Nombres Completo</th>
-                <th>Estado del Contrato</th>
-                <th>Cargo</th>
-                <th>Tipo contrato</th>
-                <th>Fecha Termino</th>
-                <th>Fecha de Inicio</th>
-                <th>Antiguedad</th>
-                <th>Antiguedad Lineal</th>
-                <th>Cliente</th>
-                <th style="text-align: center;">Proyecto</th>
-                <th>Coordinador</th>
-                <th>Empresa</th>
-                <th>Cadena/Local</th>
-                <!-- <th>Local</th> -->
-                <th>Supervisor</th>
-                <th>Días Trabajados</th>
-                <th>Codigo Remuneracion(?)</th>
-                <th>Categoría(?)</th>
-                <th>Sueldo Base</th>
-                <th>Sueldo Proporcional</th>
-                <th>Gratificaciòn</th>
-                <th>Bono Cualitativo</th>
-                <th>Bono Cuantitativo</th>
-                <th>Colacion</th>
-                <th>Movilizacion</th>
-                <th>AFP</th>
-                <th>Isapre</th>
-                <th>Forma de Pago</th>
-                <th>Banco</th>
-                <th>Nº de cuenta</th>
-                <th>Bonos</th>
-                <th>Vacaciones Proporcionales</th>
-                <th>Horas Extras</th>
-                <th>Valor horas extras</th>
-                <th>Aguinaldo</th>
-                <th>Total imponible</th>
-                <th>Movilizacion variable</th>
-                <th>Total haberes</th>
-                <th>Viaticos</th>
-                <th>Descuento previsional</th>
-                <th>Descuento de SIS</th>
-                <th>Descuento Mutual</th>
-                <th>Descuento seguro de cesantia</th>
-                <th>Fuero</th>
-                <th>Sala de cuna</th>
-                <th>Cargas Familiares</th>
-                <th>Prestamo Caja</th>
-                <th>Fecha nacimiento</th>
-                <th>Nacionalidad</th>
-                <th>Sexo</th>
-                <th>Estado Civil</th>
-                <th>Direccion</th>
-                <th>Comuna</th>
-                <th>Region</th>
-                <th>Telefono Fijo</th>
-                <th>Celular</th>
-                <th>Mail</th>
-                <th>Talla Pantalon</th>
-                <th>Talla Polera</th>
-                <th>Talla zapato</th>
-                <th>Provicion vacaciones</th>
-                <th>Provicion Finiquitos</th>
-                <th>Total costo personal</th>
-                <th>Comocion total agencia</th>
-                <th>Costo Cliente</th>
-                <th>Llegada full time</th>
-                <th>Llegada part time</th>
-                <th>Llegada supervisor</th>
-                <th>Entrega Celular</th>      
-                <th>Entrega Tablet </th>      
-                <th>Entrega Notebook</th>      
-                <th>Entrega Credencial</th>      
-                <th>Entrega Uniforme</th>      
-                <th>Entrega EPP (?)</th>
-                <th>Entrega Club 360</th>       
-                <th>Entrega cloud</th>      
-                <th>Entega Intranet</th>      
-                <th>Entrega Apenet</th>
-                <th>Observaciones Generales(?)</th>
+                <tr>
+                  <th>ID_Nomina</th>
+                  <th>FechaRegistro</th>
+                  <th>EstadoNomina</th>
+                  <th>Nombres</th>
+                  <th>ApellidoP</th>
+                  <th>ApellidoM</th>
+                  <th>Rut</th>
+                  <th>Supervisor</th>
+                  <th>Cliente</th>
+                  <th>Cadena</th>
+                  <th>Local</th>
+                  <th>Ciudad</th>
+                  <th>Region</th>
+                  <th>CargoTrabajador</th>
+                  <th>Jornada</th>
+                  <th>FormaPago</th>
+                  <th>Banco</th>
+                  <th>NCuentaB</th>
+                  <th>CO</th>
+                  <th>TipoContrato</th>
+                  <th>FechaInicio</th>
+                  <th>FechaTermina</th>
+                  <th>DiasTrabajados</th>
+                  <th>SueldoBase</th>
+                  <th>SueldoBaseProp</th>
+                  <th>Gratificacion</th>
+                  <th>BonoCualitativo</th>
+                  <th>BonoCuantitavo</th>
+                  <th>Cumplimiento</th>
+                  <th>Bonos</th>
+                  <th>N_HorasExtras</th>
+                  <th>ValorHorasExtras</th>
+                  <th>Aguinaldo</th>
+                  <th>TotalImponible</th>
+                  <th>Colacion</th>
+                  <th>Movilizacion</th>
+                  <th>MovilizacionVariable</th>
+                  <th>Viatico</th>
+                  <th>TotalHaber</th>
+                  <th>DescuentoPrevicional</th>
+                  <th>SueldoLiquido</th>
+                  <th>SIS</th>
+                  <th>Mutual</th>
+                  <th>SeguroCesantia</th>
+                  <th>ProvisionVacaciones</th>
+                  <th>ProvisionFiniquito</th>
+                  <th>Banefe</th>
+                  <th>TotalCostoPersonal</th>
+                  <th>ComisionAgencia</th>
+                  <th>CostoFinalCliente</th>
+                  <th>Observacion</th>
+                  <th>LlegadaFulltime</th>
+                  <th>LlegadaPartime</th>
+                  <th>LlegadaSupervisor</th>
+                  <th>DocCelular</th>
+                  <th>DocTablet</th>
+                  <th>DocNotebook</th>
+                  <th>DocCredencial</th>
+                  <th>DocUniforme</th>
+                  <th>DocEPP</th>
+                  <th>DocClub360</th>
+                  <th>DocCloud</th>
+                  <th>DocIntranet</th>
+                  <th>DocApenet</th>
             </tr>
         </thead>
-        <!-- <tfoot>
-            <tr>
-                <th>Local</th>
-                <th>Cadena</th>
-                <th>Nombre</th>
-                <th>Región</th>
-                <th>Comuna</th>
-                <th>Dirección</th>
-                <th></th>
-            </tr>
-        </tfoot> -->
-        <tbody>
-            <tr>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
-                <td ></td>
+        <tbody>nominasingresadas
+<?php foreach($nominasingresadas as $c) {  
+            
+        echo"  <tr> <td>".$c['ID_Nomina']."</td>
+                  <td>".$c['FechaRegistro']."</td>
+                  <td>".$c['EstadoNomina']."</td>
+                  <td>".$c['Nombres']."</td>
+                  <td>".$c['ApellidoP']."</td>
+                  <td>".$c['ApellidoM']."</td>
+                  <td>".$c['Rut']."</td>
+                  <td>".$c['Supervisor']."</td>
+                  <td>".$c['Cliente']."</td>
+                  <td>".$c['Cadena']."</td>
+                  <td>".$c['Local']."</td>
+                  <td>".$c['Ciudad']."</td>
+                  <td>".$c['Region']."</td>
+                  <td>".$c['CargoTrabajador']."</td>
+                  <td>".$c['Jornada']."</td>
+                  <td>".$c['FormaPago']."</td>
+                  <td>".$c['Banco']."</td>
+                  <td>".$c['NCuentaB']."</td>
+                  <td>".$c['CO']."</td>
+                  <td>".$c['TipoContrato']."</td>
+                  <td>".$c['FechaInicio']."</td>
+                  <td>".$c['FechaTermina']."</td>
+                  <td>".$c['DiasTrabajados']."</td>
+                  <td>".$c['SueldoBase']."</td>
+                  <td>".$c['SueldoBaseProp']."</td>
+                  <td>".$c['Gratificacion']."</td>
+                  <td>".$c['BonoCualitativo']."</td>
+                  <td>".$c['BonoCuantitavo']."</td>
+                  <td>".$c['Cumplimiento']."</td>
+                  <td>".$c['Bonos']."</td>
+                  <td>".$c['N_HorasExtras']."</td>
+                  <td>".$c['ValorHorasExtras']."</td>
+                  <td>".$c['Aguinaldo']."</td>
+                  <td>".$c['TotalImponible']."</td>
+                  <td>".$c['Colacion']."</td>
+                  <td>".$c['Movilizacion']."</td>
+                  <td>".$c['MovilizacionVariable']."</td>
+                  <td>".$c['Viatico']."</td>
+                  <td>".$c['TotalHaber']."</td>
+                  <td>".$c['DescuentoPrevicional']."</td>
+                  <td>".$c['SueldoLiquido']."</td>
+                  <td>".$c['SIS']."</td>
+                  <td>".$c['Mutual']."</td>
+                  <td>".$c['SeguroCesantia']."</td>
+                  <td>".$c['ProvisionVacaciones']."</td>
+                  <td>".$c['ProvisionFiniquito']."</td>
+                  <td>".$c['Banefe']."</td>
+                  <td>".$c['TotalCostoPersonal']."</td>
+                  <td>".$c['ComisionAgencia']."</td>
+                  <td>".$c['CostoFinalCliente']."</td>
+                  <td>".$c['Observacion']."</td>
+                  <td>".$c['LlegadaFulltime']."</td>
+                  <td>".$c['LlegadaPartime']."</td>
+                  <td>".$c['LlegadaSupervisor']."</td>";
+                  
+
+                    if ($c['DocCelular'] == null) {
+
+                        echo "<td><label></label></td>";
+                  
+                    }else{
+                        echo "<td><label><i style='color: #00c0ef' class='glyphicon glyphicon-ok'></i></label></td>";
+                    }if ($c['DocTablet'] == null) {
+
+                        echo "<td><label></label></td>";
+                  
+                    }else{
+                        echo "<td><label><i style='color: #00c0ef' class='glyphicon glyphicon-ok'></i></label></td>";
+                    }if ($c['DocNotebook'] == null) {
+
+                        echo "<td><label></label></td>";
+                  
+                    }else{
+                        echo "<td><label><i style='color: #00c0ef' class='glyphicon glyphicon-ok'></i></label></td>";
+                    }if ($c['DocCredencial'] == null) {
+
+                        echo "<td><label></label></td>";
+                  
+                    }else{
+                        echo "<td><label><i style='color: #00c0ef' class='glyphicon glyphicon-ok'></i></label></td>";
+                    }if ($c['DocUniforme'] == null) {
+
+                        echo "<td><label></label></td>";
+                  
+                    }else{
+                        echo "<td><label><i style='color: #00c0ef' class='glyphicon glyphicon-ok'></i></label></td>";
+                    }
+                    if ($c['DocEPP'] == null){
+
+                        echo "<td><label></label></td>";
+                    }else{
+                         echo "<td><label><i style='color: #00c0ef' class='glyphicon glyphicon-ok'></i></label></td>";
+                    }
+                    if ($c['DocClub360'] == null){
+
+                        echo "<td><label></label></td>";
+                    }else{
+                         echo "<td><label><i style='color: #00c0ef' class='glyphicon glyphicon-ok'></i></label></td>";
+                    }
+                    if ($c['DocCloud']== null) {
+
+                        echo "<td><label></label></td>";
+                  
+                    }else{
+                        echo "<td><label><i style='color: #00c0ef' class=' glyphicon glyphicon-ok'></i></label></td>";
+                    }
+                    if ($c['DocIntranet'] == null) {
+
+                        echo "<td><label></i></label></td>";
+                  
+                    }else{
+                        echo "<td><label><i style='color: #00c0ef' class='glyphicon glyphicon-ok'></label></td>";
+                    }
+                    if ($c['DocApenet'] == null) {
+
+                        echo "<td><label></label></td>";
+                  
+                    }else{
+                        echo "<td><label><i style='color: #00c0ef' class='glyphicon glyphicon-ok'></i></label></td>";
+                    }
+                  echo"
              </tr>
+             ";}?>
         </tbody>
     </table>
 <div class="modal fade" id="modal-default">
@@ -228,7 +241,7 @@
 <style type="text/css">
       th, td { white-space: nowrap; }
     div.dataTables_wrapper {
-        width: 1000px;
+        width: auto;
         margin: 0 auto;
     }
 td {

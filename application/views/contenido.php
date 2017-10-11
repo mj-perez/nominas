@@ -50,10 +50,10 @@
 <script src="/nominas/assets/raphael/raphael.min.js"></script>
 <script src="/nominas/assets/morris.js/morris.min.js"></script>
 <!-- jvectormap -->
-<script src="/nominas/assets/jquery-jvectormap-1.2.2.min.js"></script>
-<script src="/nominas/assets/jquery-jvectormap-world-mill-en.js"></script>
+<!-- <script src="/nominas/assets/jquery-jvectormap-1.2.2.min.js"></script> -->
+<!-- <script src="/nominas/assets/jquery-jvectormap-world-mill-en.js"></script> -->
 <!--  -->
-<script src="/nominas/assets/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<!-- <script src="/nominas/assets/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.0/material.min.css"></script>
 
 <script src="https://cdn.datatables.net/fixedcolumns/3.1.0/js/dataTables.fixedColumns.js"></script>

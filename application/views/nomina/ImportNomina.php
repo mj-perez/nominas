@@ -265,60 +265,23 @@
     </div>
 </div>
 </div>
-<style type="text/css">
-      th, td { white-space: nowrap; }
-    div.dataTables_wrapper {
-        width: auto; 
-    }
-    div{
-        height: auto;
-    }
-td {
-    cursor: pointer;
-    font-size:80%;
-    width: 1px;
-    text-align: center;
-}
-tr {
-   font-size:90%;
-   width: 1px;
-   text-align: center;
-}
-.label-primary {
-    border: 1px solid #ccc;
-    display: inline-block;
-    padding: 6px 12px;
-    cursor: pointer;
-}
 
-.label-primary:focus,
-.label-primary:hover {
-    background-color: green;
-    }
 
-input[type="file"] {
-    display: none;
-}
+    
+    
 
-/* The close button */
-.closebtn {
-    margin-left: 15px;
-    color: white;
-    font-weight: bold;
-    float: right;
-    font-size: 22px;
-    line-height: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-/* When moving the mouse over the close button */
-.closebtn:hover {
-    color: black;
-}
-</style>
 </body>
 <script type="text/javascript">
+  
+  function checknominas(inputid, newcolor) {
+    $("#"+inputid).prev().css("color", "red");
+}
+
+</script>
+<script type="text/javascript">
+
+
+
 
     function formato(excel){
         if($(excel).val()!=''){
@@ -334,7 +297,6 @@ input[type="file"] {
 
         }
     }
-
     function limpiafile(datos,color){ 
       $("#"+datos).val('');
       $("#"+color).hide();
@@ -403,3 +365,55 @@ input[type="file"] {
 
 
 </script>
+<style type="text/css">
+      th, td { white-space: nowrap; }
+    div.dataTables_wrapper {
+        width: auto; 
+    }
+    div{
+        height: auto;
+    }
+td {
+    cursor: pointer;
+    font-size:80%;
+    width: 1px;
+    text-align: center;
+}
+tr {
+   font-size:90%;
+   width: 1px;
+   text-align: center;
+}
+.label-primary {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.label-primary:focus,
+.label-primary:hover {
+    background-color: green;
+    }
+
+input[type="file"] {
+    display: none;
+}
+
+/* The close button */
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+    color: black;
+}
+</style>

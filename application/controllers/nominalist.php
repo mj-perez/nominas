@@ -9,7 +9,7 @@ class nominalist extends CI_Controller {
 		$this->load->helper("url","form");	
 		$this->load->library('form_validation'); 	
 		$this->load->model("nomina");
-	    $this->load->model("listar");	
+	    $this->load->model("listar");			
 		
 	}
 	
@@ -19,12 +19,10 @@ class nominalist extends CI_Controller {
 			$data["usuario"]=$_SESSION["usuario"];
 			$this->load->view('contenido');
 			$this->load->view('layout/layout_nominas',$data);
-			// $this->load->model("mantenedor");
-			$data['bono']= $this->nomina->bono();
-			$data['contratos']= $this->nomina->contratos();
+			$data['contratos'] = $this->nomina->contratos();
 			$data['clientes'] = $this->listar->clientes();
 			$data['usuarios'] = $this->listar->usuarios();
-			// $data['listar']= $this->mantenedor->listarBono();
+			// $data['selecionarCliente'] = $this->nomina->selecionarCliente($id_usuario);
 			$this->load->view('layout/aside',$data);
 			$this->load->view('nomina/nominaslistado',$data);
 		}else{
@@ -58,7 +56,7 @@ class nominalist extends CI_Controller {
 			$this->load->view('contenido');
 			$this->load->view('layout/layout_nominas',$data);
 			// $this->load->model("mantenedor");
-			$data['bono']= $this->nomina->bono();
+			// $data['bono']= $this->nomina->bono();
 			$data['contratos']= $this->nomina->contratos();
 			$data['clientes'] = $this->listar->clientes();
 			$data['usuarios'] = $this->listar->usuarios();
@@ -68,7 +66,7 @@ class nominalist extends CI_Controller {
 		}else{
 			redirect(site_url("menu"));
 		}
-		}
+	}
 
 
 	function buscarCliente(){
@@ -266,7 +264,7 @@ class nominalist extends CI_Controller {
 			$data["nombre"]=$_SESSION["nombre"];
 			$data["usuario"]=$_SESSION["usuario"];
 			$this->load->view('contenido');
-			$data['rutas']= $this->nomina->rutas();
+			$data['nominasingresadas']= $this->nomina->nominaingresada();
 			$data['clientes'] = $this->listar->clientes();
 			$data['usuarios'] = $this->listar->usuarios();
 			$this->load->view('layout/layout_nominas',$data);
@@ -424,7 +422,7 @@ function listarbonos(){
 			$data['contador']= count($data['nombre2']);
 			$this->load->view('contenido');
 			$this->load->view('layout/layout_nominas',$data);
-			$data['bono']= $this->nomina->bono();
+			// $data['bono']= $this->nomina->bono();
 			$data['contratos']= $this->nomina->contratos();
 			$data['clientes'] = $this->listar->clientes();
 			$data['usuarios'] = $this->listar->usuarios();
@@ -435,7 +433,7 @@ function listarbonos(){
 			$data["usuario"]=$_SESSION["usuario"];
 			$this->load->view('contenido');
 			$this->load->view('layout/layout_nominas',$data);
-			$data['bono']= $this->nomina->bono();
+			// $data['bono']= $this->nomina->bono();
 			$data['contratos']= $this->nomina->contratos();
 			$data['clientes'] = $this->listar->clientes();
 			$data['usuarios'] = $this->listar->usuarios();
@@ -450,6 +448,8 @@ function listarbonos(){
 		$config['file_name'] = $nombre;
 		$config['allowed_types'] = "*";
 		$config['overwrite'] = TRUE;
+		//echo $ruta; echo "<br>"; echo $config['file_name'];exit;
+		$this->load->library('upload', $config);
 		if (!$this->upload->do_upload($ruta)) {
 					//*** ocurrio un error
 			$dat['uploadError'] = $this->upload->display_errors();
@@ -707,14 +707,16 @@ function listarbonos(){
 	}
 
 	function limpialetras($var){
-		$nuevo = preg_replace("/[^0-9]/", "",$var);
-		$nuevo2 = preg_replace("[' ']", "",$nuevo);
+  		$nuevo = preg_replace("/[^0-9]/", "",$var);
+  		$nuevo2 = preg_replace("[' ']", "",$nuevo);
 
-		return $nuevo2;
-	}
+  		return $nuevo2;
+ 	}
 	function limpiacumpli($var){
 		$patron = "/[%]/i";    
 		$cadena_nueva = preg_replace($patron, "", $var);
 		return $cadena_nueva;
 	}
 }
+
+
