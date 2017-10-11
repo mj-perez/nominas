@@ -54,7 +54,7 @@
        <td></td>
        <td></td>
        <td>
-        <h5 class="tituloclientes" align="left"><font color="black">Impoprtar</font></h5>
+        <h5 class="tituloclientes" align="left"><font color="black">Importar</font></h5>
           <form id="formu2" class="bus" action="<?php echo  site_url();?>nominalist/agregarnominamasiva" method="POST" enctype="multipart/form-data">
            <label for="excel" class="btn btn-info btn-sm">
           <i class="glyphicon glyphicon-download-alt" href=""></i> 
@@ -65,8 +65,8 @@
 
     
 </table>
-
  <br>
+ <form method="post"  name="formu" id="formu" action="<?php echo  site_url();?>nominalist/insertarnominamasiva" enctype="multipart/form-data">
 <table id="tabla_nominas" class="table-info row-border info order-column" cellspacing="0" >
        <thead>
             <tr>
@@ -122,25 +122,15 @@
                 <th>Llegada Fulltime</th>
                 <th>Llegada Partime</th>
                 <th>Llegada Supervisor</th>
-                <th>Entrega Celular</th>
                 <th>Documento Celular</th>
-                <th>Entrega Tablet</th>
                 <th>Documento Tablet</th>
-                <th>Entrega Notebook</th>
                 <th>Documento Notebook</th>
-                <th>Entrega Credencial</th>
                 <th>Documento Credencial</th>
-                <th>Entrega Uniforme</th>
                 <th>Documento Uniforme</th>
-                <th>Entrega EPP</th>
                 <th>Documento EPP</th>
-                <th>Entrega Club 360</th>
                 <th>Documento Club 360</th>
-                <th>Entrega Cloud</th>
                 <th>Documento Cloud</th>
-                <th>Entrega Intranet</th>
                 <th>Documento Intranet</th>
-                <th>Entrega Apenet</th>
                 <th>Documento Apenet</th>
             </tr>
             
@@ -156,6 +146,8 @@
                     <button type='button' class='close' data-dismiss='alert' aria-label='close' <span aria-hidden='true'>&times;</span></button>
                       <strong>".$nombre.": </strong> Usted a agregado ".$contador." nominas.
                     </div>";
+              echo "<div><input type='hidden' name='txt_contador' id='txt_contador' value='".$contador."'></div>
+             ";
              for ($i=0; $i < $contador; $i++) {               
                echo"<tr>
                 <td><input type='text' name='' value='".$numeroNomina[$i]."'></td>
@@ -192,7 +184,7 @@
                 <td><input type='text' name='txt-bct-".$i."' value='$ ".number_format($bonocuan[$i])."'></td>
                 <td><input type='text' name='txt-cump-".$i."' value='".round($cumplimiento[$i],2)." %'></td>
                 <td><input type='text' name='txt-bs-".$i."' value='$ ".number_format($bonos[$i])."'></td>
-                <td><input type='text' name='txt-he-".$i."' value='".$horaextras[$i]."'></td>
+                <td><input type='text' name='txt-he-".$i."' value='".number_format($horaextras[$i])."'></td>
                 <td><input type='text' name='txt-vhe-".$i."' value='$ ".number_format($valorextras[$i])."'></td>
                 <td><input type='text' name='txt-ag-".$i."' value='$ ".number_format($aguinaldo[$i])."'></td>
                 <td><input type='text' name='txt-timp-".$i."' value='$ ".number_format($total_impo[$i])."' required></td>
@@ -212,51 +204,41 @@
                 <td><input type='text' name='txt-tlc-".$i."' value='$ ".number_format($total_costo[$i])."' required></td>
                 <td><input type='text' name='txt-cms-".$i."' value='$ ".number_format($comision[$i])."'></td>
                 <td><input type='text' name='txt-ctc-".$i."' value='$ ".number_format($costocliente[$i])."' required></td>
-                <td><input type='textarea' id='txt-obs' name='txt-Obs' placeholder='Comentario y/u Observaciones'></td>
-                <td><input type='datetime-local' id='txt-llgf' name='txt-llgf".$i."' placeholder='Llegada Fulltime'></td>
-                <td><input type='datetime-local' id='txt-llgp' name='txt-llgp".$i."' placeholder='Llegada Partime'></td>
-                <td><input type='datetime-local' id='txt-llgs' name='txt-llgs".$i."' placeholder='Llegada supervisor'></td>
-                <td ><input type='checkbox' name='chk-cel".$i."' value=''></td>
-                <td ><label for='file' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt'></i> 
-                     </label> <input type='file' id='file' name='file-cel".$i."'>
+                <td><input type='textarea' id='txt-obs' name='txt-Obs-".$i."' placeholder='Comentario y/u Observaciones'></td>
+                <td><input type='datetime-local' id='txt-llgf' name='txt-llgf-".$i."' placeholder='Llegada Fulltime'></td>
+                <td><input type='datetime-local' id='txt-llgp' name='txt-llgp-".$i."' placeholder='Llegada Partime'></td>
+                <td><input type='datetime-local' id='txt-llgs' name='txt-llgs-".$i."' placeholder='Llegada supervisor'></td>
+                <td ><label for='file1-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt'></i> 
+                     </label> <input type='file' id='file1-".$i."' name='file-cel-".$i."'>
                 </td>
-                <td ><input type='checkbox' name='chk-tabl".$i."' value=''></td>
-                <td ><label for='file' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt'></i> 
-                     </label> <input type='file' id='file' name='file-tabl".$i."'>
+                <td ><label for='file2-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt'></i> 
+                     </label> <input type='file' id='file2-".$i."' name='file-tabl-".$i."'>
                 </td>
-                <td ><input type='checkbox' name='chk-not".$i."' value=''></td>
-                <td ><label for='file' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt'></i> 
-                     </label> <input type='file' id='file' name='file-not".$i."'>
+                <td ><label for='file3-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt'></i> 
+                     </label> <input type='file' id='file3-".$i."' name='file-not-".$i."'>
                 </td>
-                <td ><input type='checkbox' name='chk-cred".$i."' value=''></td>
-                <td ><label for='file' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt'></i> 
-                     </label> <input type='file' id='file' name='file-cred".$i."'>
+                <td ><label for='file4-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt'></i> 
+                     </label> <input type='file' id='file4-".$i."' name='file-cred-".$i."'>
                 </td>
-                <td ><input type='checkbox' name='chk-unif".$i."' value=''></td>
-                <td ><label for='file' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt'></i> 
-                     </label> <input type='file' id='file' name='file-unif".$i."'>
+                <td ><label for='file5-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt'></i> 
+                     </label> <input type='file' id='file5-".$i."' name='file-unif-".$i."'>
+                </td>                
+                <td ><label for='file6-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt'></i> 
+                     </label> <input type='file' id='file6-".$i."' name='file-epp-".$i."'>
                 </td>
-                <td ><input type='checkbox' name='chk-epp".$i."' value=''></td>
-                <td ><label for='file' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt'></i> 
-                     </label> <input type='file' id='file' name='file-epp".$i."'>
+                <td ><label for='file7-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt'></i> 
+                     </label> <input type='file' id='file7-".$i."' name='file-c360-".$i."'>
                 </td>
-                <td ><input type='checkbox' name='chk-c360".$i."' value=''></td>
-                <td ><label for='file' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt'></i> 
-                     </label> <input type='file' id='file' name='file-c360".$i."'>
+                <td ><label for='file8-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt'></i> 
+                     </label> <input type='file' id='file8-".$i."' name='file-clou-".$i."'>
                 </td>
-                <td ><input type='checkbox' name='chk-clou".$i."' value=''></td>
-                <td ><label for='file' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt'></i> 
-                     </label> <input type='file' id='file' name='file-clou".$i."'>
+                <td ><label for='file9-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt'></i> 
+                     </label> <input type='file' id='file9-".$i."' name='file-intr-".$i."'>
                 </td>
-                <td ><input type='checkbox' name='chk-intr".$i."' value=''></td>
-                <td ><label for='file' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt'></i> 
-                     </label> <input type='file' id='file' name='file-intr".$i."'>
+                <td ><label for='file10-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt'></i> 
+                     </label> <input type='file' id='file10-".$i."' name='file-ape-".$i."'>
                 </td>
-                <td ><input type='checkbox' name='chk-ape".$i."' value=''></td>
-                <td ><label for='file' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt'></i> 
-                     </label> <input type='file' id='file' name='file-ape".$i."'>
-                </td>
-            </tr>";
+            </tr>";            
              }
             }
           ?>
@@ -264,15 +246,16 @@
     </table>
     <div class="col-xs-12">
             <div class="btn-group"> 
-                <a href="<?php echo base_url("nominalist/daNomina");?>"><button type="button" id="sig-btn" class="btn btn-info">Ingresar</button> </a>
+              <button type='submit' name='formu' id='sig-btn' class='btn btn-info'>Ingresar</button>
+                
             </div>
-        </div>
+      </div>
+    </form>
 </div>
         
     </div>
 </div>
 </div>
-</form>
 <style type="text/css">
       th, td { white-space: nowrap; }
     div.dataTables_wrapper {
@@ -365,7 +348,10 @@ input[type="file"] {
     },      
       searching   : true,  
       info        : true,
-      lengthMenu : [[5, 10, 25,50, -1], [5,10, 25, 50, "All"]],
+      processing  : true,
+      lengthMenu  : [[9999], ["All"]],
+      scrollY     :        "400px",
+      scrollCollapse: true,
       buttons: [
                 'csv', 'excel', 'pdf', 'print', 'reset', 'reload'
             ],
@@ -400,5 +386,6 @@ input[type="file"] {
     }
     } );
 } );
+
 
 </script>

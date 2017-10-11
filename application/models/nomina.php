@@ -487,6 +487,22 @@ inner join Locales_Banderas b on ( l.ID_Bandera = b.ID_Bandera)";
         $resultado = $consulta -> result_array();
         return $resultado;
     }
+
+    function insertarmasivo($nombre,$app,$apm,$rut,$supervisor,$cliente,$cadena,$local,$ciudad,$region,$cargo,$jornada,$fpago,$banco,$ncuenta,$co,$contrato,$inicio,$termino,$dias,$sueldobase,$sueldobaseprop,$grati,$bocuali,$bocuan,$cumpli,$bonos,$horasextras,$valorhoras,$aguinaldo,$imponible,$colacion,$movi,$movivari,$viatico,$haberes,$descuento,$liquido,$sis,$mutual,$seguro,$vacaciones,$finiquito,$banefe,$costopersonal,$agencia,$costofinal,$obser,$fulltime,$parttime,$llegsuper,$doccelu,$doctab,$docnot,$doccre,$docuni,$docepp,$doc360,$docclo,$docint,$docape){
+    	$query = "EXEC SP_Inserta_Nomina '".$nombre."','".$app."','".$apm."','".$rut."','".$supervisor."',".$cliente.",'".$cadena."','".$local."','".$ciudad."',".$region.",'".$cargo."','".$jornada."','".$fpago."','".$banco."','".$ncuenta."','".$co."','".$contrato."','".$inicio."','".$termino."',".$dias.",".$sueldobase.",".$sueldobaseprop.",".$grati.",".$bocuali.",".$bocuan.",'".$cumpli."',".$bonos.",".$horasextras.",".$valorhoras.",".$aguinaldo.",".$imponible.",".$colacion.",".$movi.",".$movivari.",".$viatico.",".$haberes.",".$descuento.",".$liquido.",".$sis.",".$mutual.",".$seguro.",".$vacaciones.",".$finiquito.",".$banefe.",".$costopersonal.",".$agencia.",".$costofinal.",'".$obser."','".$fulltime."','".$parttime."','".$llegsuper."','".$doccelu."','".$doctab."','".$docnot."','".$doccre."','".$docuni."','".$docepp."','".$doc360."','".$docclo."','".$docint."','".$docape."'";
+        $consulta = $this->db->query($query);
+
+        $query_validar = "SELECT id_nomina FROM nominas WHERE nombres='".$nombre."' and apellidop='".$app."' and rut='".$rut."' and cliente=".$cliente;
+
+        $resp = $this->db->query($query_validar)->num_rows();
+		if($resp==1){
+			$mensaje = 1;
+		}else{
+			$mensaje = 2;
+		}
+		return $mensaje;
+
+    }
 }
 	
 	

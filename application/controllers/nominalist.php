@@ -9,7 +9,7 @@ class nominalist extends CI_Controller {
 		$this->load->helper("url","form");	
 		$this->load->library('form_validation'); 	
 		$this->load->model("nomina");
-	    $this->load->model("listar");			
+	    $this->load->model("listar");	
 		
 	}
 	
@@ -340,7 +340,7 @@ function listarbonos(){
 			//Creacion de variables
 		 	$excel = $_FILES['excel']['name'];
 		 	//Guarda Excel
-		 	$destino = $this->subirReferidos($excel);
+		 	$destino = $this->subirArchivo($excel,0,0);
 		 	$final = "img/excel_nominas/".$destino;
 		 	//llama librerias	 
 		 	$this->load->library('phpexcel');
@@ -450,8 +450,6 @@ function listarbonos(){
 		$config['file_name'] = $nombre;
 		$config['allowed_types'] = "*";
 		$config['overwrite'] = TRUE;
-		//echo $ruta; echo "<br>"; echo $config['file_name'];exit;
-		$this->load->library('upload', $config);
 		if (!$this->upload->do_upload($ruta)) {
 					//*** ocurrio un error
 			$dat['uploadError'] = $this->upload->display_errors();
@@ -467,13 +465,15 @@ function listarbonos(){
 
 	function insertarnominamasiva(){
 		if(isset($_SESSION["sesion"])){	
+			$contador=$_POST['txt_contador'];
+			$total=null;
 			for ($i=0; $i < $contador; $i++) { 
 				$nombre=$_POST['txt-name-'.$i];
 				$app=$_POST['txt-ap-'.$i];
 				$apm=$_POST['txt-am-'.$i];
 				$rut=$_POST['txt-rut-'.$i];
 				$supervisor=$_POST['txt-sp-'.$i];
-				$cliente=$_POST['txt-cli-'.$i];				
+				$cliente=$this->limpialetras($_POST['txt-cli-'.$i]);				
 				$cadena=$_POST['txt-cad-'.$i];
 				$local=$_POST['txt-loc-'.$i];
 				$ciudad=$_POST['txt-ciu-'.$i];
@@ -495,62 +495,221 @@ function listarbonos(){
 				$bocuan=$this->limpiadatos($_POST['txt-bct-'.$i]);
 				$cumpli=$this->limpiadatos($_POST['txt-cump-'.$i]);
 				$bonos=$this->limpiadatos($_POST['txt-bs-'.$i]);
-				$horasextras=$_POST['txt-he-'.$i];
-				$valorhoras=$_POST['txt-vhe-'.$i];
-				$aguinaldo=$_POST['txt-ag-'.$i];
-				$imponible=$_POST['txt-timp-'.$i];
-				$colacion=$_POST['txt-col-'.$i];
-				$movi=$_POST['txt-m-'.$i];
-				$movivari=$_POST['txt-mv-'.$i];
-				$viatico=$_POST['txt-via-'.$i];
-				$haberes=$_POST['txt-thb-'.$i];
-				$descuento=$_POST['txt-spv-'.$i];
-				$liquido=$_POST['txt-slq-'.$i];
-				$sis=$_POST['txt-sis-'.$i];
-				$mutual=$_POST['txt-mtl-'.$i];
-				$seguro=$_POST['txt-sgc-'.$i];				
-				$vacaciones=$_POST['txt-psv-'.$i];
-				$finiquito=$_POST['txt-psf-'.$i];
-				$banefe=$_POST['txt-baf-'.$i];
-				$costopersonal=$_POST['txt-tlc-'.$i];
-				$agencia=$_POST['txt-cms-'.$i];
-				$costofinal=$_POST['txt-ctc-'.$i];
+				$horasextras=$this->limpiadatos($_POST['txt-he-'.$i]);
+				$valorhoras=$this->limpiadatos($_POST['txt-vhe-'.$i]);
+				$aguinaldo=$this->limpiadatos($_POST['txt-ag-'.$i]);
+				$imponible=$this->limpiadatos($_POST['txt-timp-'.$i]);
+				$colacion=$this->limpiadatos($_POST['txt-col-'.$i]);
+				$movi=$this->limpiadatos($_POST['txt-m-'.$i]);
+				$movivari=$this->limpiadatos($_POST['txt-mv-'.$i]);
+				$viatico=$this->limpiadatos($_POST['txt-via-'.$i]);
+				$haberes=$this->limpiadatos($_POST['txt-thb-'.$i]);
+				$descuento=$this->limpiadatos($_POST['txt-dpv-'.$i]);
+				$liquido=$this->limpiadatos($_POST['txt-slq-'.$i]);
+				$sis=$this->limpiadatos($_POST['txt-sis-'.$i]);
+				$mutual=$this->limpiadatos($_POST['txt-mtl-'.$i]);
+				$seguro=$this->limpiadatos($_POST['txt-sgc-'.$i]);				
+				$vacaciones=$this->limpiadatos($_POST['txt-psv-'.$i]);
+				$finiquito=$this->limpiadatos($_POST['txt-psf-'.$i]);
+				$banefe=$this->limpiadatos($_POST['txt-baf-'.$i]);
+				$costopersonal=$this->limpiadatos($_POST['txt-tlc-'.$i]);
+				$agencia=$this->limpiadatos($_POST['txt-cms-'.$i]);
+				$costofinal=$this->limpiadatos($_POST['txt-ctc-'.$i]);
 				$obser=$_POST['txt-Obs-'.$i];
 				$fulltime=$_POST['txt-llgf-'.$i];
 				$parttime=$_POST['txt-llgp-'.$i];
 				$llegsuper=$_POST['txt-llgs-'.$i];
-				$checelu=$_POST['chk-cel-'.$i];
-				$doccelu=$_POST['file-cel-'.$i];
-				$chetab=$_POST['chk-tabl-'.$i];
-				$doctab=$_POST['file-tabl-'.$i];
-				$chenot=$_POST['chk-not-'.$i];
-				$docnot=$_POST['file-not-'.$i];
-				$checre=$_POST['chk-cred-'.$i];
-				$doccre=$_POST['file-cred-'.$i];
-				$cheuni=$_POST['chk-unif-'.$i];
-				$docuni=$_POST['file-unif-'.$i];
-				$cheepp=$_POST['chk-epp-'.$i];
-				$docepp=$_POST['file-epp-'.$i];
-				$che360=$_POST['chk-c360'.$i];				
-				$doc360=$_POST['file-c360-'.$i];
-				$checlo=$_POST['chk-clou-'.$i];
-				$docclo=$_POST['file-clou-'.$i];
-				$cheint=$_POST['chk-intr-'.$i];
-				$docint=$_POST['file-intr-'.$i];
-				$cheape=$_POST['chk-ape-'.$i];
-				$docape=$_POST['file-ape-'.$i];	
+
+		  		$filename=$rut;
+
+				$tmp = explode(".", $_FILES['file-cel-'.$i]['name']);
+		  		$extensioncel = end($tmp);	
+		  		$tmp = explode(".", $_FILES['file-tabl-'.$i]['name']);
+		  		$extensiontabl = end($tmp);	
+		  		$tmp = explode(".", $_FILES['file-not-'.$i]['name']);
+		  		$extensionnot = end($tmp);	
+		  		$tmp = explode(".", $_FILES['file-cred-'.$i]['name']);
+		  		$extensioncred = end($tmp);	
+		  		$tmp = explode(".", $_FILES['file-unif-'.$i]['name']);
+		  		$extensionunif = end($tmp);	
+		  		$tmp = explode(".", $_FILES['file-epp-'.$i]['name']);
+		  		$extensionepp = end($tmp);	
+		  		$tmp = explode(".", $_FILES['file-c360-'.$i]['name']);
+		  		$extensionc360 = end($tmp);	
+		  		$tmp = explode(".", $_FILES['file-clou-'.$i]['name']);
+		  		$extensionclou = end($tmp);	
+		  		$tmp = explode(".", $_FILES['file-intr-'.$i]['name']);
+		  		$extensionintr = end($tmp);	
+		  		$tmp = explode(".", $_FILES['file-ape-'.$i]['name']);
+		  		$extensionape = end($tmp);	
+		  		if($extensioncel){
+					$cel = $this->subirArchivo($filename,1,$i);
+					$doccelu =  "doc/d_celular/".$cel;
+				}else{
+					$doccelu = "";
+				}
+				if($extensiontabl){
+					$tabl = $this->subirArchivo($filename,2,$i);
+					$doctab =  "doc/d_tablet/".$tabl;
+				}else{
+					$doctab = "";
+				}
+				if($extensionnot){
+					$not = $this->subirArchivo($filename,3,$i);
+					$docnot =  "doc/d_notebook/".$not;
+				}else{
+					$docnot = "";
+				}
+				if($extensioncred){
+					$cred = $this->subirArchivo($filename,4,$i);
+					$doccre =  "doc/d_credencial/".$cred;
+				}else{
+					$doccre = "";
+				}
+				if($extensionunif){
+					$unif = $this->subirArchivo($filename,5,$i);
+					$docuni =  "doc/d_uniforme/".$unif;
+				}else{
+					$docuni = "";
+				}
+				if($extensionepp){
+					$epp = $this->subirArchivo($filename,6,$i);
+					$docepp =  "doc/d_epp/".$epp;
+				}else{
+					$docepp = "";
+				}
+				if($extensionc360){
+					$c360 = $this->subirArchivo($filename,7,$i);
+					$doc360 =  "doc/d_club360/".$c360;
+				}else{
+					$doc360 = "";
+				}
+				if($extensionclou){
+					$clou = $this->subirArchivo($filename,8,$i);
+					$docclo =  "doc/d_cloud/".$clou;
+				}else{
+					$docclo = "";
+				}
+				if($extensionintr){
+					$intr = $this->subirArchivo($filename,9,$i);
+					$docint =  "doc/d_intranet/".$intr;
+				}else{
+					$docint = "";
+				}
+				if($extensionape){
+					$ape = $this->subirArchivo($filename,10,$i);
+					$docape =  "doc/d_apenet/".$ape;
+				}else{
+					$docape = "";
+				}
+
+				if($doccelu=='doc/d_celular/'){
+					$doccelu='';
+				}
+				if($doctab=='doc/d_tablet/'){
+					$doctab='';
+				}
+				if($docnot=='"doc/d_notebook/'){
+					$docnot='';
+				}
+				if($doccre=='doc/d_credencial/'){
+					$doccre='';
+				}
+				if($docuni=='doc/d_uniforme/'){
+					$docuni='';
+				}
+				if($docepp=='doc/d_epp/'){
+					$docepp='';
+				}
+				if($doc360=='doc/d_club360/'){
+					$doc360='';
+				}
+				if($docclo=='doc/d_cloud/'){
+					$docclo='';
+				}	
+				if($docint=='doc/d_intranet/'){
+					$docint='';
+				}	
+				if($docape=='doc/d_apenet/'){
+					$docape='';
+				}	
+
 				$this->load->model("nomina");
-				$mensaje=$this->nomina->insertarmasivo($nombre,$app,$apm,$rut,$supervisor,$cadena,$local,$ciudad,$cargo,$co,$contrato,$inicio,$termino,$dias,$sueldobase,$sueldobaseprop,$grati,$bocuali,$bocuan,$cumpli,$bonos,$horasextras,$valorhoras,$aguinaldo,$imponible,$colacion,$movi,$movivari,$viatico,$haberes,$descuento,$liquido,$sis,$mutual,$seguro,$vacaciones,$finiquito,$banefe,$costopersonal,$agencia,$costofinal,$obser,$fulltime,$parttime,$llegsuper,$checelu,$doccelu,$chetab,$doctab,$chenot,$docnot,$checre,$doccre,$cheuni,$docuni,$cheepp,$docepp,$che360,$doc360,$checlo,$docclo,$cheint,$docint,$cheape,$docape);
-				redirect(site_url(""));
+				$mensaje=$this->nomina->insertarmasivo($nombre,$app,$apm,$rut,$supervisor,$cliente,$cadena,$local,$ciudad,$region,$cargo,$jornada,$fpago,$banco,$ncuenta,$co,$contrato,$inicio,$termino,$dias,$sueldobase,$sueldobaseprop,$grati,$bocuali,$bocuan,$cumpli,$bonos,$horasextras,$valorhoras,$aguinaldo,$imponible,$colacion,$movi,$movivari,$viatico,$haberes,$descuento,$liquido,$sis,$mutual,$seguro,$vacaciones,$finiquito,$banefe,$costopersonal,$agencia,$costofinal,$obser,$fulltime,$parttime,$llegsuper,$doccelu,$doctab,$docnot,$doccre,$docuni,$docepp,$doc360,$docclo,$docint,$docape);
+				if($mensaje==1){
+					$total++;
+				}		
 			}
+			echo"<script>alert('Se ha agregado ".$total." nominas'); window.location='../nominalist/agregarnominamasiva';</script>";
 		}else{
 			redirect(site_url("nominalist/agregarnominamasiva"));
 		}
 	}
 
+	public function subirArchivo($filename,$doc,$i){
+		if($doc==1){
+			$archivo ='file-cel-'.$i;
+			$config['upload_path'] = "doc/d_celular/";
+		}elseif($doc==2){
+			$archivo ='file-tabl-'.$i;
+			$config['upload_path'] = "doc/d_tablet/";
+		}elseif($doc==3){
+			$archivo ='file-not-'.$i;
+			$config['upload_path'] = "doc/d_notebook/";
+		}elseif($doc==4){
+			$archivo ='file-cred-'.$i;
+			$config['upload_path'] = "doc/d_credencial/";
+		}elseif($doc==5){
+			$archivo ='file-unif-'.$i;
+			$config['upload_path'] = "doc/d_uniforme/";
+		}elseif($doc==6){
+			$archivo ='file-epp-'.$i;
+			$config['upload_path'] = "doc/d_epp/";
+		}elseif($doc==7){
+			$archivo ='file-c360-'.$i;
+			$config['upload_path'] = "doc/d_club360/";
+		}elseif($doc==8){
+			$archivo ='file-clou-'.$i;
+			$config['upload_path'] = "doc/d_cloud/";
+		}elseif($doc==9){
+			$archivo ='file-intr-'.$i;
+			$config['upload_path'] = "doc/d_intranet/";
+		}elseif($doc==10){
+			$archivo ='file-ape-'.$i;
+			$config['upload_path'] = "doc/d_apenet/";	
+		}
+		elseif($doc==0){
+			$archivo ='excel';
+			$config['upload_path'] = "img/excel_nominas/";	
+		}
+		$config['file_name'] =$filename;
+		$config['max_size'] = "2097152";
+		$config['max_width'] = "2000";
+		$config['max_height'] = "2000";
+		$config['allowed_types'] = "*";
+		$config['overwrite'] = TRUE;	
+		$this->load->library('upload', $config);
+		if (!$this->upload->do_upload($archivo)) {
+			$data['uploadError'] = $this->upload->display_errors();
+			echo $this->upload->display_errors();
+			return;
+		}
+		$data = $this->upload->data();
+		$nombre= $data['file_name'];
+		return $nombre;
+	}
+
+
 	function limpiadatos($var){
 		$patron = "/[.$,'% ]/i";    
 		$cadena_nueva = preg_replace($patron, "", $var);
 		return $cadena_nueva;
+	}
+
+	function limpialetras($var){
+		$nuevo = preg_replace("/[^0-9]/", "",$var);
+		$nuevo2 = preg_replace("[' ']", "",$nuevo);
+
+		return $nuevo2;
 	}
 }
