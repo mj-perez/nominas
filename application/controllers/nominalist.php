@@ -493,7 +493,7 @@ function listarbonos(){
 				$grati=$this->limpiadatos($_POST['txt-g-'.$i]);
 				$bocuali=$this->limpiadatos($_POST['txt-bcl-'.$i]);
 				$bocuan=$this->limpiadatos($_POST['txt-bct-'.$i]);
-				$cumpli=$this->limpiadatos($_POST['txt-cump-'.$i]);
+				$cumpli=$this->limpiacumpli($_POST['txt-cump-'.$i]);
 				$bonos=$this->limpiadatos($_POST['txt-bs-'.$i]);
 				$horasextras=$this->limpiadatos($_POST['txt-he-'.$i]);
 				$valorhoras=$this->limpiadatos($_POST['txt-vhe-'.$i]);
@@ -711,5 +711,10 @@ function listarbonos(){
 		$nuevo2 = preg_replace("[' ']", "",$nuevo);
 
 		return $nuevo2;
+	}
+	function limpiacumpli($var){
+		$patron = "/[%]/i";    
+		$cadena_nueva = preg_replace($patron, "", $var);
+		return $cadena_nueva;
 	}
 }

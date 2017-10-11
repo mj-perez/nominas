@@ -13,7 +13,7 @@
                     <td>
               <h3 class="box-title">Plantilla Oficial de Nomina 
                 <small>Está plantilla es el formato para el ingreso de las nominas</small>
-              </h3></td><td><a href="/nominas/assets/plantilla/PlantillaNomina.xlsx"><button type="button" class="btn btn-block btn-info btn-sm">&nbsp;&nbsp;Descargar&nbsp;&nbsp;</button></a></td>
+              </h3></td><td><a href="/nominas/assets/plantilla/PlantillaNomina.xlsx"><button type="button" class="btn btn-block btn-info btn-sm" title='Exportar nomina'>&nbsp;&nbsp;Descargar&nbsp;&nbsp;</button></a></td>
               <!-- tools box -->
               <!-- <div class="pull-right box-tools">
                 <button type="button" id="btnmodal1" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip"
@@ -48,7 +48,7 @@
       <td>
         <h5 class="tituloclientes" align="left"><font color="black">Limpiar</font></h5>
           <form class='form-horizontal' name ='form3' id='form3' method='POST' action="<?php echo  site_url();?>nominalist/ImportaNominas">
-           <button id="btn_ini" name="btn_ini" type="submit" class="btn btn-info btn-sm" title='exportar'  onclick="document.getElementById(form3).submit();"><i class="glyphicon glyphicon-refresh"></i></button>
+           <button id="btn_ini" name="btn_ini" type="submit" class="btn btn-info btn-sm" title='Limpiar tabla'  onclick="document.getElementById(form3).submit();"><i class="glyphicon glyphicon-refresh"></i></button>
         </form>     
        </td> 
        <td></td>
@@ -56,10 +56,10 @@
        <td>
         <h5 class="tituloclientes" align="left"><font color="black">Importar</font></h5>
           <form id="formu2" class="bus" action="<?php echo  site_url();?>nominalist/agregarnominamasiva" method="POST" enctype="multipart/form-data">
-           <label for="excel" class="btn btn-info btn-sm">
+           <label for="excel" class="btn btn-info btn-sm" title='Importar nomina'>
           <i class="glyphicon glyphicon-download-alt" href=""></i> 
           </label>
-           <input type="file" id="excel" name="excel" onchange="formato('#excel');" />
+           <input type="file" id="excel" name="excel"  onchange="formato('#excel');" />
         </form>     
        </td>
 
@@ -210,33 +210,42 @@
                 <td><input type='datetime-local' id='txt-llgs' name='txt-llgs-".$i."' placeholder='Llegada supervisor'></td>
                 <td ><label for='file1-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt'></i> 
                      </label> <input type='file' id='file1-".$i."' name='file-cel-".$i."'>
+                     <button type='button' title='Eliminar documento' class='btn btn-success btn-sm ' onclick='limpiafile(\"file1-".$i."\",\"ima1-".$i."\")'><i class='glyphicon glyphicon-trash'></i></button><i id='ima1-".$i."' class='glyphicon glyphicon-ok' style='display:none;'></i>
                 </td>
-                <td ><label for='file2-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt'></i> 
+                <td ><label for='file2-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt' title='Subir documento'></i> 
                      </label> <input type='file' id='file2-".$i."' name='file-tabl-".$i."'>
                 </td>
-                <td ><label for='file3-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt'></i> 
+                <td ><label for='file3-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt' title='Subir documento'></i> 
                      </label> <input type='file' id='file3-".$i."' name='file-not-".$i."'>
+                     <button type='button' title='Eliminar documento' class='btn btn-success btn-sm ' onclick='limpiafile(\"file3-".$i."\",\"ima3-".$i."\")'><i class='glyphicon glyphicon-trash'></i></button><i id='ima3-".$i."' class='glyphicon glyphicon-ok' style='display:none;'></i>
                 </td>
-                <td ><label for='file4-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt'></i> 
+                <td ><label for='file4-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt' title='Subir documento'></i> 
                      </label> <input type='file' id='file4-".$i."' name='file-cred-".$i."'>
+                     <button type='button' title='Eliminar documento' class='btn btn-success btn-sm ' onclick='limpiafile(\"file4-".$i."\",\"ima4-".$i."\")'><i class='glyphicon glyphicon-trash'></i></button><i id='ima4-".$i."' class='glyphicon glyphicon-ok' style='display:none;'></i>
                 </td>
-                <td ><label for='file5-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt'></i> 
+                <td ><label for='file5-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt' title='Subir documento'></i> 
                      </label> <input type='file' id='file5-".$i."' name='file-unif-".$i."'>
+                     <button type='button' title='Eliminar documento' class='btn btn-success btn-sm ' onclick='limpiafile(\"file5-".$i."\",\"ima5-".$i."\")'><i class='glyphicon glyphicon-trash'></i></button><i id='ima5-".$i."' class='glyphicon glyphicon-ok' style='display:none;'></i>
                 </td>                
-                <td ><label for='file6-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt'></i> 
+                <td ><label for='file6-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt' title='Subir documento'></i> 
                      </label> <input type='file' id='file6-".$i."' name='file-epp-".$i."'>
+                     <button type='button' title='Eliminar documento' class='btn btn-success btn-sm ' onclick='limpiafile(\"file6-".$i."\",\"ima6-".$i."\")'><i class='glyphicon glyphicon-trash'></i></button><i id='ima6-".$i."' class='glyphicon glyphicon-ok' style='display:none;'></i>
                 </td>
-                <td ><label for='file7-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt'></i> 
+                <td ><label for='file7-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt' title='Subir documento'></i> 
                      </label> <input type='file' id='file7-".$i."' name='file-c360-".$i."'>
+                     <button type='button' title='Eliminar documento' class='btn btn-success btn-sm ' onclick='limpiafile(\"file7-".$i."\",\"ima7-".$i."\")'><i class='glyphicon glyphicon-trash'></i></button><i id='ima7-".$i."' class='glyphicon glyphicon-ok' style='display:none;'></i>
                 </td>
-                <td ><label for='file8-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt'></i> 
+                <td ><label for='file8-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt' title='Subir documento'></i> 
                      </label> <input type='file' id='file8-".$i."' name='file-clou-".$i."'>
+                     <button type='button' title='Eliminar documento' class='btn btn-success btn-sm ' onclick='limpiafile(\"file8-".$i."\",\"ima8-".$i."\")'><i class='glyphicon glyphicon-trash'></i></button><i id='ima8-".$i."' class='glyphicon glyphicon-ok' style='display:none;'></i>
                 </td>
-                <td ><label for='file9-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt'></i> 
+                <td ><label for='file9-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt' title='Subir documento'></i> 
                      </label> <input type='file' id='file9-".$i."' name='file-intr-".$i."'>
+                     <button type='button' title='Eliminar documento' class='btn btn-success btn-sm ' onclick='limpiafile(\"file9-".$i."\",\"ima9-".$i."\")'><i class='glyphicon glyphicon-trash'></i></button><i id='ima9-".$i."' class='glyphicon glyphicon-ok' style='display:none;'></i>
                 </td>
-                <td ><label for='file10-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt'></i> 
+                <td ><label for='file10-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt' title='Subir documento'></i> 
                      </label> <input type='file' id='file10-".$i."' name='file-ape-".$i."'>
+                     <button type='button' title='Eliminar documento' class='btn btn-success btn-sm ' onclick='limpiafile(\"file10-".$i."\",\"ima10-".$i."\")'><i class='glyphicon glyphicon-trash'></i></button><i id='ima10-".$i."' class='glyphicon glyphicon-ok' style='display:none;'></i>
                 </td>
             </tr>";            
              }
@@ -324,6 +333,11 @@ input[type="file"] {
             }
 
         }
+    }
+
+    function limpiafile(datos,color){ 
+      $("#"+datos).val('');
+      $("#"+color).hide();
     }
     
     $(document).ready(function() {
