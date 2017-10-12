@@ -62,197 +62,113 @@
 <table id="tabla_nominas" class="stripe row-border order-column" >
        <thead>
             <tr>
-                <!-- <th><input type='checkbox' onclick="marcar(this);" value=''></th>  -->
+                <th>Nombres</th>
+                <th>Ap_Paterno</th> 
+                <th>Ap_Materno</th>
                 <th>Rut</th>
-                <th>Nombres Completo</th>
-                <th>Estado del Contrato</th>
-                <th>Cargo</th>
-                <th>Tipo contrato</th>
-                <th>Fecha Termino</th>
-                <th>Fecha de Inicio</th>
-                <th>Antiguedad</th>
-                <th>Antiguedad Lineal</th>
                 <th>Cliente</th>
-                <th style="text-align: center;">Proyecto</th>
-                <th>Coordinador</th>
-                <th>Empresa</th>
-                <th>Cadena/Local</th>
-                <!-- <th>Local</th> -->
-                <th>Supervisor</th>
-                <th>Días Trabajados</th>
-                <th>Codigo Remuneracion</th>
-                <th>Categoría</th>
-                <th>Sueldo Base</th>
-                <th>Sueldo Proporcional</th>
-                <th>Gratificaciòn</th>
-                <th>Bono Cualitativo</th>
-                <th>Bono Cuantitativo</th>
-                <th>Colacion</th>
-                <th>Movilizacion</th>
-                <th>AFP</th>
-                <th>Isapre</th>
-                <th>Forma de Pago</th>
-                <th>Banco</th>
-                <th>Nº de cuenta</th>
-                <th>Vacaciones Proporcionales</th>
-                <th>Bonos</th>
-                <th>Horas Extras</th>
-                <th>Valor horas extras</th>
-                <th>Aguinaldo</th>
-                <th>Total imponible</th>
-                <th>Movilizacion variable</th>
-                <th>Viaticos</th>
-                <th>Total haberes</th>
-                <th>Descuento previsional</th>
-                <th>Descuento de SIS</th>
-                <th>Descuento Mutual</th>
-                <th>Descuento seguro de cesantia</th>
-                <th>Fuero</th>
-                <th>Sala de cuna</th>
-                <th>Cargas Familiares</th>
-                <th>Prestamo Caja</th>
-                <th>Fecha nacimiento</th>
-                <th>Nacionalidad</th>
-                <th>Sexo</th>
-                <th>Estado Civil</th>
-                <th>Direccion</th>
+                <th>local</th>
+                <th>cadena</th>
                 <th>Comuna</th>
-                <th>Region</th>
-                <th>Telefono Fijo</th>
-                <th>Celular</th>
-                <th>Mail</th>
-                <th>Talla Pantalon</th>
-                <th>Talla Polera</th>
-                <th>Talla zapato</th>
-                <th>Provicion vacaciones</th>
-                <th>Provicion Finiquitos</th>
-                <th>Total costo personal</th>
-                <th>Comocion total agencia</th>
-                <th>Costo Cliente</th>
-                <th>Llegada full time </th>
-                <th>Llegada part time </th>
-                <th>Llegada supervisor</th>
-                <th>Entrega Celular</th>
-                <th>Documento Celular</th>
-                <th>Entrega Tablet </th>
-                <th>Documento Tablet </th>
-                <th>Entrega Notebook</th>
-                <th>Documento Notebook</th>
-                <th>Entrega Credencial</th>
-                <th>Documento Credencial</th>
-                <th>Entrega Uniforme</th>
-                <th>Documento Uniforme</th>
-                <th>Entrega EPP </th>
-                <th>Documento EPP </th>
-                <th>Entrega Club 360</th>
-                <th>Documento Club 360</th>
-                <th>Entrega cloud</th>
-                <th>Documento cloud</th>
-                <th>Entega Intranet</th>
-                <th>Documento Intranet</th>
-                <th>Entrega Apenet</th>
-                <th>Documento Apenet</th>
-                <th>Observaciones Generales</th>
+                <th>Region</th> 
+                <th>EGrupo</th> 
+                <th>Tipo_Contrato</th> 
+                <th>Cargo</th>
+                <th>Banco</th> 
+                <th>FPago</th> 
+                <th>NCuenta</th> 
+                <th>afp</th> 
+                <th>isapre</th>
+                <th>vacaciones</th>  
+                <th>Fecha_Inicio</th>
+                <th>Fecha_Termino</th> 
+                <th>Sueldo_Base</th> 
+                <th>Bono_Cualitativo</th>
+                <th>Bono_Cuantitativo</th> 
+                <th>Colacion</th>
+                <th>Movilizacion</th> 
+                <th>Usuario </th> 
+                <th>Status_Contrato</th> 
+                <th>ACTIVO</th>
                 </tr>
         </thead>
         
 <tbody>
 <?php
+if(isset($contratos)){
+
 
 foreach($contratos as $c) {
 echo "     
             <tr>
                 
-                <td style='font-size:80%;'>".strtoupper($c['rut'])."</td>
-                <td style='text-align:left;'>".strtoupper($c['Nombre_Concatenar'])."</td>
-                <td >".$c['Estado_Actual']." </td>
-                <td >".strtoupper($c['cargo'])."</td>
-                <td >".strtoupper($c['tipo_contrato'])." </td>
-                <td >".strtoupper($c['Fecha_Termino'])." </td>
-                <td >".strtoupper($c['Fecha_Inicio'])."</td>
-                <td >".strtoupper($c['Antiguedad'])."</td>
-                <td >".strtoupper($c['Antiguedad_lineal'])."</td>
-                <td >".strtoupper($c['cliente'])."</td>
-                <td >".strtoupper($c['nombre_proyecto'])."</td>
-                <td >".strtoupper($c['responsable'])."</td>
-                <td >".strtoupper($c['egrupo'])."</td>              
-             <td><button type='button' class='btn btn-default' data-toggle='modal' data-target='#modal-default'><i class='glyphicon glyphicon-list-alt'></i></button></td>
-                <td >Supervisor</td>
-                <td ><input type='text' id='txt-dt".$c['ID_Contrato']."' onblur='calculo(".$c['ID_Contrato'].")'  value='30' placeholder='Días Trabajados' disabled></td>
-                <td >Codigo Remuneracion</td>
-                <td >Categoria                        </td>
-                <td >".strtoupper($c['Sueldo_Base'])."<input type='hidden' value='".strtoupper($c['Sueldo_Base'])."' id='inp-sb".$c['ID_Contrato']."'></td>
-                <td ><label id='txt-spro".$c['ID_Contrato']."'></td>
-                <td ><label id='txt-g".$c['ID_Contrato']."'></td>
-                <td >".strtoupper($c['Bono_Cualitativo'])."<input type='hidden' value='".strtoupper($c['Bono_Cualitativo'])."' id='txt-bcl".$c['ID_Contrato']."'></td>
-                <td >".strtoupper($c['Bono_Cuantitativo'])."<input type='hidden' value='".strtoupper($c['Bono_Cuantitativo'])."' id='txt-bct".$c['ID_Contrato']."'></td>
-                <td >".strtoupper($c['Colacion'])."<input type='hidden' value='".strtoupper($c['Colacion'])."' id='txt-cl".$c['ID_Contrato']."'></td>
-                <td >".strtoupper($c['Movilizacion'])."<input type='hidden' value='".strtoupper($c['Movilizacion'])."' id='txt-m".$c['ID_Contrato']."'></td>
-                <td >".strtoupper($c['afp'])."</td>
-                <td >".strtoupper($c['Prevision_Salud'])."</td>
-                <td >".strtoupper($c['fpago'])."</td>
-                <td >".strtoupper($c['banco'])."</td>
-                <td >".strtoupper($c['ncuenta'])."</td>
-                <td >".strtoupper($c['vacaciones'])."</td>                
-                <td><button type='button' class='btn btn-default' data-toggle='modal' data-target='#modal-bonos' onclick='buscarbonos(".$c['ID_Cliente'].")'><i class='glyphicon glyphicon-list-alt'></i></button></td>
-                <td ><input type='text' id='txt-he".$c['ID_Contrato']."' onblur='calculoHE(".$c['ID_Contrato'].")' placeholder='Horas Extras' disabled></td>
-                <td ><label id='txt-vhe".$c['ID_Contrato']."' disabled></td>
-                <td ><input type='text' id='txt-a".$c['ID_Contrato']."' onblur='calculo(".$c['ID_Contrato'].")' placeholder='Aguinaldo' disabled></td>
-                <td ><label id='txt-timp".$c['ID_Contrato']."' disabled></td>
-                <td ><input type='text' id='txt-mv".$c['ID_Contrato']."'  placeholder='Movilizaion variable' disabled></td>
-                <td ><input type='text' id='txt-v".$c['ID_Contrato']."' onblur='calculoTH(".$c['ID_Contrato'].")' placeholder='Viaticos' disabled></td>
-                <td ><label id='txt-th".$c['ID_Contrato']."' disabled></td>
-                <td >11,44%</td>
-                <td >1,41%</td>
-                <td >1,8%</td>
-                <td >3,0%</td>
-                <td ><input type='checkbox' value=''></td>
-                <td ><input type='checkbox' value=''></td>
-                <td ><input type='number' id='txt-ncf".$c['ID_Contrato']."' name='row-1-age' placeholder='Numero de Cargas Familiares' disabled></td>
-                <td ><input type='number' id='txt-pcj".$c['ID_Contrato']."' name='row-1-age' placeholder='prestamoCajaChica' disabled></td>
-                <td >".strtoupper($c['Fecha_Nacimiento'])."</td>
-                <td >".strtoupper($c['Nacionalidad'])."</td>
-                <td >".strtoupper($c['sexo'])."</td>
-                <td >".strtoupper($c['Estado_Civil'])."</td>
-                <td >".strtoupper($c['Direccion'])."</td>
-                <td >".strtoupper($c['comuna'])."</td>
-                <td >".strtoupper($c['region'])."</td>
-                <td >".strtoupper($c['fijo'])."</td>
-                <td >".strtoupper($c['celular'])."</td>
-                <td >".strtoupper($c['email'])."</td>
-                <td >".strtoupper($c['talla_pantalon'])."</td>
-                <td >".strtoupper($c['talla_polera'])."</td>
-                <td >".strtoupper($c['talla_calzado'])."</td>
-                <td ><label id='txt-pv".$c['ID_Contrato']."' placeholder='Provicion Vacaciones' disabled ></td>
-                <td ><label id='txt-pf".$c['ID_Contrato']."' placeholder='Provicion Finiquito' disabled></td>
-                <td ><input type='text' id='txt-tcp".$c['ID_Contrato']."' name='row-1-age' placeholder='Total costo personal' disabled></td>
-                <td ><input type='text' id='txt-cta".$c['ID_Contrato']."' name='row-1-age' placeholder='Comicion totoal Agencia' disabled></td>
-                <td ><input type='text' id='txt-cc".$c['ID_Contrato']."' name='row-1-age' placeholder='Costo Cliente' disabled></td>
-                <td ><input  type='datetime-local'  id='txt-llt".$c['ID_Contrato']."' placeholder='Legada full time' disabled></td>
-                <td ><input type='datetime-local' id='txt-lpt".$c['ID_Contrato']."' placeholder='Llegada parti time' disabled></td>
-                <td ><input type='datetime-local' id='txt-ls".$c['ID_Contrato']."' placeholder='Llegada supervisor' disabled></td>
-                <td ><input type='checkbox' value=''></td>
-                <td ><input type='file' value=''></td>
-                <td ><input type='checkbox' value=''></td>
-                <td ><input type='file' value=''></td>
-                <td ><input type='checkbox' value=''></td>
-                <td ><input type='file' value=''></td>
-                <td ><input type='checkbox' value=''></td>
-                <td ><input type='file' value=''></td>
-                <td ><input type='checkbox' value=''></td>
-                <td ><input type='file' value=''></td>
-                <td ><input type='checkbox' value=''></td>
-                <td ><input type='file' value=''></td>
-                <td ><input type='checkbox' value=''></td>
-                <td ><input type='file' value=''></td>
-                <td ><input type='checkbox' value=''></td>
-                <td ><input type='file' value=''></td>
-                <td ><input type='checkbox' value=''></td>
-                <td ><input type='file' value=''></td>
-                <td ><input type='checkbox' value=''></td>
-                <td ><input type='file' value=''></td>
-                <td ><input type='text' id='txt-co".$c['ID_Contrato']."' name='row-1-age' placeholder='Comentario y/u Observaciones' disabled></td>
-            </tr>";}?><a href="<?php echo base_url("menu/index");?>">
+                   <td>".$c['Nombres']."</td>
+       <td>".$c['Ap_Paterno']."</td> 
+    <td>".$c['Ap_Materno']."</td>
+    <td>".$c['Rut']."</td>
+    <td>".$c['Cliente']."</td>
+    <td>".$c['local']."</td>
+    <td>".$c['cadena']."</td>
+    <td>".$c['Comuna']."</td>
+    <td>".$c['Region']."</td> 
+    <td>".$c['EGrupo']."</td> 
+    <td>".$c['Tipo_Contrato']."</td> 
+    <td>".$c['Cargo']."</td>
+    <td>".$c['Banco']."</td> 
+    <td>".$c['FPago']."</td> 
+    <td>".$c['NCuenta']."</td> 
+    <td>".$c['afp']."</td> 
+    <td>".$c['isapre']."</td>
+    <td>".$c['vacaciones']."</td>  
+    <td>".$c['Fecha_Inicio']."</td>
+    <td>".$c['Fecha_Termino']."</td> 
+    <td>".$c['Sueldo_Base']."</td> 
+    <td>".$c['Bono_Cualitativo']."</td>
+    <td>".$c['Bono_Cuantitativo']."</td> 
+    <td>".$c['Colacion']."</td>
+    <td>".$c['Movilizacion']."</td> 
+    <td>".$c['Usuario']."</td> 
+    <td>".$c['Status_Contrato']."</td> 
+    <td>".$c['ACTIVO']."</td>
+            </tr>";
+        }
+
+    } else {
+        
+    echo"    
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+";
+
+
+    }
+    ?><a href="<?php echo base_url("menu/index");?>">
        </tbody>
     </table>
 </div>

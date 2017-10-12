@@ -209,43 +209,46 @@
                 <td><input type='datetime-local' id='txt-llgp' name='txt-llgp-".$i."' placeholder='Llegada Partime'></td>
                 <td><input type='datetime-local' id='txt-llgs' name='txt-llgs-".$i."' placeholder='Llegada supervisor'></td>
                 <td ><label for='file1-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt'></i> 
-                     </label> <input type='file' id='file1-".$i."' name='file-cel-".$i."'>
+                     </label> <input type='file' id='file1-".$i."' name='file-cel-".$i."' onchange='tickt(\"ima1-".$i."\")' >
                      <button type='button' title='Eliminar documento' class='btn btn-success btn-sm ' onclick='limpiafile(\"file1-".$i."\",\"ima1-".$i."\")'><i class='glyphicon glyphicon-trash'></i></button><i id='ima1-".$i."' class='glyphicon glyphicon-ok' style='display:none;'></i>
                 </td>
                 <td ><label for='file2-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt' title='Subir documento'></i> 
-                     </label> <input type='file' id='file2-".$i."' name='file-tabl-".$i."'>
+                     </label> <input type='file' id='file2-".$i."' name='file-tabl-".$i."' onchange='tickt(\"ima2-".$i."\")' >
+                     <button type='button' title='Eliminar documento' class='btn btn-success btn-sm ' onclick='limpiafile(\"file2-".$i."\",\"ima2-".$i."\")'><i class='glyphicon glyphicon-trash'></i></button><i id='ima2-".$i."' class='glyphicon glyphicon-ok' style='display:none;'></i>
                 </td>
                 <td ><label for='file3-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt' title='Subir documento'></i> 
-                     </label> <input type='file' id='file3-".$i."' name='file-not-".$i."'>
+                     </label> <input type='file' id='file3-".$i."' name='file-not-".$i."' onchange='tickt(\"ima3-".$i."\")' >
                      <button type='button' title='Eliminar documento' class='btn btn-success btn-sm ' onclick='limpiafile(\"file3-".$i."\",\"ima3-".$i."\")'><i class='glyphicon glyphicon-trash'></i></button><i id='ima3-".$i."' class='glyphicon glyphicon-ok' style='display:none;'></i>
                 </td>
                 <td ><label for='file4-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt' title='Subir documento'></i> 
-                     </label> <input type='file' id='file4-".$i."' name='file-cred-".$i."'>
+                     </label> <input type='file' id='file4-".$i."' name='file-cred-".$i."' onchange='tickt(\"ima4-".$i."\")' >
                      <button type='button' title='Eliminar documento' class='btn btn-success btn-sm ' onclick='limpiafile(\"file4-".$i."\",\"ima4-".$i."\")'><i class='glyphicon glyphicon-trash'></i></button><i id='ima4-".$i."' class='glyphicon glyphicon-ok' style='display:none;'></i>
                 </td>
                 <td ><label for='file5-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt' title='Subir documento'></i> 
-                     </label> <input type='file' id='file5-".$i."' name='file-unif-".$i."'>
+                     </label> <input type='file' id='file5-".$i."' name='file-unif-".$i."' onchange='tickt(\"ima5-".$i."\")' >
                      <button type='button' title='Eliminar documento' class='btn btn-success btn-sm ' onclick='limpiafile(\"file5-".$i."\",\"ima5-".$i."\")'><i class='glyphicon glyphicon-trash'></i></button><i id='ima5-".$i."' class='glyphicon glyphicon-ok' style='display:none;'></i>
                 </td>                
                 <td ><label for='file6-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt' title='Subir documento'></i> 
-                     </label> <input type='file' id='file6-".$i."' name='file-epp-".$i."'>
+                     </label> <input type='file' id='file6-".$i."' name='file-epp-".$i."' onchange='tickt(\"ima6-".$i."\")' >
                      <button type='button' title='Eliminar documento' class='btn btn-success btn-sm ' onclick='limpiafile(\"file6-".$i."\",\"ima6-".$i."\")'><i class='glyphicon glyphicon-trash'></i></button><i id='ima6-".$i."' class='glyphicon glyphicon-ok' style='display:none;'></i>
                 </td>
                 <td ><label for='file7-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt' title='Subir documento'></i> 
-                     </label> <input type='file' id='file7-".$i."' name='file-c360-".$i."'>
+                     </label> <input type='file' id='file7-".$i."' name='file-c360-".$i."' onchange='tickt(\"ima7-".$i."\")' >
                      <button type='button' title='Eliminar documento' class='btn btn-success btn-sm ' onclick='limpiafile(\"file7-".$i."\",\"ima7-".$i."\")'><i class='glyphicon glyphicon-trash'></i></button><i id='ima7-".$i."' class='glyphicon glyphicon-ok' style='display:none;'></i>
                 </td>
                 <td ><label for='file8-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt' title='Subir documento'></i> 
-                     </label> <input type='file' id='file8-".$i."' name='file-clou-".$i."'>
+                     </label> <input type='file' id='file8-".$i."' name='file-clou-".$i."' onchange='tickt(\"ima8-".$i."\")' >
                      <button type='button' title='Eliminar documento' class='btn btn-success btn-sm ' onclick='limpiafile(\"file8-".$i."\",\"ima8-".$i."\")'><i class='glyphicon glyphicon-trash'></i></button><i id='ima8-".$i."' class='glyphicon glyphicon-ok' style='display:none;'></i>
                 </td>
                 <td ><label for='file9-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt' title='Subir documento'></i> 
-                     </label> <input type='file' id='file9-".$i."' name='file-intr-".$i."'>
+                     </label> <input type='file' id='file9-".$i."' name='file-intr-".$i."' onchange='tickt(\"ima9-".$i."\")' >
                      <button type='button' title='Eliminar documento' class='btn btn-success btn-sm ' onclick='limpiafile(\"file9-".$i."\",\"ima9-".$i."\")'><i class='glyphicon glyphicon-trash'></i></button><i id='ima9-".$i."' class='glyphicon glyphicon-ok' style='display:none;'></i>
                 </td>
+                
+
                 <td ><label for='file10-".$i."' class='btn btn-info btn-sm'><i class='glyphicon glyphicon-download-alt' title='Subir documento'></i> 
-                     </label> <input type='file' id='file10-".$i."' name='file-ape-".$i."'>
-                     <button type='button' title='Eliminar documento' class='btn btn-success btn-sm ' onclick='limpiafile(\"file10-".$i."\",\"ima10-".$i."\")'><i class='glyphicon glyphicon-trash'></i></button><i id='ima10-".$i."' class='glyphicon glyphicon-ok' style='display:none;'></i>
+                     </label> <input type='file' id='file10-".$i."' name='file-ape-".$i."' onchange='tickt(\"ima10-".$i."\")'>
+                     <button type='button' title='Eliminar documento' class='btn btn-success btn-sm ' onclick='limpiafile(\"file10-".$i."\",\"ima10-".$i."\")'><i class='glyphicon glyphicon-trash'></i></button><i id='ima10-".$i."' class='glyphicon glyphicon-ok' style='display:none; color: red;'></i>
                 </td>
             </tr>";            
              }
@@ -297,11 +300,16 @@
 
         }
     }
+
     function limpiafile(datos,color){ 
       $("#"+datos).val('');
       $("#"+color).hide();
     }
-    
+
+    function tickt(color){ 
+      $("#"+color).show();
+    }
+
     $(document).ready(function() {
         $('#tabla_nominas').DataTable( {
       "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {

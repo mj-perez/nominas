@@ -83,7 +83,7 @@
                   <th>DocIntranet</th>
                   <th>DocApenet</th>
             </tr>
-        </thead>
+        </thead><a href=""></a>
         <tbody>nominasingresadas
 <?php foreach($nominasingresadas as $c) {  
             
@@ -172,7 +172,7 @@
                         echo "<td><label></label></td>";
                   
                     }else{
-                        echo "<td><label><i style='color: #00c0ef' class='glyphicon glyphicon-ok'></i></label></td>";
+                        echo "<td><label><a href='".$c['DocUniforme']."'><i style='color: #00c0ef' class='glyphicon glyphicon-ok'></i></a></label></td>";
                     }
                     if ($c['DocEPP'] == null){
 

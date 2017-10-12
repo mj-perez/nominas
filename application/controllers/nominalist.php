@@ -17,12 +17,11 @@ class nominalist extends CI_Controller {
 	    if(isset($_SESSION["sesion"])){	
 			$data["nombre"]=$_SESSION["nombre"];
 			$data["usuario"]=$_SESSION["usuario"];
+			$user=$_SESSION["usuario"];
 			$this->load->view('contenido');
 			$this->load->view('layout/layout_nominas',$data);
-			$data['contratos'] = $this->nomina->contratos();
-			$data['clientes'] = $this->listar->clientes();
+			$data['clientes'] = $this->listar->clientes($user);
 			$data['usuarios'] = $this->listar->usuarios();
-			// $data['selecionarCliente'] = $this->nomina->selecionarCliente($id_usuario);
 			$this->load->view('layout/aside',$data);
 			$this->load->view('nomina/nominaslistado',$data);
 		}else{
@@ -30,37 +29,17 @@ class nominalist extends CI_Controller {
 		}
 	}
 	
-	function daNomina(){
-	    if(isset($_SESSION["sesion"])){	
-			$data["nombre"]=$_SESSION["nombre"];
-			$data["usuario"]=$_SESSION["usuario"];
-			$this->load->view('contenido');
-			$this->load->view('layout/layout_nominas',$data);
-			// $this->load->model("mantenedor");
-			$data['bono']= $this->nomina->bono();
-			$data['contratos']= $this->nomina->contratos();
-			$data['clientes'] = $this->listar->clientes();
-			$data['usuarios'] = $this->listar->usuarios();
-			// $data['listar']= $this->mantenedor->listarBono();
-			$this->load->view('layout/aside',$data);
-			$this->load->view('nomina/dashNomina',$data);
-		}else{
-			redirect(site_url("menu"));
-		}
-		}
+	
 
 	function ImportaNominas(){
 	    if(isset($_SESSION["sesion"])){	
 			$data["nombre"]=$_SESSION["nombre"];
 			$data["usuario"]=$_SESSION["usuario"];
+			$user=$_SESSION["usuario"];
 			$this->load->view('contenido');
 			$this->load->view('layout/layout_nominas',$data);
-			// $this->load->model("mantenedor");
-			// $data['bono']= $this->nomina->bono();
-			$data['contratos']= $this->nomina->contratos();
-			$data['clientes'] = $this->listar->clientes();
+			$data['clientes'] = $this->listar->clientes($user);
 			$data['usuarios'] = $this->listar->usuarios();
-			// $data['listar']= $this->mantenedor->listarBono();
 			$this->load->view('layout/aside',$data);
 			$this->load->view('nomina/ImportNomina',$data);
 		}else{
@@ -75,10 +54,10 @@ class nominalist extends CI_Controller {
 			if($id_cliente!= null){
 				$data["nombre"]=$_SESSION["nombre"];
 				$data["usuario"]=$_SESSION["usuario"];
+				$user=$_SESSION["usuario"];
 				$this->load->view('contenido');
 				$this->load->view('layout/layout_nominas',$data);
-				//$data['contratos']= $this->nomina->contratos();
-				$data['clientes'] = $this->listar->clientes();
+				$data['clientes'] = $this->listar->clientes($user);
 				$data['usuarios'] = $this->listar->usuarios();
 				$data['contratos'] = $this->nomina->buscar_contratoscliente($id_cliente);
 				$this->load->view('layout/aside',$data);
@@ -112,27 +91,6 @@ class nominalist extends CI_Controller {
 			redirect(site_url("menu"));
 		}
 	}
-
-	// 	function buscarUsuario(){		
-	// 	if(isset($_SESSION["sesion"])){
-	// 		$id_usuario= $_POST['usuarios'];
-	// 		if($id_usuario!= null){
-	// 			$data["nombre"]=$_SESSION["nombre"];
-	// 			$data["usuario"]=$_SESSION["usuario"];
-	// 			$this->load->view('contenido');
-	// 			$this->load->view('layout/layout_nominas',$data);
-	// 			$data['clientes'] = $this->listar->clientes();
-	// 			$data['usuarios'] = $this->listar->usuarios();
-	// 			$data['contratos'] = $this->nomina->buscar_contratosusuario($id_usuario);
-	// 			$this->load->view('layout/aside',$data);
-	// 			$this->load->view('nomina/nominaslistado',$data);
-	// 		}else{
-	// 			redirect(site_url("nominalist/listNominas"));
-	// 		}
-	// 	}else{
-	// 		redirect(site_url("menu"));
-	// 	}
-	// }
 
 
 	 public function exportardatos(){
@@ -224,48 +182,15 @@ class nominalist extends CI_Controller {
 	 	header('Content-Disposition: attachment;filename="Lista de Contratos.xls"');
 	 	$object_writer->save('php://output');
 	}
-	function listNominasBonos(){
-	    if(isset($_SESSION["sesion"])){	
-			$data["nombre"]=$_SESSION["nombre"];
-			$data["usuario"]=$_SESSION["usuario"];
-			$this->load->view('contenido');
-			$this->load->view('layout/layout_nominas',$data);
-			$data['bono']= $this->nomina->bono();
-			$data['contratos']= $this->nomina->contratos();
-			$data['clientes'] = $this->listar->clientes();
-			$data['usuarios'] = $this->listar->usuarios();
-			$this->load->view('layout/aside',$data);
-			$this->load->view('nomina/nominaslistadobonos',$data);
-
-		}else{
-			redirect(site_url("menu"));
-		}
-	}
-
-	function reportes(){
-	    if(isset($_SESSION["sesion"])){	
-			$data["nombre"]=$_SESSION["nombre"];
-			$data["usuario"]=$_SESSION["usuario"];
-			$this->load->view('contenido');
-			$data['contratos']= $this->nomina->contratos();
-			$data['clientes'] = $this->listar->clientes();
-			$data['usuarios'] = $this->listar->usuarios();
-			$this->load->view('layout/layout_nominas',$data);
-			$this->load->view('layout/aside',$data);
-			$this->load->view('nomina/reportes',$data);
-
-		}else{
-			redirect(site_url("menu"));
-		}
-	}
-
+	
 	function chequeonimonas(){
 	    if(isset($_SESSION["sesion"])){	
 			$data["nombre"]=$_SESSION["nombre"];
 			$data["usuario"]=$_SESSION["usuario"];
+			// $dato= $this->listar->obtener_postulante($rut);
 			$this->load->view('contenido');
 			$data['nominasingresadas']= $this->nomina->nominaingresada();
-			$data['clientes'] = $this->listar->clientes();
+			// $datos['archivos'] = $this->listar->cargaarchivo($dato['postulante']->rut);
 			$data['usuarios'] = $this->listar->usuarios();
 			$this->load->view('layout/layout_nominas',$data);
 			$this->load->view('layout/aside',$data);
@@ -276,63 +201,7 @@ class nominalist extends CI_Controller {
 		}
 	}
 
-	public function cheklinea(){
-		$this->load->model("nomina");
-		$se=$this->nomina->contratos();
-		$var = '';
-		foreach ($se as $s) {
-			$var .=$s['ID_Contrato']."/";
-		} echo $var;
-	}
 
-function listarbonos(){
-        $id_bono=$_POST['id'];
-        $this->load->model("mantenedor");
-        $data = $this->mantenedor->listarBono($id_bono);
-        echo "
-        <div class='modal-dialog'>
-            <div class='modal-content'>
-              <div class='modal-header'>
-                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-                  <span aria-hidden='true'>&times;</span></button>
-                <h4 class='modal-title'>Asignar Bonos</h4>
-            </div>
-        	<div class='modal-body'>
-                <p>Selecione los bonos correspondiente a la persona</p>
-            <div class='box'>
-            	<div class='box-body'>
-            	         <table class='table table-bordered table-striped' id='example1'>
-                	    	<thead>
-                    	    	<tr>
-		                            <th>ID Bono</th>
-		                            <th>Nombre Bono</th>
-		                            <th></th>
-		                            <th>Monto</th>                      
-                        		</tr>
-                    		</thead>";
-    foreach($data as $m){
-        if($m['vigencia']==1){$vigencia='Vigente';}else{$vigencia='No Vigente';}
-        	echo"<tr>
-                    <td>".$m['Bono']."</td>
-                    <td>".$m['Cliente']."</td>
-                    <td ><input id='chk-bono-".$m['ID_BonoCliente']."' type='checkbox' value=''></td>
-                    <td ><input type='number' id='txt-mt-".$m['ID_BonoCliente']."' name='row-1-age' placeholder='Monto'></td>
-                </tr>";
-        }
- 			echo"
- 							</table>
- </div>
-                 </div>
-              </div>
-              <div class='modal-footer'>
-                <button type='button' class='btn btn-default pull-left' data-dismiss='modal'>Close</button>
-                <button type='button' class='btn btn-primary'>Ingresar</button>
-              </div>
-            </div>
-            <!-- /.modal-content -->
-          </div>";
-          
-}
 	function agregarnominamasiva(){
 		if(isset($_FILES['excel'])){
 			//Creacion de variables
@@ -423,8 +292,8 @@ function listarbonos(){
 			$this->load->view('contenido');
 			$this->load->view('layout/layout_nominas',$data);
 			// $data['bono']= $this->nomina->bono();
-			$data['contratos']= $this->nomina->contratos();
-			$data['clientes'] = $this->listar->clientes();
+			// $data['contratos']= $this->nomina->contratos();
+			// $data['clientes'] = $this->listar->clientes();
 			$data['usuarios'] = $this->listar->usuarios();
 			$this->load->view('layout/aside',$data);
 			$this->load->view('nomina/ImportNomina',$data);
@@ -442,26 +311,6 @@ function listarbonos(){
 		}
 	}
 
-	function subirReferidos($nombre){
-		$ruta="excel";
-		$config['upload_path'] = "img/excel_nominas/";
-		$config['file_name'] = $nombre;
-		$config['allowed_types'] = "*";
-		$config['overwrite'] = TRUE;
-		//echo $ruta; echo "<br>"; echo $config['file_name'];exit;
-		$this->load->library('upload', $config);
-		if (!$this->upload->do_upload($ruta)) {
-					//*** ocurrio un error
-			$dat['uploadError'] = $this->upload->display_errors();
-			echo $this->upload->display_errors();
-			return;
-		}
-		$data = $this->upload->data();
-		//var_dump($data);exit;
-		$nom=$data['file_name'];
-		//echo $nom;exit;
-		return $nom;
-	}
 
 	function insertarnominamasiva(){
 		if(isset($_SESSION["sesion"])){	
@@ -640,7 +489,7 @@ function listarbonos(){
 					$total++;
 				}		
 			}
-			echo"<script>alert('Se ha agregado ".$total." nominas'); window.location='../nominalist/agregarnominamasiva';</script>";
+			echo"<script>alert('Se ha agregado ".$total." nominas'); window.location='../nominalist/chequeonimonas';</script>";
 		}else{
 			redirect(site_url("nominalist/agregarnominamasiva"));
 		}
