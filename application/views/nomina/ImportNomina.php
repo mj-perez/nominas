@@ -13,30 +13,26 @@
                     <td>
               <h3 class="box-title">Plantilla Oficial de Nomina 
                 <small>Está plantilla es el formato para el ingreso de las nominas</small>
-              </h3></td><td><a href="/nominas/assets/plantilla/PlantillaNomina.xlsx"><button type="button" class="btn btn-block btn-info btn-sm" title='Exportar nomina'>&nbsp;&nbsp;Descargar&nbsp;&nbsp;</button></a></td>
-              <!-- tools box -->
-              <!-- <div class="pull-right box-tools">
-                <button type="button" id="btnmodal1" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip"
-                        title="Collapse">
-                  <i class="fa fa-minus"></i></button>
-              </div> -->
-              <!-- /. tools -->
+              </h3></td>
+              <?php if(isset($cli)){  
+               echo "<td><a href='".site_url()."nominalist/exportarexcel?cliente=".$cli."'><button type='button' class='btn btn-block btn-info btn-sm' title='Exportar  nomina'>&nbsp;&nbsp;Descargar&nbsp;&nbsp;</button></a></td>";
+
+               // echo "<form action='".site_url()."nominalist/exportarexcel' method='POST' id='clien' name='clien'>
+               // <td><input type='hidden' name='cliente' id='cliente' value='".$cli."'></td>
+               // <td><button type='submit' class='btn btn-block btn-info btn-sm' title='Exportar  nomina'>&nbsp;&nbsp;Descargar&nbsp;&nbsp;</button></td>
+               // </form>";
+
+                }else{ ?>
+                <td><a href=""><button type="button" class="btn btn-block btn-info btn-sm" title='Exportar nomina' disabled>&nbsp;&nbsp;Descargar&nbsp;&nbsp;</button></a></td>
+              <?php } ?>
               </table>
-              <!-- tools box -->
-              <!-- <div class="pull-right box-tools">
-                <button type="button" id="btnmodal1" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip"
-                        title="Collapse">
-                  <i class="fa fa-minus"></i></button>
-              </div> -->
-              <!-- /. tools -->
             </div>
-            <!-- /.box-header -->
             <div class="box-body pad">
 <table>   
        <td width="3%">
         </td> <td width="30%"><h5 class="tituloclientes" align="left"><font color="black">Buscar Clientes</font></h5>
-        <form id="form1" name="form1" method="post" action="<?php echo  site_url();?>/nominalist/buscarCliente">
-        <select id="clientes" name="clientes" style="width:200px" class="form-control" onchange="document.getElementById('form1').submit();">
+        <form id="form1" name="form1" method="post" action="<?php echo  site_url();?>/nominalist/ImportaNominas">
+        <select id="cliente" name="cliente" style="width:200px" class="form-control" onchange="document.getElementById('form1').submit();">
             <option value="">Seleccione</option>
             <?php
                 foreach ($clientes as $cl) {
