@@ -140,8 +140,8 @@ class nominalist extends CI_Controller {
 	 		$object->getActiveSheet()->setCellValueByColumnAndRow(21 , $column_row, $row['Sueldo_Base']);
 	 		$object->getActiveSheet()->setCellValueByColumnAndRow(23 , $column_row, $row['Bono_Cualitativo']);
 	 		$object->getActiveSheet()->setCellValueByColumnAndRow(24 , $column_row, $row['Bono_Cuantitativo']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(31 , $column_row, $row['Colacion']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(32 , $column_row, $row['Movilizacion']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(32 , $column_row, $row['Colacion']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(33 , $column_row, $row['Movilizacion']);
 	 		$i++;
 	 		$column_row++;
 	 	}
@@ -258,9 +258,11 @@ class nominalist extends CI_Controller {
 		 	$data["nombre"]=$_SESSION["nombre"];
 			$data["usuario"]=$_SESSION["usuario"];
 			$data['contador']= count($data['nombre2']);
+			$user=$_SESSION["usuario"];
 			$this->load->view('contenido');
 			$this->load->view('layout/layout_nominas',$data);
 			$data['usuarios'] = $this->listar->usuarios();
+			$data['clientes'] = $this->listar->clientes($user);
 			$this->load->view('layout/aside',$data);
 			$this->load->view('nomina/ImportNomina',$data);
 		}else{
@@ -531,9 +533,9 @@ class nominalist extends CI_Controller {
 
 	function limpialetras($var){
   		$nuevo = preg_replace("/[^0-9]/", "",$var);
-  		$nuevo2 = preg_replace("[' ']", "",$nuevo);
-
-  		return $nuevo2;
+  		$nuevo2 = preg_replace("['-']", "",$nuevo);
+  		$nuevo3 = preg_replace("[' ']", "",$nuevo2);
+  		return $nuevo3;
  	}
 	function limpiacumpli($var){
 		$patron = "/[%]/i";    

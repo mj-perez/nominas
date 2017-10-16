@@ -1,19 +1,23 @@
-<div class="content-wrapper" >  
-    <section class="content-header table_responsive">
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> <script type="text/javascript"> $(window).load( function () { $(".loader").fadeOut("slow"); } ) </script>     
+<div class ="loader"></div> -->
+      <div class="content-wrapper" >  
+        <section class="content-header table_responsive">
         <table>
-      <td><h1>Lista de Contratados</h1></td>
-       
-       </table>
-       <br>
-    <div class="row">
-        <div class="col-xs-12">
+          <td>
+            <h1>Lista de Contratados</h1>
+          </td>
+        </table>
+        <br>
+        <div class="row">
+          <div class="col-xs-12">
             <div id="boxmodal1" class="box box-info">
-            <div class="box-header">
-               <table>
-                    <td>
-              <h3 class="box-title">Plantilla Oficial de Nomina 
-                <small>Está plantilla es el formato para el ingreso de las nominas</small>
-              </h3></td>
+              <div class="box-header">
+                <table>
+                  <td>
+                    <h3 class="box-title">Plantilla Oficial de Nomina 
+                      <small>Está plantilla es el formato para el ingreso de las nominas</small>
+                    </h3>
+                  </td>
               <?php if(isset($cli)){
                   if($cli!=null){  
                     echo "<form action='".site_url()."nominalist/exportarexcel?cliente=".$cli."' method='POST' name='client' id='client'>
@@ -21,52 +25,54 @@
                       <td><button type='submit' class='btn btn-block btn-info btn-sm' title='Exportar  nomina'>&nbsp;&nbsp;Descargar&nbsp;&nbsp;</button></td>
                       </form>";
                   }else{ 
+                    echo "<td><button type='submit' class='btn btn-block btn-info btn-sm' title='Exportar  nomina' disable readonly>&nbsp;&nbsp;Descargar&nbsp;&nbsp;</button></td>";
                   }
                 }else{ 
-                  
+                  echo "<td><button type='submit' class='btn btn-block btn-info btn-sm' title='Exportar  nomina' disable readonly>&nbsp;&nbsp;Descargar&nbsp;&nbsp;</button></td>";
                 } ?>
               </table>
             </div>
             <div class="box-body pad">
-<table>   
-       <td width="3%">
-        </td> <td width="30%"><h5 class="tituloclientes" align="left"><font color="black">Buscar Clientes</font></h5>
-        <form id="form1" name="form1" method="post" action="<?php echo  site_url();?>/nominalist/ImportaNominas">
-        <select id="cliente" name="cliente" style="width:200px" class="form-control" onchange="document.getElementById('form1').submit();">
-            <option value="">Seleccione</option>
-            <?php
-                foreach ($clientes as $cl) {
-                    echo "<option value='".$cl["id_cliente"]."'>".strtoupper($cl["cliente"])."</option>";}?>
-        </select> 
-        </form>
-        </td>
-        <td></td>      
-      <td>
-        <h5 class="tituloclientes" align="left"><font color="black">Limpiar</font></h5>
-          <form class='form-horizontal' name ='form3' id='form3' method='POST' action="<?php echo  site_url();?>nominalist/ImportaNominas">
-           <button id="btn_ini" name="btn_ini" type="submit" class="btn btn-info btn-sm" title='Limpiar tabla'  onclick="document.getElementById(form3).submit();"><i class="glyphicon glyphicon-refresh"></i></button>
-        </form>     
-       </td> 
-       <td></td>
-       <td></td>
-       <td>
-        <h5 class="tituloclientes" align="left"><font color="black">Importar</font></h5>
-          <form id="formu2" class="bus" action="<?php echo  site_url();?>nominalist/agregarnominamasiva" method="POST" enctype="multipart/form-data">
-           <label for="excel" class="btn btn-info btn-sm" title='Importar nomina'>
-          <i class="glyphicon glyphicon-download-alt" href=""></i> 
-          </label>
-           <input type="file" id="excel" name="excel"  onchange="formato('#excel');" />
-        </form>     
-       </td>
-<?php 
-    if(isset($nombre2)){
-?>
-</table>
- <br>
- <form method="post"  name="formu" id="formu" action="<?php echo  site_url();?>nominalist/insertarnominamasiva" enctype="multipart/form-data">
-<table id="tabla_nominas" class="table-info row-border info order-column" cellspacing="0" >
-       <thead>
-            <tr>
+              <table>   
+                <td width="3%">
+                </td> 
+                <td width="30%"><h5 class="tituloclientes" align="left"><font color="black">Buscar Clientes</font></h5>
+                  <form id="form1" name="form1" method="post" action="<?php echo  site_url();?>/nominalist/ImportaNominas">
+                    <select id="cliente" name="cliente" style="width:200px" class="form-control" onchange="document.getElementById('form1').submit();">
+                    <option value="">Seleccione</option>
+                    <?php
+                      foreach ($clientes as $cl) {
+                          echo "<option value='".$cl["id_cliente"]."'>".strtoupper($cl["cliente"])."</option>";}?>
+                    </select> 
+                  </form>
+                </td>
+                <td></td>      
+                <td>
+                <h5 class="tituloclientes" align="left"><font color="black">Limpiar</font></h5>
+                <form class='form-horizontal' name ='form3' id='form3' method='POST' action="<?php echo  site_url();?>nominalist/ImportaNominas">
+                <button id="btn_ini" name="btn_ini" type="submit" class="btn btn-info btn-sm" title='Limpiar tabla'  onclick="document.getElementById(form3).submit();"><i class="glyphicon glyphicon-refresh"></i></button>
+                </form>     
+                </td> 
+                <td></td>
+                <td></td>
+                <td>
+                  <h5 class="tituloclientes" align="left"><font color="black">Importar</font></h5>
+                    <form id="formu2" class="bus" action="<?php echo  site_url();?>nominalist/agregarnominamasiva" method="POST" enctype="multipart/form-data">
+                     <label for="excel" class="btn btn-info btn-sm" title='Importar nomina'>
+                    <i class="glyphicon glyphicon-download-alt" href=""></i> 
+                    </label>
+                     <input type="file" id="excel" name="excel"  onchange="formato('#excel');" />
+                  </form>     
+                </td>
+              </table>
+            <?php 
+              if(isset($nombre2)){
+            ?>
+           <br>
+           <form method="post"  name="formu" id="formu" action="<?php echo  site_url();?>nominalist/insertarnominamasiva" enctype="multipart/form-data">
+          <table id="tabla_nominas" class="table-info row-border info order-column" cellspacing="0" >
+            <thead>
+              <tr>
                 <th>N°</th>
                 <th>Nombres</th>
                 <th>Apellido P</th>
@@ -129,11 +135,9 @@
                 <th>Documento Cloud</th>
                 <th>Documento Intranet</th>
                 <th>Documento Apenet</th>
-            </tr>
-            
-        </thead>
-        
-         <tbody>
+              </tr>  
+            </thead>
+            <tbody>
        
           <?php 
             
@@ -146,14 +150,11 @@
               echo "<div><input type='hidden' name='txt_contador' id='txt_contador' value='".$contador."'></div>
 
              ";
-
-             for ($i=0; $i < $contador; $i++) {      
-            //  echo '<div class="progress progress-xxs">
-            //     <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:'.$i.'%">
-            //       <span class="sr-only">60% Complete (warning)</span>
-            //     </div>
-            //   </div>
-            // </div>';     
+            $valor=100/$contador;
+            $valor2=0;
+             echo"<br><label>$valor</label>";
+             for ($i=0; $i < $contador; $i++) {    
+             $valor2=$valor2+$valor;
                echo"<tr>
                 <td><input type='text' name='' value='".$numeroNomina[$i]."' readonly disable></td>
                 <td><input type='text' name='txt-name-".$i."' value='".$nombre2[$i]."' required readonly disable></td>
@@ -252,8 +253,8 @@
                      </label> <input type='file' id='file10-".$i."' name='file-ape-".$i."' onchange='tickt(\"ima10-".$i."\")'>
                      <button type='button' title='Eliminar documento' class='btn btn-success btn-sm ' onclick='limpiafile(\"file10-".$i."\",\"ima10-".$i."\")'><i class='glyphicon glyphicon-trash'></i></button><i id='ima10-".$i."' class='glyphicon glyphicon-ok' style='display:none; color: red;'></i>
                 </td>
-            </tr>";            
-             }           
+            </tr>";     
+             }            
           ?>
        </tbody>
     </table>
@@ -265,7 +266,7 @@
       </div>
     </form>
     <?php 
-       }
+        }
     ?>
 </div>
         
@@ -401,5 +402,10 @@ input[type="file"] {
 /* When moving the mouse over the close button */
 .closebtn:hover {
     color: black;
+}
+.loader { position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 9999; background: url(https://k60.kn3.net/taringa/7/2/E/E/6/0/vagonettas/CE2.gif) 50% 50% no-repeat rgb(249,249,249); }
+
+textarea:focus, input:focus{
+    outline: none;
 }
 </style>

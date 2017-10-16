@@ -12,7 +12,7 @@ class funcion_login extends CI_model {
         u.id_usuario as usuario, 
         u.id_perfil as perfil 
         from Usuarios u 
-        where u.activo=1 and u.id_perfil=13 and usuario='".$usuario."' and password='".$password."'";
+         where u.activo=1 and u.id_perfil=13 and usuario='".$usuario."' and password='".$password."'";
         $res = $this->db->query($query);
 		if($res->num_rows()!=0){
             return $res->result_array();

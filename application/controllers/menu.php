@@ -32,7 +32,7 @@ class menu extends CI_Controller {
 					$this->load->view('sistema/home',$data);
 				} else {
 					echo "<script> alert('usuario y/o contraseña incorrectos, ingrese nuevamente'); 
-					window.location.href='nominas'</script>";
+					window.location.href='login'</script>";
 				}
 			
 			}else {

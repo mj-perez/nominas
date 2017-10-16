@@ -11,7 +11,7 @@ class nomina extends CI_model {
 	
 	function buscar_contratoscliente($id_cliente){
 		$query="select con.Nombres, con.Ap_Paterno, con.Ap_Materno,
-    con.Rut,cli.Cliente,l.local,l.cadena,co.Comuna,re.Region, 
+    con.Rut,CAST(cli.ID_Cliente AS VARCHAR(10))+'-'+cli.Cliente as Cliente,l.local,l.cadena,co.Comuna,re.Region, 
     e.EGrupo, tp.Tipo_Contrato, c.Cargo,b.Banco, 
     pa.FPago, con.NCuenta, af.afp, i.isapre,isnull(datediff(month,con.Fecha_Ingreso,con.Fecha_Retiro)*1.25,0) as vacaciones,
     convert(varchar,con.Fecha_Ingreso,105) as Fecha_Inicio,
