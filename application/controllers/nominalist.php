@@ -101,12 +101,19 @@ class nominalist extends CI_Controller {
 
 	 public function exportarexcel(){
 		$this->load->library('phpexcel');
-		$this->load->model("nomina");				
-		$cli=$_POST['cliente'];
+		$this->load->model("nomina");	
+		if(isset($_POST['cliente'])|| $_POST['cliente']!=null){
+			$_SESSION['client']=null;
+			$_SESSION['client']=$_POST['cliente'];
+			$cli=$_SESSION['client'];
+		}else{
+			$_SESSION['client']=$_POST['cliente'];
+			$cli=$_SESSION['client'];
+		}
 	 	$this->load->library('phpexcel');
 		//Lectura de excel
-		$objReader = new PHPExcel_Reader_Excel2007();
-		$object = $objReader->load("doc/plantilla/1.xlsx");
+		$objReader =  PHPExcel_IOFactory::createReader('Excel2007');		
+		$object = $objReader->load("doc/plantilla/PlantillaNomina.xlsx");
 		$object->setActiveSheetIndex(0);	
 	 	$datos = $this->nomina->buscar_contratoscliente($cli);
 	 	$column_row=9;
@@ -138,18 +145,12 @@ class nominalist extends CI_Controller {
 	 		$i++;
 	 		$column_row++;
 	 	}
-		// header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-		// header('Content-Disposition: attachment;filename=nomina".xlsx"');
-		// header('Cache-Control: max-age=0');
-		// $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-		// ob_end_clean();
-		// $objWriter->save('php://output');
-
-		$object_writer = PHPExcel_IOFactory::createWriter($object, 'Excel5');
-	 	ob_end_clean();
-	 	header('Content-Type: application/vnd.ms-excel');
-	 	header('Content-Disposition: attachment;filename="Lista_de_Contratos.xls"');
-	 	$object_writer->save('php://output');
+		header('Content-Type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment;filename="nominas.xls"');
+		header('Cache-Control: max-age=0');
+		$objWriter = PHPExcel_IOFactory::createWriter($object, 'Excel5');
+		ob_end_clean();
+		$objWriter->save('php://output');
 	}
 	
 	function chequeonimonas(){
@@ -179,7 +180,8 @@ class nominalist extends CI_Controller {
 		 	//llama librerias	 
 		 	$this->load->library('phpexcel');
 		 	//Lectura de excel
-		 	$objReader = new PHPExcel_Reader_Excel2007();
+		 	$tipo = PHPExcel_IOFactory::identify("img/excel_nominas/".$excel);
+		 	$objReader = PHPExcel_IOFactory::createReader($tipo);
 		 	$object = $objReader->load("img/excel_nominas/".$excel);
 		 	$object->setActiveSheetIndex(0);	
 		 	$columna =10; 	

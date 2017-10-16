@@ -14,17 +14,17 @@
               <h3 class="box-title">Plantilla Oficial de Nomina 
                 <small>Está plantilla es el formato para el ingreso de las nominas</small>
               </h3></td>
-              <?php if(isset($cli)){  
-               echo "<td><a href='".site_url()."nominalist/exportarexcel?cliente=".$cli."'><button type='button' class='btn btn-block btn-info btn-sm' title='Exportar  nomina'>&nbsp;&nbsp;Descargar&nbsp;&nbsp;</button></a></td>";
-
-               // echo "<form action='".site_url()."nominalist/exportarexcel' method='POST' id='clien' name='clien'>
-               // <td><input type='hidden' name='cliente' id='cliente' value='".$cli."'></td>
-               // <td><button type='submit' class='btn btn-block btn-info btn-sm' title='Exportar  nomina'>&nbsp;&nbsp;Descargar&nbsp;&nbsp;</button></td>
-               // </form>";
-
-                }else{ ?>
-                <td><a href=""><button type="button" class="btn btn-block btn-info btn-sm" title='Exportar nomina' disabled>&nbsp;&nbsp;Descargar&nbsp;&nbsp;</button></a></td>
-              <?php } ?>
+              <?php if(isset($cli)){
+                  if($cli!=null){  
+                    echo "<form action='".site_url()."nominalist/exportarexcel?cliente=".$cli."' method='POST' name='client' id='client'>
+                     <td><input type='hidden' name='cliente' id='cliente' value='".$cli."'></td>
+                      <td><button type='submit' class='btn btn-block btn-info btn-sm' title='Exportar  nomina'>&nbsp;&nbsp;Descargar&nbsp;&nbsp;</button></td>
+                      </form>";
+                  }else{ 
+                  }
+                }else{ 
+                  
+                } ?>
               </table>
             </div>
             <div class="box-body pad">
@@ -58,8 +58,9 @@
            <input type="file" id="excel" name="excel"  onchange="formato('#excel');" />
         </form>     
        </td>
-
-    
+<?php 
+    if(isset($nombre2)){
+?>
 </table>
  <br>
  <form method="post"  name="formu" id="formu" action="<?php echo  site_url();?>nominalist/insertarnominamasiva" enctype="multipart/form-data">
@@ -132,74 +133,79 @@
             
         </thead>
         
-        <tbody>
+         <tbody>
        
           <?php 
-            if(isset($nombre2)){
+            
               $contador= count($nombre2);
 
               echo "<div class='alert alert-info'>
                     <button type='button' class='close' data-dismiss='alert' aria-label='close' <span aria-hidden='true'>&times;</span></button>
-                      <strong>".$nombre.": </strong> Usted a agregado ".$contador." nominas.
+                      <strong>".$nombre.": </strong> Usted a agregado ".$contador." registros.
                     </div>";
               echo "<div><input type='hidden' name='txt_contador' id='txt_contador' value='".$contador."'></div>
+
              ";
-             for ($i=0; $i < $contador; $i++) {               
+
+             for ($i=0; $i < $contador; $i++) {      
+            //  echo '<div class="progress progress-xxs">
+            //     <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:'.$i.'%">
+            //       <span class="sr-only">60% Complete (warning)</span>
+            //     </div>
+            //   </div>
+            // </div>';     
                echo"<tr>
-                <td><input type='text' name='' value='".$numeroNomina[$i]."'></td>
-                <td><input type='text' name='txt-name-".$i."' value='".$nombre2[$i]."' required></td>
-                <td><input type='text' name='txt-ap-".$i."' value='".$ApellidoP[$i]."' required></td>
-                <td><input type='text' name='txt-am-".$i."' value='".$ApellidoM[$i]."'></td>
-                <td><input type='text' name='txt-rut-".$i."' value='".$rut[$i]."' required></td>
-                <td><input type='text' name='txt-sp-".$i."' value='".$supervisor[$i]."'></td>
+                <td><input type='text' name='' value='".$numeroNomina[$i]."' readonly disable></td>
+                <td><input type='text' name='txt-name-".$i."' value='".$nombre2[$i]."' required readonly disable></td>
+                <td><input type='text' name='txt-ap-".$i."' value='".$ApellidoP[$i]."' required readonly disable></td>
+                <td><input type='text' name='txt-am-".$i."' value='".$ApellidoM[$i]."' readonly disable></td>
+                <td><input type='text' name='txt-rut-".$i."' value='".$rut[$i]."' readonly disable required></td>
+                <td><input type='text' name='txt-sp-".$i."' value='".$supervisor[$i]."'  readonly disable></td>
 
-                <td><input type='text' name='txt-cli-".$i."' value='".$cliente[$i]."'></td>
+                <td><input type='text' name='txt-cli-".$i."' value='".$cliente[$i]."' readonly disable></td>
 
-                <td><input type='text' name='txt-cad-".$i."' value='".$cadena[$i]."'></td>
-                <td><input type='text' name='txt-loc-".$i."' value='".$local[$i]."'></td>
-                <td><input type='text' name='txt-ciu-".$i."' value='".$ciudad[$i]."'></td>
+                <td><input type='text' name='txt-cad-".$i."' value='".$cadena[$i]."' readonly disable></td>
+                <td><input type='text' name='txt-loc-".$i."' value='".$local[$i]."' readonly disable></td>
+                <td><input type='text' name='txt-ciu-".$i."' value='".$ciudad[$i]."' readonly disable></td>
+                <td><input type='text' name='txt-rg-".$i."' value='".$region[$i]."' readonly disable></td>
+                <td><input type='text' name='txt-carg-".$i."' value='".$cargo[$i]."' readonly disable></td>
+                <td><input type='text' name='txt-jor-".$i."' value='".$jornada[$i]."' readonly disable></td>
+                <td><input type='text' name='txt-fp-".$i."' value='".$fpago[$i]."' readonly disable></td>
+                <td><input type='text' name='txt-bnc-".$i."' value='".$banco[$i]."' readonly disable></td>
+                <td><input type='text' name='txt-nc-".$i."' value='".$ncuenta[$i]."' readonly disable></td>
 
-                <td><input type='text' name='txt-rg-".$i."' value='".$region[$i]."'></td>
-
-                <td><input type='text' name='txt-carg-".$i."' value='".$cargo[$i]."'></td>
-
-                <td><input type='text' name='txt-jor-".$i."' value='".$jornada[$i]."'></td>
-                <td><input type='text' name='txt-fp-".$i."' value='".$fpago[$i]."'></td>
-                <td><input type='text' name='txt-bnc-".$i."' value='".$banco[$i]."'></td>
-                <td><input type='text' name='txt-nc-".$i."' value='".$ncuenta[$i]."'></td>
-
-                <td><input type='text' name='txt-co-".$i."' value='".$co[$i]."'></td>
-                <td><input type='text' name='txt-tpc-".$i."' value='".$tipo_contrato[$i]."' required></td>
-                <td><input type='text' name='txt-fi-".$i."' value='".$inicio[$i]."' required></td>
-                <td><input type='text' name='txt-ft-".$i."' value='".$termino[$i]."'></td>
-                <td><input type='text' name='txt-dt-".$i."' value='".$diastrab[$i]."' required></td>
-                <td><input type='text' name='txt-sb-".$i."' value='$ ".number_format($sueldobase[$i])."' required></td>
-                <td><input type='text' name='txt-sbp-".$i."' value='$ ".number_format($sueldobaseprop[$i])."' required></td>
-                <td><input type='text' name='txt-g-".$i."' value='$ ".number_format($gratifica[$i])."' required></td>
-                <td><input type='text' name='txt-bcl-".$i."' value='$ ".number_format($bonocual[$i])."'></td>
-                <td><input type='text' name='txt-bct-".$i."' value='$ ".number_format($bonocuan[$i])."'></td>
-                <td><input type='text' name='txt-cump-".$i."' value='".round($cumplimiento[$i],2)." %'></td>
-                <td><input type='text' name='txt-bs-".$i."' value='$ ".number_format($bonos[$i])."'></td>
-                <td><input type='text' name='txt-he-".$i."' value='".number_format($horaextras[$i])."'></td>
-                <td><input type='text' name='txt-vhe-".$i."' value='$ ".number_format($valorextras[$i])."'></td>
-                <td><input type='text' name='txt-ag-".$i."' value='$ ".number_format($aguinaldo[$i])."'></td>
-                <td><input type='text' name='txt-timp-".$i."' value='$ ".number_format($total_impo[$i])."' required></td>
-                <td><input type='text' name='txt-col-".$i."' value='$ ".number_format($colacion[$i])."'></td>
-                <td><input type='text' name='txt-m-".$i."' value='$ ".number_format($movi[$i])."'></td>
-                <td><input type='text' name='txt-mv-".$i."' value='$ ".number_format($movi_adi[$i])."'></td>
-                <td><input type='text' name='txt-via-".$i."' value='$ ".number_format($viatico[$i])."'></td>
-                <td><input type='text' name='txt-thb-".$i."' value='$ ".number_format($total_haber[$i])."' required></td>
-                <td><input type='text' name='txt-dpv-".$i."' value='$ ".number_format($desc_provi[$i])."'></td>
-                <td><input type='text' name='txt-slq-".$i."' value='$ ".number_format($sueldo_liquido[$i])."'></td>
-                <td><input type='text' name='txt-sis-".$i."' value='$ ".number_format($sis[$i])."'></td>
-                <td><input type='text' name='txt-mtl-".$i."' value='$ ".number_format($mutual[$i])."'></td>
-                <td><input type='text' name='txt-sgc-".$i."' value='$ ".number_format($seg_cesantia[$i])."'></td>
-                <td><input type='text' name='txt-psv-".$i."' value='$ ".number_format($provi_vacaciones[$i])."'></td>
-                <td><input type='text' name='txt-psf-".$i."' value='$ ".number_format($provi_finiquito[$i])."'></td>
-                <td><input type='text' name='txt-baf-".$i."' value='$ ".number_format($banefe[$i])."'></td>
-                <td><input type='text' name='txt-tlc-".$i."' value='$ ".number_format($total_costo[$i])."' required></td>
-                <td><input type='text' name='txt-cms-".$i."' value='$ ".number_format($comision[$i])."'></td>
-                <td><input type='text' name='txt-ctc-".$i."' value='$ ".number_format($costocliente[$i])."' required></td>
+                <td><input type='text' name='txt-co-".$i."' value='".$co[$i]."' readonly disable></td>
+                <td><input type='text' name='txt-tpc-".$i."' value='".$tipo_contrato[$i]."' readonly disable required></td>
+                <td><input type='text' name='txt-fi-".$i."' value='".$inicio[$i]."' readonly disable required></td>
+                <td><input type='text' name='txt-ft-".$i."' value='".$termino[$i]."' readonly disable></td>
+                <td><input type='text' name='txt-dt-".$i."' value='".$diastrab[$i]."' readonly disable required></td>
+                <td><input type='text' name='txt-sb-".$i."' value='$ ".number_format($sueldobase[$i])."' readonly disable required></td>
+                <td><input type='text' name='txt-sbp-".$i."' value='$ ".number_format($sueldobaseprop[$i])."' readonly disable required></td>
+                <td><input type='text' name='txt-g-".$i."' value='$ ".number_format($gratifica[$i])."' readonly disable required></td>
+                <td><input type='text' name='txt-bcl-".$i."' value='$ ".number_format($bonocual[$i])."' readonly disable></td>
+                <td><input type='text' name='txt-bct-".$i."' value='$ ".number_format($bonocuan[$i])."' readonly disable></td>
+                <td><input type='text' name='txt-cump-".$i."' value='".round($cumplimiento[$i],2)." %' readonly disable></td>
+                <td><input type='text' name='txt-bs-".$i."' value='$ ".number_format($bonos[$i])."' readonly disable></td>
+                <td><input type='text' name='txt-he-".$i."' value='".number_format($horaextras[$i])."' readonly disable></td>
+                <td><input type='text' name='txt-vhe-".$i."' value='$ ".number_format($valorextras[$i])."' readonly disable></td>
+                <td><input type='text' name='txt-ag-".$i."' value='$ ".number_format($aguinaldo[$i])."' readonly disable></td>
+                <td><input type='text' name='txt-timp-".$i."' value='$ ".number_format($total_impo[$i])."' readonly disable required></td>
+                <td><input type='text' name='txt-col-".$i."' value='$ ".number_format($colacion[$i])."' readonly disable></td>
+                <td><input type='text' name='txt-m-".$i."' value='$ ".number_format($movi[$i])."' readonly disable></td>
+                <td><input type='text' name='txt-mv-".$i."' value='$ ".number_format($movi_adi[$i])."' readonly disable></td>
+                <td><input type='text' name='txt-via-".$i."' value='$ ".number_format($viatico[$i])."' readonly disable></td>
+                <td><input type='text' name='txt-thb-".$i."' value='$ ".number_format($total_haber[$i])."' readonly disable required></td>
+                <td><input type='text' name='txt-dpv-".$i."' value='$ ".number_format($desc_provi[$i])."' readonly disable></td>
+                <td><input type='text' name='txt-slq-".$i."' value='$ ".number_format($sueldo_liquido[$i])."' readonly disable></td>
+                <td><input type='text' name='txt-sis-".$i."' value='$ ".number_format($sis[$i])."' readonly disable></td>
+                <td><input type='text' name='txt-mtl-".$i."' value='$ ".number_format($mutual[$i])."' readonly disable></td>
+                <td><input type='text' name='txt-sgc-".$i."' value='$ ".number_format($seg_cesantia[$i])."' readonly disable></td>
+                <td><input type='text' name='txt-psv-".$i."' value='$ ".number_format($provi_vacaciones[$i])."' readonly disable></td>
+                <td><input type='text' name='txt-psf-".$i."' value='$ ".number_format($provi_finiquito[$i])."' readonly disable></td>
+                <td><input type='text' name='txt-baf-".$i."' value='$ ".number_format($banefe[$i])."' readonly disable></td>
+                <td><input type='text' name='txt-tlc-".$i."' value='$ ".number_format($total_costo[$i])."' readonly disable required></td>
+                <td><input type='text' name='txt-cms-".$i."' value='$ ".number_format($comision[$i])."' readonly disable></td>
+                <td><input type='text' name='txt-ctc-".$i."' value='$ ".number_format($costocliente[$i])."' readonly disable required></td>
                 <td><input type='textarea' id='txt-obs' name='txt-Obs-".$i."' placeholder='Comentario y/u Observaciones'></td>
                 <td><input type='datetime-local' id='txt-llgf' name='txt-llgf-".$i."' placeholder='Llegada Fulltime'></td>
                 <td><input type='datetime-local' id='txt-llgp' name='txt-llgp-".$i."' placeholder='Llegada Partime'></td>
@@ -247,8 +253,7 @@
                      <button type='button' title='Eliminar documento' class='btn btn-success btn-sm ' onclick='limpiafile(\"file10-".$i."\",\"ima10-".$i."\")'><i class='glyphicon glyphicon-trash'></i></button><i id='ima10-".$i."' class='glyphicon glyphicon-ok' style='display:none; color: red;'></i>
                 </td>
             </tr>";            
-             }
-            }
+             }           
           ?>
        </tbody>
     </table>
@@ -259,6 +264,9 @@
             </div>
       </div>
     </form>
+    <?php 
+       }
+    ?>
 </div>
         
     </div>
@@ -308,38 +316,12 @@
 
     $(document).ready(function() {
         $('#tabla_nominas').DataTable( {
-      "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
-      if ( aData[1] == "FAILURE" )
-      {
-        $('td', nRow).css('background-color', '#fff' );
-      }
-      else if ( aData[1] == "SUCCESS" )
-      {
-        $('td', nRow).css('background-color', '#fff');
-      }
-      else if ( aData[1] == "UNSTABLE" )
-      {
-        $('td', nRow).css('background-color', '#fff');
-      }
-      else
-      {
-        $('td', nRow).css('background-color', '#B0E0E6');
-      }
-    },      
-      searching   : true,  
-      info        : true,
+     // searching   : true,  
       processing  : true,
-      lengthMenu  : [[9999], ["All"]],
+      lengthMenu  : [[600], ["All"]],
       scrollY     :        "400px",
-      scrollCollapse: true,
-      buttons: [
-                'csv', 'excel', 'pdf', 'print', 'reset', 'reload'
-            ],
       scrollX     : true,
       autoWidth   : true,
-      fixedColumns:   {
-            leftColumns: 3
-        },
         "language": {
         "sProcessing":    "Procesando...",
         "sLengthMenu":    "Mostrar _MENU_ registros",
