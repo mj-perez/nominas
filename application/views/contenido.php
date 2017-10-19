@@ -49,6 +49,9 @@
 <script src="/nominas/assets/Chart.js/Chart.js"></script>
 <script src="/nominas/assets/raphael/raphael.min.js"></script>
 <script src="/nominas/assets/morris.js/morris.min.js"></script>
+<script src="/nominas/assets/datepicker/bootstrap-datepicker.js"></script>
+<script src="/nominas/assets/daterangepicker/daterangepicker.js"></script>
+
 <!-- jvectormap -->
 <!-- <script src="/nominas/assets/jquery-jvectormap-1.2.2.min.js"></script> -->
 <!-- <script src="/nominas/assets/jquery-jvectormap-world-mill-en.js"></script> -->

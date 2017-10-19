@@ -17,7 +17,7 @@
   
 <div class="content-wrapper" >  
     <section class="content-header table_responsive">
-      <h1>Selecione la lista de nomina que quiere descargar</h1>
+      <h1>Vista previa de lista de nominas</h1>
       <br>
     <div class="row">
         <div class="col-xs-12">
@@ -63,33 +63,34 @@
        <thead>
             <tr>
                 <th>Nombres</th>
-                <th>Ap_Paterno</th> 
-                <th>Ap_Materno</th>
+                <th>Appellido Paterno</th> 
+                <th>Appellido Materno</th>
                 <th>Rut</th>
                 <th>Cliente</th>
                 <th>local</th>
                 <th>cadena</th>
                 <th>Comuna</th>
                 <th>Region</th> 
-                <th>EGrupo</th> 
-                <th>Tipo_Contrato</th> 
+                <th>Empresa</th> 
+                <th>Tipo Contrato</th> 
                 <th>Cargo</th>
                 <th>Banco</th> 
-                <th>FPago</th> 
-                <th>NCuenta</th> 
-                <th>afp</th> 
-                <th>isapre</th>
-                <th>vacaciones</th>  
-                <th>Fecha_Inicio</th>
-                <th>Fecha_Termino</th> 
-                <th>Sueldo_Base</th> 
-                <th>Bono_Cualitativo</th>
-                <th>Bono_Cuantitativo</th> 
+                <th>Forma de Pago</th> 
+                <th>N° Cuenta</th> 
+                <th>Afp</th> 
+                <th>Isapre</th>
+                <th>Vacaciones</th>  
+                <th>Fecha Inicio</th>
+                <th>Fecha Termino</th> 
+                <th>Sueldo Base</th> 
+                <th>Bono Cualitativo</th>
+                <th>Bono Cuantitativo</th> 
                 <th>Colacion</th>
                 <th>Movilizacion</th> 
                 <th>Usuario </th> 
-                <th>Status_Contrato</th> 
+                <th>Status Contrato</th> 
                 <th>ACTIVO</th>
+                <th>usuario</th>
                 </tr>
         </thead>
         
@@ -130,6 +131,7 @@ echo "
     <td>".$c['Usuario']."</td> 
     <td>".$c['Status_Contrato']."</td> 
     <td>".$c['ACTIVO']."</td>
+        <td>".$nombre."</td>
             </tr>";
         }
 
@@ -174,7 +176,7 @@ echo "
 </div>
         <div class="col-xs-12">
             <div class="btn-group"> 
-                <a href="<?php echo base_url("nominalist/daNomina");?>"><button type="button" id="sig-btn" class="btn btn-primary">Descargar</button> </a>
+                <a href="<?php echo base_url("nominalist/ImportaNominas");?>"><button type="button" id="sig-btn" class="btn btn-primary">Descargar</button> </a>
             </div>
         </div>
     </div>

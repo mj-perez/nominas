@@ -58,14 +58,26 @@ from SGI_Contratos con
    
     }
 
-    function nominaingresada(){
-    	$query="SELECT ID_Nomina, CodNomina, FechaRegistro, EstadoNomina, Nombres, ApellidoP, ApellidoM, Rut, Supervisor, Cliente, Cadena, Local, Ciudad, Region, CargoTrabajador, Jornada, FormaPago, Banco, NCuentaB, CO, TipoContrato, FechaInicio, FechaTermina, DiasTrabajados, SueldoBase, SueldoBaseProp, Gratificacion, BonoCualitativo, BonoCuantitavo, Cumplimiento, Bonos, N_HorasExtras, ValorHorasExtras, Aguinaldo, TotalImponible, Colacion, Movilizacion, MovilizacionVariable, Viatico, TotalHaber, DescuentoPrevicional, SueldoLiquido, SIS, Mutual, SeguroCesantia, ProvisionVacaciones, ProvisionFiniquito, Banefe, TotalCostoPersonal, ComisionAgencia, CostoFinalCliente, Observacion, LlegadaFulltime, LlegadaPartime, LlegadaSupervisor, DocCelular, DocTablet, DocNotebook, DocCredencial, DocUniforme, DocEPP, DocClub360, DocCloud, DocIntranet, DocApenet FROM Nominas";
+    function nominaingresada($id_usuario){
+    	$query="SELECT ID_Nomina, CodNomina, FechaRegistro, EstadoNomina, Nombres, ApellidoP, ApellidoM, n.Rut, Supervisor, Cliente, Cadena, Local, Ciudad, Region, CargoTrabajador, Jornada, FormaPago, Banco, NCuentaB, CO, TipoContrato, FechaInicio, FechaTermina, DiasTrabajados, SueldoBase, SueldoBaseProp, Gratificacion, BonoCualitativo, BonoCuantitavo, Cumplimiento, Bonos, N_HorasExtras, ValorHorasExtras, Aguinaldo, TotalImponible, Colacion, Movilizacion, MovilizacionVariable, Viatico, TotalHaber, DescuentoPrevicional, SueldoLiquido, SIS, Mutual, SeguroCesantia, ProvisionVacaciones, ProvisionFiniquito, Banefe, TotalCostoPersonal, ComisionAgencia, CostoFinalCliente, Observacion, LlegadaFulltime, LlegadaPartime, LlegadaSupervisor, DocCelular, DocTablet, DocNotebook, DocCredencial, DocUniforme, DocEPP, DocClub360, DocCloud, DocIntranet, DocApenet, n.idUserRn, u.Usuario, c.Cargo, u.Nombre +' '+ ISNULL(u.Ap_Paterno,' ') +' '+ISNULL(u.Ap_Materno,' ') as NombreUsuario 
+            FROM Nominas as n
+            inner join Usuarios as u on(u.ID_Usuario = n.idUserRn )
+            inner join Cargos as c on(c.ID_Cargo = u.ID_Cargo )
+            where n.idUserRn =( select ID_Usuario from Usuarios where id_usuario ='".$id_usuario."')";
     	$consulta = $this->db->query($query);
         $resultado = $consulta -> result_array();
         return $resultado;
     }
-    function insertarmasivo($nombre,$app,$apm,$rut,$supervisor,$cliente,$cadena,$local,$ciudad,$region,$cargo,$jornada,$fpago,$banco,$ncuenta,$co,$contrato,$inicio,$termino,$dias,$sueldobase,$sueldobaseprop,$grati,$bocuali,$bocuan,$cumpli,$bonos,$horasextras,$valorhoras,$aguinaldo,$imponible,$colacion,$movi,$movivari,$viatico,$haberes,$descuento,$liquido,$sis,$mutual,$seguro,$vacaciones,$finiquito,$banefe,$costopersonal,$agencia,$costofinal,$obser,$fulltime,$parttime,$llegsuper,$doccelu,$doctab,$docnot,$doccre,$docuni,$docepp,$doc360,$docclo,$docint,$docape){
-    	$query = "EXEC SP_Inserta_Nomina '".$nombre."','".$app."','".$apm."','".$rut."','".$supervisor."',".$cliente.",'".$cadena."','".$local."','".$ciudad."',".$region.",'".$cargo."','".$jornada."','".$fpago."','".$banco."','".$ncuenta."','".$co."','".$contrato."','".$inicio."','".$termino."',".$dias.",".$sueldobase.",".$sueldobaseprop.",".$grati.",".$bocuali.",".$bocuan.",'".$cumpli."',".$bonos.",".$horasextras.",".$valorhoras.",".$aguinaldo.",".$imponible.",".$colacion.",".$movi.",".$movivari.",".$viatico.",".$haberes.",".$descuento.",".$liquido.",".$sis.",".$mutual.",".$seguro.",".$vacaciones.",".$finiquito.",".$banefe.",".$costopersonal.",".$agencia.",".$costofinal.",'".$obser."','".$fulltime."','".$parttime."','".$llegsuper."','".$doccelu."','".$doctab."','".$docnot."','".$doccre."','".$docuni."','".$docepp."','".$doc360."','".$docclo."','".$docint."','".$docape."'";
+
+    function insertarregistro($Cliente,$idUserRn){
+    $query = "EXEC SP_Nominas_Registradas '".$Cliente."','".$idUserRn."'";
+    $consulta = $this->db->query($query);
+    $resultado = $consulta -> num_rows();
+    return $resultado;
+    }
+
+    function insertarmasivo($nombre,$app,$apm,$rut,$supervisor,$cliente,$cadena,$local,$ciudad,$region,$cargo,$jornada,$fpago,$banco,$ncuenta,$co,$contrato,$inicio,$termino,$dias,$sueldobase,$sueldobaseprop,$grati,$bocuali,$bocuan,$cumpli,$bonos,$horasextras,$valorhoras,$aguinaldo,$imponible,$colacion,$movi,$movivari,$viatico,$haberes,$descuento,$liquido,$sis,$mutual,$seguro,$vacaciones,$finiquito,$banefe,$costopersonal,$agencia,$costofinal,$obser,$fulltime,$parttime,$llegsuper,$doccelu,$doctab,$docnot,$doccre,$docuni,$docepp,$doc360,$docclo,$docint,$docape,$idUserRn){
+    	$query = "EXEC SP_Inserta_Nomina '".$nombre."','".$app."','".$apm."','".$rut."','".$supervisor."',".$cliente.",'".$cadena."','".$local."','".$ciudad."',".$region.",'".$cargo."','".$jornada."','".$fpago."','".$banco."','".$ncuenta."','".$co."','".$contrato."','".$inicio."','".$termino."',".$dias.",".$sueldobase.",".$sueldobaseprop.",".$grati.",".$bocuali.",".$bocuan.",'".$cumpli."',".$bonos.",".$horasextras.",".$valorhoras.",".$aguinaldo.",".$imponible.",".$colacion.",".$movi.",".$movivari.",".$viatico.",".$haberes.",".$descuento.",".$liquido.",".$sis.",".$mutual.",".$seguro.",".$vacaciones.",".$finiquito.",".$banefe.",".$costopersonal.",".$agencia.",".$costofinal.",'".$obser."','".$fulltime."','".$parttime."','".$llegsuper."','".$doccelu."','".$doctab."','".$docnot."','".$doccre."','".$docuni."','".$docepp."','".$doc360."','".$docclo."','".$docint."','".$docape."','".$idUserRn."'";
         $consulta = $this->db->query($query);
 
         $query_validar = "SELECT id_nomina FROM nominas WHERE nombres='".$nombre."' and apellidop='".$app."' and rut='".$rut."' and cliente=".$cliente;

@@ -135,14 +135,12 @@
                 <th>Documento Cloud</th>
                 <th>Documento Intranet</th>
                 <th>Documento Apenet</th>
+                <th>Usuario</th>
               </tr>  
             </thead>
             <tbody>
        
           <?php 
-            
-              $contador= count($nombre2);
-
               echo "<div class='alert alert-info'>
                     <button type='button' class='close' data-dismiss='alert' aria-label='close' <span aria-hidden='true'>&times;</span></button>
                       <strong>".$nombre.": </strong> Usted a agregado ".$contador." registros.
@@ -150,9 +148,13 @@
               echo "<div><input type='hidden' name='txt_contador' id='txt_contador' value='".$contador."'></div>
 
              ";
+
+
+
+
             $valor=100/$contador;
             $valor2=0;
-             echo"<br><label>$valor</label>";
+             // echo"<br><label>$valor</label>";
              for ($i=0; $i < $contador; $i++) {    
              $valor2=$valor2+$valor;
                echo"<tr>
@@ -253,6 +255,8 @@
                      </label> <input type='file' id='file10-".$i."' name='file-ape-".$i."' onchange='tickt(\"ima10-".$i."\")'>
                      <button type='button' title='Eliminar documento' class='btn btn-success btn-sm ' onclick='limpiafile(\"file10-".$i."\",\"ima10-".$i."\")'><i class='glyphicon glyphicon-trash'></i></button><i id='ima10-".$i."' class='glyphicon glyphicon-ok' style='display:none; color: red;'></i>
                 </td>
+                <td><input type='text' name='txt-usuarioRN-".$i."' value='".$usuario."' readonly disable></td>
+
             </tr>";     
              }            
           ?>
@@ -260,8 +264,10 @@
     </table>
     <div class="col-xs-12">
             <div class="btn-group"> 
-              <button type='submit' name='formu' id='sig-btn' class='btn btn-info'>Ingresar</button>
-                
+              <button type='submit' name='formu' id='sig-btn' class='btn btn-info btn-lrg ajax' title="Ajax Request">Ingresar</button>
+                <button type="button" class="btn btn-default btn-lrg ajax" title="Ajax Request">
+            <i class="fa fa-spin fa-refresh"></i>&nbsp; Ingresar
+          </button>
             </div>
       </div>
     </form>
@@ -276,7 +282,7 @@
 
 
     
-    
+  
 
 </body>
 <script type="text/javascript">
@@ -288,6 +294,12 @@
 </script>
 <script type="text/javascript">
 
+  $(document).ajaxStart(function() { Pace.restart(); });
+    $('.ajax').click(function(){
+        $.ajax({url: '#', success: function(result){
+            $('.ajax-content').html('<hr>Ajax Request Completed !');
+        }});
+    });
 
 
 
@@ -319,6 +331,10 @@
         $('#tabla_nominas').DataTable( {
      // searching   : true,  
       processing  : true,
+        scrollY: 200,
+        scroller: {
+            loadingIndicator: true
+        },
       lengthMenu  : [[600], ["All"]],
       scrollY     :        "400px",
       scrollX     : true,

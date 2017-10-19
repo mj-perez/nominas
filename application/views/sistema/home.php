@@ -103,7 +103,7 @@
               <div class="row">
                 <div class="col-md-8">
                   <p class="text-center">
-                    <strong>Rango Fecha: 1 Abril, 2017 - 30 Junio, 2014</strong>
+                    <strong>Rango Fecha: Octubre 16, 2016- 16 Octubre, 2017</strong>
                   </p>
 
                   <div class="chart">
@@ -115,7 +115,7 @@
                 <!-- /.col -->
                 <div class="col-md-4">
                   <p class="text-center">
-                    <strong>Goal Completion</strong>
+                    <strong>Estado de ingresos</strong>
                   </p>
 
                   <div class="progress-group">

@@ -36,17 +36,32 @@
         </li> -->
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-files-o"></i>
+            <i class="fa fa-file-text-o"></i>
             <span>Nomina</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url("nominalist/listNominas");?>"><i class="fa fa-circle-o"></i>Nominas de Clientes</a></li>
+            <li><a href="<?php echo base_url("nominalist/listNominas");?>"><i class="fa fa-circle-o"></i>Vista Previa de nomina</a></li>
             <li><a href="<?php echo base_url("nominalist/ImportaNominas");?>"><i class="fa fa-circle-o"></i>Ingreso de Nominas</a></li>
             <li><a href="<?php echo base_url("nominalist/chequeonimonas");?>"><i class="fa fa-circle-o"></i>Historial de Nominas</a></li>
             <li><a href="<?php echo base_url("nominalist/chequearnominas");?>"><i class="fa fa-circle-o"></i>Estado de nominas</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-file-text"></i>
+            <span>Nominas Ingresadas</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?php echo base_url("nominalist/chequeoniminasingresadas");?>"><i class="fa fa-circle-o"></i>Nominas ingresadas</a></li>
+            <li><a href="<?php echo base_url("nominalist/nominasaprobadas");?>"><i class="fa fa-circle-o"></i>Nominas Aprobadas</a></li>
+            <!-- <li><a href="<?php echo base_url("nominalist/chequeonimonas");?>"><i class="fa fa-circle-o"></i>Historial de Nominas</a></li> -->
+            <!-- <li><a href="<?php echo base_url("nominalist/chequearnominas");?>"><i class="fa fa-circle-o"></i>Estado de nominas</a></li> -->
           </ul>
         </li>
         <li class="treeview">

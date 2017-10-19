@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '170.84.208.98',
+	'hostname' => 'localhost',
 	'username' => 'sa',
-	'password' => 'Pandora.2016$_%',
-	'database' => 'Nomina_Test',
+	'password' => '123456',
+	'database' => 'RRHH_Chile',
 	'dbdriver' => 'sqlsrv',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
