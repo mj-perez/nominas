@@ -46,7 +46,7 @@
             <li><a href="<?php echo base_url("nominalist/listNominas");?>"><i class="fa fa-circle-o"></i>Vista Previa de nomina</a></li>
             <li><a href="<?php echo base_url("nominalist/ImportaNominas");?>"><i class="fa fa-circle-o"></i>Ingreso de Nominas</a></li>
             <li><a href="<?php echo base_url("nominalist/chequeonimonas");?>"><i class="fa fa-circle-o"></i>Historial de Nominas</a></li>
-            <li><a href="<?php echo base_url("nominalist/chequearnominas");?>"><i class="fa fa-circle-o"></i>Estado de nominas</a></li>
+            <li><a href="<?php echo base_url("nominalist/nominasRegistradas");?>"><i class="fa fa-circle-o"></i>Estado de nominas</a></li>
           </ul>
         </li>
         <li class="treeview">

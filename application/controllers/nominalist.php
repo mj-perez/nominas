@@ -582,6 +582,8 @@ class nominalist extends CI_Controller {
 			$this->load->view('layout/aside',$data);
 			$this->load->view('checkingreso/chequeoingreso',$data);
 
+
+
 		}else{
 			redirect(site_url("menu"));
 		}
@@ -592,11 +594,12 @@ class nominalist extends CI_Controller {
 			$data["usuario"]=$_SESSION["usuario"];
 			$this->load->view('contenido');
 			$data['mnominasaprobadas']= $this->mchequeonomina->mnominasaprobadas();
-			$data['usuarios'] = $this->listar->usuarios();
+			$data['totalesAprobadoPorCliente']= $this->mchequeonomina->totalesAprobadoPorCliente();
+			$data['totalesAprobadoGenerales']= $this->mchequeonomina->totalesAprobadoGenerales();
+
 			$this->load->view('layout/layout_nominas',$data);
 			$this->load->view('layout/aside',$data);
 			$this->load->view('checkingreso/nominasaprobadas',$data);
-
 		}else{
 			redirect(site_url("menu"));
 		}
@@ -613,7 +616,6 @@ class nominalist extends CI_Controller {
 	 	$datos = $this->nomina->nominaingresada($id_usuario);
 	 	$column_row=9;
 	 	$i=1;
-	 	
 	 	foreach($datos as $row)
 	 	{	 
 	 		$object->getActiveSheet()->setCellValueByColumnAndRow(0 , $column_row, $row['ID_Nomina']);
@@ -695,23 +697,44 @@ class nominalist extends CI_Controller {
 		$objWriter->save('php://output');
 	}
 
+	function AprobarNominas (){
+		$id_nominasR = $_POST['idR'];
+		$this->nomina->aprobarNomina($id_nominasR);
+		redirect(site_url("nominalist/chequeoniminasingresadas"));
+	}
 
 	function reprobarNomina(){
 		$id=$_POST['id'];
 		echo "<form class='form-horizontal' id='myform2' name='myform2' method='post' action=". site_url()."nominalist/reprobarNominaFinal enctype='multipart/form-data'>";
 		echo "<div class='form__container'>
 				<div class='form__content'>
-					<label><h3>Â¿Esta seguro que desea reprobar esta nomina?</h3></label><br><br>
+					<label><h3>¿Esta seguro que desea reprobar esta nomina?</h3></label><br><br>
 					<input type='hidden' name='id_nominar' value='".$id."'>
 			   </div>
 			</div>
 			</form>";
 	}
-
-	function reprobarNominaFinal(){
+		function reprobarNominaFinal(){
 		$id=$_POST['id_nominar'];
 		$mensaje=$this->mchequeonomina->reprobarNomina($id);
 		redirect(site_url("nominalist/listNominas"));
+	}
+	function nominasRegistradas(){
+	    if(isset($_SESSION["sesion"])){	
+	    	$id_usuario=$_SESSION["usuario"];
+			$data["nombre"]=$_SESSION["nombre"];
+			$data["usuario"]=$_SESSION["usuario"];
+			$this->load->view('contenido');
+			$data['NominaIngresadaPorUsuario']= $this->mchequeonomina->NominaIngresadaPorUsuario($id_usuario);
+			$this->load->view('layout/layout_nominas',$data);
+			$this->load->view('layout/aside',$data);
+			$this->load->view('nomina/nominasRegistradas',$data);
+
+
+
+		}else{
+			redirect(site_url("menu"));
+		}
 	}
 
 

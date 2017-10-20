@@ -43,7 +43,6 @@ from SGI_Contratos con
 	
 	function selecionarCliente($id_usuario){
 		$query="SELECT uc.ID_Cliente, cli.Cliente, u.Usuario, u.ID_Usuario, u.ID_Perfil
- 
 				from Usuarios u
 				inner join SGI_Usuario_Cliente uc on( uc.ID_Usuario = u.ID_Usuario)
 				inner join SGI_Clientes cli on(cli.ID_Cliente=uc.ID_Cliente)
@@ -89,9 +88,28 @@ from SGI_Contratos con
 			$mensaje = 2;
 		}
 		return $mensaje;
+    }
+
+    function aprobarNomina($id_nominasR){
+        $query="EXEC SP_Nominas_Aprobadas '".$id_nominasR."' ";
+        $consulta = $this->db->query($query);
+        $resultado = $consulta -> num_rows();
+        return $resultado;
+
+    }
+
+    function idnominasregistradas($id_usuario){
+        $query="SELECT ID_NominasR
+            FROM Nominas as n
+            where n.idUserRn =( select ID_Usuario from Usuarios where id_usuario = '".$id_usuario."')
+            group by id_nominasR";
+        $consulta = $this->db->query($query);
+        $resultado = $consulta -> result_array();
+        return $resultado;
 
     }
 }
+
 	
 	
 	

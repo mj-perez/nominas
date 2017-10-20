@@ -108,17 +108,15 @@ echo "
               <td>".$c['EstadoNomina']."</td>
               <td>".$c['FechaRegistro']."</td>
               <td>
-
                 <form action='".site_url()."nominalist/exportardetalle?Usuario=".$c['ID_Usuario']."' method='POST'>
                 <input type='hidden'name='Usuario' value='".$c['ID_Usuario']."'>
                   <button type='submit' class='btn btn-success'>
                   <i class='fa fa-file-excel-o'></i>&nbsp;Exportar Detalle
                   </button>
-                </form>
-              </td>
+                </form></td>
               <td>
                 <div class='btn-group-vertical '>
-                      <button type='button' class='btn btn-info'><i class='fa fa-check'></i>&nbsp;Aprobado</button>
+                      <button type='button' class='btn btn-info' data-toggle='modal' data-target='#tallModal'><i class='fa fa-check'></i>&nbsp;Aprobado</button>
                       <button type='button' class='btn btn-danger' data-toggle='modal' data-target='#reprobarNomina' onclick='reprobarNomina(\"$c[id_NominasR]\")'><i class='fa fa-remove'></i>&nbsp;&nbsp;Reprobado</button>
                     </div>
               </div>  
@@ -127,9 +125,8 @@ echo "
               </td>
             </tr>";
         } ?>
-        
                       </tbody>
-          </table>
+                    </table>
 
 <div class="modal modal-danger fade" id="reprobarNomina">
           <div class="modal-dialog">
@@ -149,169 +146,55 @@ echo "
             </div>
           </div>
         </div> 
-</div>            
+
+
+<div class="example-modal">
+<div id="tallModal" class="modal modal-info">
+  <div class="modal-dialog">
+    <div class="modal-content" style=" background-color: #00c0ef;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" style="text-align: center;">Aprobar Nomina</h4>
+      </div>
+      <div class="modal-body">
+                <h3 style="text-align: center;">Esta seguro de Aprobar esta nomina ?</h3>
+              </div>
+      <div class="modal-footer">
+              
+       
+        
+
+     <!-- <div class="modal-footer"> -->
+<?php  
+foreach ($chequenominaingresada as $a) {
+  # code...
+
+echo"
+        
+        <form action='".site_url()."nominalist/AprobarNominas' method='POST'>
+                <input type='hidden' name='idR' value='".$a['id_NominasR']."'>";}?>
                   
-                <!-- /.col -->
-                <!-- <div class="col-md-4">
-                  <p class="text-center">
-                    <strong>Totales</strong>
-                  </p>
-
-                  <div class="progress-group">
-                    <div class="info-box bg-green" style="height: 60px;">
-                      <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
-                        <div class="info-box-content">
-                          <span class="info-box-text">Remuneracion</span>
-                          <span class="info-box-number">5,200</span>
-                          <div class="progress">
-                            <div class="progress-bar" style="width: 20%"></div>
-                          </div>
-                          <span class="progress-description">50% Increase in 30 Days</span>
-                        </div>
-                    /.info-box-content
-                    </div>
-                  </div>
-                  /.progress-group
-                  <div class="progress-group">
-                    <div class="info-box bg-green">
-                      <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
-                        <div class="info-box-content">
-                          <span class="info-box-text">Telefonia</span>
-                          <span class="info-box-number">5,200</span>
-                          <div class="progress">
-                            <div class="progress-bar" style="width: 50%"></div>
-                          </div>
-                          <span class="progress-description">50% Increase in 30 Days</span>
-                        </div>
-                    /.info-box-content
-                    </div>
-
-                     <div class="progress-group">
-                    <div class="info-box bg-green">
-                      <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
-                        <div class="info-box-content">
-                          <span class="info-box-text">Inventory</span>
-                          <span class="info-box-number">5,200</span>
-                          <div class="progress">
-                            <div class="progress-bar" style="width: 50%"></div>
-                          </div>
-                          <span class="progress-description">50% Increase in 30 Days</span>
-                        </div>
-                    /.info-box-content
-                    </div>
-                  </div>
-                  <div class="progress-group">
-                    <div class="info-box bg-red">
-            <span class="info-box-icon"><i class="ion ion-ios-pricetag-outline"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Inventory</span>
-              <span class="info-box-number">5,200</span>
-
-              <div class="progress">
-                <div class="progress-bar" style="width: 50%"></div>
-              </div>
-                  <span class="progress-description">
-                    50% Increase in 30 Days
-                  </span>
-            </div>
-            /.info-box-content
-          </div>
-                  </div>
-                  /.progress-group
-                  <div class="progress-group">
-                    <span class="progress-text">Vis</span>
-                    <span class="progress-number"><b>480</b>/800</span>
-
-                    <div class="progress sm">
-                      <div class="progress-bar progress-bar-green" style="width: 80%"></div>
-                    </div>
-                  </div>
-                  /.progress-group
-                  div class="progress-group">
-                    <span class="progress-text">Send Inquiries</span>
-                    <span class="progress-number"><b>250</b>/500</span>
-
-                    <div class="progress sm">
-                      <div class="progress-bar progress-bar-yellow" style="width: 80%"></div>
-                    </div>
-                  </div>
-                  /.progress-group
-                </div>
-                /.col
-              </div> -->
-         <!--      /.row -->
-            </div>
-            <!-- ./box-body -->
-            <div class='box-footer'>
-              <div class='row'>
-                <div class='col-sm-3 col-xs-6'>
-                  <div class='description-block border-right'>
-
-                    <h5 class='description-header'></h5>
-                    <span class='description-text'>Numero de Contratos</span>
-                  </div>
-                  <!-- /.description-block -->
-                </div>
-                <!-- /.col -->
-                <div class='col-sm-3 col-xs-6'>
-                  <div class='description-block border-right'>
-                    <h5 class='description-header'></h5>
-                    <span class='description-text'>Totales Sueldo Liquido</span>
-                  </div>
-                  <!-- /.description-block -->
-                </div>
-                <!-- /.col -->
-                <div class='col-sm-3 col-xs-6'>
-                  <div class='description-block border-right'>
-
-                    <h5 class='description-header'></h5>
-                    <span class='description-text'>Total Costo Personal</span>
-                  </div>
-                  <!-- /.description-block -->
-                </div>
-                <!-- /.col -->
-                <div class='col-sm-3 col-xs-6'>
-                  <div class='description-block'>
-
-                    <button type='button' class='btn btn-block btn-primary btn-lg'>
-                    Enviar</button>
-                  </div>
-                  <!-- /.description-block -->
-                </div>
-              </div>
-              <!-- /.row -->
-            </div>
-            
+                  <button type='submit' class="btn btn-outline pull-left" id='idR' onclick=''>
+                  Aceptar</button>
+                </form>
+                <button type='button' class='btn btn-outline ' data-dismiss='modal'>Cancelar</button>
+         </div>
+       </div>     
+      <!-- </div> -->
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
+            </div>            
             <!-- /.box-footer -->
           </div>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
-      </div>
+          <!-- /.box --
       
       <!-- /.row -->
 
 
-<style type="text/css">
-  
-.modal.modal-wide .modal-dialog {
-  width: 90%;
-}
-.modal-wide .modal-body {
-  overflow-y: auto;
-}
-
-/* irrelevant styling */
-body { text-align: center; }
-body p { 
-  max-width: 400px; 
-  margin: 20px auto; 
-}
-#tallModal .modal-body p { margin-bottom: 900px }
-
-</style>
 <script type="text/javascript">
+
+
 
 
    $('#datepicker').datepicker({
@@ -357,7 +240,6 @@ body p {
     }
     } );
 } );
-
    function reprobarNomina(id){            
             $.ajax({
                     url: "http://localhost/nominas/nominalist/reprobarNomina",
@@ -370,7 +252,6 @@ body p {
         }
 </script>
 <style type="text/css">
-  
   td {
 
     font-size:20px;

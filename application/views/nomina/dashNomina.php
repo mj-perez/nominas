@@ -18,7 +18,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Total Finiquitado</span>
-              <span class="info-box-number">41090<small></small></span>
+              <span class="info-box-number">41<small></small></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -31,7 +31,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Cantidad de persona Contratadas</span>
-              <span class="info-box-number">4410</span>
+              <span class="info-box-number">410</span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -43,7 +43,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">C. Contrato Fijo</span>
-              <span class="info-box-number">4110</span>
+              <span class="info-box-number">5</span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -55,7 +55,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">C. Contato indefinido</span>
-              <span class="info-box-number">510</span>
+              <span class="info-box-number">25</span>
             </div>
             <!-- /.info-box-content -->
           </div>
