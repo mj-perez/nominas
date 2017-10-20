@@ -119,7 +119,7 @@ echo "
               <td>
                 <div class='btn-group-vertical '>
                       <button type='button' class='btn btn-info'><i class='fa fa-check'></i>&nbsp;Aprobado</button>
-                      <button type='button' class='btn btn-danger'><i class='fa fa-remove'></i>&nbsp;&nbsp;Reprobado</button>
+                      <button type='button' class='btn btn-danger' data-toggle='modal' data-target='#reprobarNomina' onclick='reprobarNomina(\"$c[id_NominasR]\")'><i class='fa fa-remove'></i>&nbsp;&nbsp;Reprobado</button>
                     </div>
               </div>  
 
@@ -131,7 +131,25 @@ echo "
                       </tbody>
           </table>
 
-              
+<div class="modal modal-danger fade" id="reprobarNomina">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Reprobar Nomina</h4>
+              </div>
+              <div class="modal-body">
+                <div id="reprobar"></div> 
+              </div>
+              <div class="modal-footer" style="margin-top: 0px !important;">
+                <button type="submit" onclick="document.getElementById('myform2').submit();" class="btn btn-outline pull-left">Eliminar</button>
+                <button type="button" class="btn btn-outline" data-dismiss="modal">Cancelar</button>
+              </div>
+            </div>
+          </div>
+        </div> 
+</div>            
                   
                 <!-- /.col -->
                 <!-- <div class="col-md-4">
@@ -339,6 +357,17 @@ body p {
     }
     } );
 } );
+
+   function reprobarNomina(id){            
+            $.ajax({
+                    url: "http://localhost/nominas/nominalist/reprobarNomina",
+                    type: "POST",
+                    data: "id="+id,
+                    success: function(data) {
+                            $("#reprobar").html(data);
+                     }
+                });
+        }
 </script>
 <style type="text/css">
   

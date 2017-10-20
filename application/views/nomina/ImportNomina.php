@@ -18,18 +18,11 @@
                       <small>Está plantilla es el formato para el ingreso de las nominas</small>
                     </h3>
                   </td>
-              <?php if(isset($cli)){
-                  if($cli!=null){  
-                    echo "<form action='".site_url()."nominalist/exportarexcel?cliente=".$cli."' method='POST' name='client' id='client'>
-                     <td><input type='hidden' name='cliente' id='cliente' value='".$cli."'></td>
+              <?php echo "<form action='".site_url()."nominalist/exportarexcel' method='POST' name='client' id='client'>
+                     <td><input type='hidden' name='cliente' id='cliente' value='".$idcliente."'></td>
                       <td><button type='submit' class='btn btn-block btn-info btn-sm' title='Exportar  nomina'>&nbsp;&nbsp;Descargar&nbsp;&nbsp;</button></td>
                       </form>";
-                  }else{ 
-                    echo "<td><button type='submit' class='btn btn-block btn-info btn-sm' title='Exportar  nomina' disable readonly>&nbsp;&nbsp;Descargar&nbsp;&nbsp;</button></td>";
-                  }
-                }else{ 
-                  echo "<td><button type='submit' class='btn btn-block btn-info btn-sm' title='Exportar  nomina' disable readonly>&nbsp;&nbsp;Descargar&nbsp;&nbsp;</button></td>";
-                } ?>
+                 ?>
               </table>
             </div>
             <div class="box-body pad">

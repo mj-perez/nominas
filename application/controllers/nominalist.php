@@ -19,10 +19,12 @@ class nominalist extends CI_Controller {
 	    if(isset($_SESSION["sesion"])){	
 			$data["nombre"]=$_SESSION["nombre"];
 			$data["usuario"]=$_SESSION["usuario"];
-			$user=$_SESSION["usuario"];
-			$this->load->view('contenido');
+			$data['nombrecliente']=$_SESSION["nombrecliente"];
+			$data['idcliente']=$_SESSION["idcliente"];
+			$user=$_SESSION["usuario"];			
 			$data['clientes'] = $this->listar->clientes($user);
-			$data['usuarios'] = $this->listar->usuarios();
+			$data['contratos'] = $this->nomina->buscar_contratoscliente($data['idcliente']);
+			$this->load->view('contenido');
 			$this->load->view('layout/layout_nominas',$data);
 			$this->load->view('layout/aside',$data);
 			$this->load->view('nomina/nominaslistado',$data);
@@ -35,17 +37,22 @@ class nominalist extends CI_Controller {
 
 	function ImportaNominas(){
 	    if(isset($_SESSION["sesion"])){	
+			if(isset($_POST['cliente'])){
+				unset($_SESSION["nombrecliente"]);
+				unset($_SESSION["idcliente"]);
+				$id_cliente= $_POST['cliente'];
+				$datoscliente=$this->listar->datoscliente($id_cliente);
+				$_SESSION["nombrecliente"]=$datoscliente['cliente'];
+				$_SESSION["idcliente"]=$id_cliente;
+			}
 			$data["nombre"]=$_SESSION["nombre"];
 			$data["usuario"]=$_SESSION["usuario"];
-			if(isset($_POST["cliente"])){
-				$_SESSION["cli"]=$_POST["cliente"];
-				$data['cli']=$_SESSION["cli"];
-			}
+			$data['nombrecliente']=$_SESSION["nombrecliente"];
+			$data['idcliente']=$_SESSION["idcliente"];
 			$user=$_SESSION["usuario"];
-			$this->load->view('contenido');
-			$this->load->view('layout/layout_nominas',$data);
 			$data['clientes'] = $this->listar->clientes($user);
-			$data['usuarios'] = $this->listar->usuarios();
+			$this->load->view('contenido');
+			$this->load->view('layout/layout_nominas',$data);		
 			$this->load->view('layout/aside',$data);
 			$this->load->view('nomina/ImportNomina',$data);
 		}else{
@@ -58,15 +65,20 @@ class nominalist extends CI_Controller {
       if(isset($_SESSION["sesion"])){
 			$id_cliente= $_POST['clientes'];
 			if($id_cliente!= null){
+				unset($_SESSION["nombrecliente"]);
+				unset($_SESSION["idcliente"]);
+				$datoscliente=$this->listar->datoscliente($id_cliente);
+				$_SESSION["nombrecliente"]=$datoscliente['cliente'];
+				$_SESSION["idcliente"]=$id_cliente;
+				$data['nombrecliente']=$_SESSION["nombrecliente"];
+				$data['idcliente']=$_SESSION["idcliente"];
 				$data["nombre"]=$_SESSION["nombre"];
 				$data["usuario"]=$_SESSION["usuario"];
-				$user=$_SESSION["usuario"];
+				$user=$_SESSION["usuario"];	
+				$data['clientes'] = $this->listar->clientes($user);
+				$data['contratos'] = $this->nomina->buscar_contratoscliente($id_cliente);
 				$this->load->view('contenido');
 				$this->load->view('layout/layout_nominas',$data);
-				$user=$_SESSION["usuario"];
-				$data['clientes'] = $this->listar->clientes($user);
-				$data['usuarios'] = $this->listar->usuarios();
-				$data['contratos'] = $this->nomina->buscar_contratoscliente($id_cliente);
 				$this->load->view('layout/aside',$data);
 				$this->load->view('nomina/nominaslistado',$data);
 			}else{
@@ -81,16 +93,22 @@ class nominalist extends CI_Controller {
       if(isset($_SESSION["sesion"])){
 			$id_cliente= $_POST['clientes'];
 			if($id_cliente!= null){
+				unset($_SESSION["nombrecliente"]);
+				unset($_SESSION["idcliente"]);
+				$datoscliente=$this->listar->datoscliente($id_cliente);
+				$_SESSION["nombrecliente"]=$datoscliente['cliente'];
+				$_SESSION["idcliente"]=$id_cliente;
+				$data['nombrecliente']=$_SESSION["nombrecliente"];
+				$data['idcliente']=$_SESSION["idcliente"];
 				$data["nombre"]=$_SESSION["nombre"];
 				$data["usuario"]=$_SESSION["usuario"];
+				$user=$_SESSION["usuario"];
+				$data['clientes'] = $this->listar->clientes($user);
+				$data['contratos'] = $this->nomina->buscar_contratoscliente($id_cliente);				
 				$this->load->view('contenido');
 				$this->load->view('layout/layout_nominas',$data);
-				$data['contratos']= $this->nomina->contratos();
-				$data['clientes'] = $this->listar->clientes($user);
-				$data['usuarios'] = $this->listar->usuarios();
-				$data['contratos'] = $this->nomina->buscar_contratoscliente($id_cliente);
 				$this->load->view('layout/aside',$data);
-				$this->load->view('nomina/ImportNomina',$data);
+				$this->load->view('sistema/home',$data);
 			}else{
 				redirect(site_url("nominalist/ImportaNominas"));
 			}
@@ -103,7 +121,7 @@ class nominalist extends CI_Controller {
 	 public function exportarexcel(){
 		$this->load->library('phpexcel');
 		$this->load->model("nomina");	
-		$cli=$_SESSION['client'];
+		$cli=$_POST['cliente'];
 		//Lectura de excel
 		$objReader =  PHPExcel_IOFactory::createReader('Excel2007');		
 		$object = $objReader->load("doc/plantilla/PlantillaNomina.xlsx");
@@ -152,9 +170,10 @@ class nominalist extends CI_Controller {
 	    	$id_usuario=$_SESSION["usuario"];
 			$data["nombre"]=$_SESSION["nombre"];
 			$data["usuario"]=$_SESSION["usuario"];
-			$this->load->view('contenido');
-			$data['usuarios'] = $this->listar->usuarios();
+			$data['nombrecliente']=$_SESSION["nombrecliente"];
+			$data['idcliente']=$_SESSION["idcliente"];
 			$data['nominasingresadas']= $this->nomina->nominaingresada($id_usuario);
+			$this->load->view('contenido');
 			$this->load->view('layout/layout_nominas',$data);
 			$this->load->view('layout/aside',$data);
 			$this->load->view('nomina/chequeonimonas',$data);
@@ -253,21 +272,23 @@ class nominalist extends CI_Controller {
 		 	$data["nombre"]=$_SESSION["nombre"];
 			$data["usuario"]=$_SESSION["usuario"];
 			$data['contador']= count($data['nombre2']);
+			$data['nombrecliente']=$_SESSION["nombrecliente"];
+			$data['idcliente']=$_SESSION["idcliente"];
 			$user=$_SESSION["usuario"];
-			$this->load->view('contenido');
-			$this->load->view('layout/layout_nominas',$data);
-			$data['usuarios'] = $this->listar->usuarios();
 			$data['clientes'] = $this->listar->clientes($user);
+			$this->load->view('contenido');
+			$this->load->view('layout/layout_nominas',$data);			
 			$this->load->view('layout/aside',$data);
 			$this->load->view('nomina/ImportNomina',$data);
 		}else{
 			$data["nombre"]=$_SESSION["nombre"];
 			$data["usuario"]=$_SESSION["usuario"];
+			$data['nombrecliente']=$_SESSION["nombrecliente"];
+			$data['idcliente']=$_SESSION["idcliente"];
 			$user=$_SESSION["usuario"];
+			$data['clientes'] = $this->listar->clientes($user);
 			$this->load->view('contenido');
 			$this->load->view('layout/layout_nominas',$data);
-			$data['clientes'] = $this->listar->clientes($user);
-			$data['usuarios'] = $this->listar->usuarios();
 			$this->load->view('layout/aside',$data);
 			$this->load->view('nomina/ImportNomina',$data);
 		}
@@ -598,69 +619,68 @@ class nominalist extends CI_Controller {
 	 		$object->getActiveSheet()->setCellValueByColumnAndRow(0 , $column_row, $row['ID_Nomina']);
 	 		$object->getActiveSheet()->setCellValueByColumnAndRow(1 , $column_row, $row['CodNomina']);
 	 		$object->getActiveSheet()->setCellValueByColumnAndRow(2 , $column_row, $row['FechaRegistro']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(3 , $column_row, $row['EstadoNomina']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(4 , $column_row, $row['Nombres']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(5 , $column_row, $row['ApellidoP']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(6 , $column_row, $row['ApellidoM']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(7 , $column_row, $row['Rut']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(8 , $column_row, $row['Supervisor']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(9 , $column_row, $row['Cliente']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(10, $column_row, $row['Cadena']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(11, $column_row, $row['Local']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(12, $column_row, $row['Ciudad']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(13, $column_row, $row['Region']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(14, $column_row, $row['CargoTrabajador']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(15, $column_row, $row['Jornada']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(16, $column_row, $row['FormaPago']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(17, $column_row, $row['Banco']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(18, $column_row, $row['NCuentaB']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(19, $column_row, $row['CO']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(20, $column_row, $row['TipoContrato']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(21, $column_row, $row['FechaInicio']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(22, $column_row, $row['FechaTermina']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(23, $column_row, $row['DiasTrabajados']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(24, $column_row, $row['SueldoBase']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(25, $column_row, $row['SueldoBaseProp']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(26, $column_row, $row['Gratificacion']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(27, $column_row, $row['BonoCualitativo']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(28, $column_row, $row['BonoCuantitavo']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(29, $column_row, $row['Cumplimiento']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(30, $column_row, $row['Bonos']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(31, $column_row, $row['N_HorasExtras']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(32, $column_row, $row['ValorHorasExtras']);
-			$object->getActiveSheet()->setCellValueByColumnAndRow(33, $column_row, $row['Aguinaldo']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(34, $column_row, $row['TotalImponible']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(35, $column_row, $row['Colacion']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(36, $column_row, $row['Movilizacion']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(37, $column_row, $row['MovilizacionVariable']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(38, $column_row, $row['Viatico']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(39, $column_row, $row['TotalHaber']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(40, $column_row, $row['DescuentoPrevicional']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(41, $column_row, $row['SueldoLiquido']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(42, $column_row, $row['SIS']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(43, $column_row, $row['Mutual']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(44, $column_row, $row['SeguroCesantia']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(45, $column_row, $row['ProvisionVacaciones']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(46, $column_row, $row['ProvisionFiniquito']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(47, $column_row, $row['Banefe']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(48, $column_row, $row['TotalCostoPersonal']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(49, $column_row, $row['ComisionAgencia']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(50, $column_row, $row['CostoFinalCliente']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(51, $column_row, $row['Observacion']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(52, $column_row, $row['LlegadaFulltime']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(53, $column_row, $row['LlegadaPartime']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(54, $column_row, $row['LlegadaSupervisor']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(55, $column_row, $row['DocCelular']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(56, $column_row, $row['DocTablet']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(57, $column_row, $row['DocNotebook']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(58, $column_row, $row['DocCredencial']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(59, $column_row, $row['DocUniforme']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(60, $column_row, $row['DocEPP']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(61, $column_row, $row['DocClub360']);
-	 		$object->getActiveSheet()->setCellValueByColumnAndRow(62, $column_row, $row['DocCloud']);
-			$object->getActiveSheet()->setCellValueByColumnAndRow(63, $column_row, $row['DocIntranet']);
-			$object->getActiveSheet()->setCellValueByColumnAndRow(64, $column_row, $row['DocApenet']);
-			$object->getActiveSheet()->setCellValueByColumnAndRow(65, $column_row, $row['idUserRn']);	 		
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(3 , $column_row, $row['Nombres']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(4 , $column_row, $row['ApellidoP']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(5 , $column_row, $row['ApellidoM']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(6 , $column_row, $row['Rut']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(7 , $column_row, $row['Supervisor']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(8 , $column_row, $row['Cliente']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(9, $column_row, $row['Cadena']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(10, $column_row, $row['Local']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(11, $column_row, $row['Ciudad']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(12, $column_row, $row['Region']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(13, $column_row, $row['CargoTrabajador']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(14, $column_row, $row['Jornada']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(15, $column_row, $row['FormaPago']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(16, $column_row, $row['Banco']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(17, $column_row, $row['NCuentaB']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(18, $column_row, $row['CO']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(19, $column_row, $row['TipoContrato']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(20, $column_row, $row['FechaInicio']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(21, $column_row, $row['FechaTermina']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(22, $column_row, $row['DiasTrabajados']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(23, $column_row, $row['SueldoBase']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(24, $column_row, $row['SueldoBaseProp']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(25, $column_row, $row['Gratificacion']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(26, $column_row, $row['BonoCualitativo']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(27, $column_row, $row['BonoCuantitavo']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(28, $column_row, $row['Cumplimiento']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(29, $column_row, $row['Bonos']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(30, $column_row, $row['N_HorasExtras']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(31, $column_row, $row['ValorHorasExtras']);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(32, $column_row, $row['Aguinaldo']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(33, $column_row, $row['TotalImponible']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(34, $column_row, $row['Colacion']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(35, $column_row, $row['Movilizacion']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(36, $column_row, $row['MovilizacionVariable']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(37, $column_row, $row['Viatico']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(38, $column_row, $row['TotalHaber']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(39, $column_row, $row['DescuentoPrevicional']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(40, $column_row, $row['SueldoLiquido']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(41, $column_row, $row['SIS']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(42, $column_row, $row['Mutual']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(43, $column_row, $row['SeguroCesantia']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(44, $column_row, $row['ProvisionVacaciones']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(45, $column_row, $row['ProvisionFiniquito']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(46, $column_row, $row['Banefe']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(47, $column_row, $row['TotalCostoPersonal']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(48, $column_row, $row['ComisionAgencia']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(49, $column_row, $row['CostoFinalCliente']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(50, $column_row, $row['Observacion']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(51, $column_row, $row['LlegadaFulltime']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(52, $column_row, $row['LlegadaPartime']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(53, $column_row, $row['LlegadaSupervisor']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(54, $column_row, $row['DocCelular']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(55, $column_row, $row['DocTablet']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(56, $column_row, $row['DocNotebook']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(57, $column_row, $row['DocCredencial']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(58, $column_row, $row['DocUniforme']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(59, $column_row, $row['DocEPP']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(60, $column_row, $row['DocClub360']);
+	 		$object->getActiveSheet()->setCellValueByColumnAndRow(61, $column_row, $row['DocCloud']);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(62, $column_row, $row['DocIntranet']);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(63, $column_row, $row['DocApenet']);
+			$object->getActiveSheet()->setCellValueByColumnAndRow(64, $column_row, $row['idUserRn']);	 		
 	 		$i++;
 	 		$column_row++;
 	 	}
@@ -676,7 +696,23 @@ class nominalist extends CI_Controller {
 	}
 
 
+	function reprobarNomina(){
+		$id=$_POST['id'];
+		echo "<form class='form-horizontal' id='myform2' name='myform2' method='post' action=". site_url()."nominalist/reprobarNominaFinal enctype='multipart/form-data'>";
+		echo "<div class='form__container'>
+				<div class='form__content'>
+					<label><h3>¿Esta seguro que desea reprobar esta nomina?</h3></label><br><br>
+					<input type='hidden' name='id_nominar' value='".$id."'>
+			   </div>
+			</div>
+			</form>";
+	}
 
+	function reprobarNominaFinal(){
+		$id=$_POST['id_nominar'];
+		$mensaje=$this->mchequeonomina->reprobarNomina($id);
+		redirect(site_url("nominalist/listNominas"));
+	}
 
 
 

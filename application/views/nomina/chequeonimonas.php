@@ -20,7 +20,6 @@
                 <tr>
                   <th>ID_Nomina</th>
                   <th>FechaRegistro</th>
-                  <th>EstadoNomina</th>
                   <th>Nombres</th>
                   <th>ApellidoP</th>
                   <th>ApellidoM</th>
@@ -90,7 +89,6 @@
             
         echo"  <tr> <td>".$c['ID_Nomina']."</td>
                   <td>".$c['FechaRegistro']."</td>
-                  <td>".$c['EstadoNomina']."</td>
                   <td>".$c['Nombres']."</td>
                   <td>".$c['ApellidoP']."</td>
                   <td>".$c['ApellidoM']."</td>

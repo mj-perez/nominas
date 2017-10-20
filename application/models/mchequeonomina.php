@@ -59,5 +59,11 @@ class mchequeonomina extends CI_model {
         return $resultado;
     }
 
+    function reprobarNomina($idNomina){
+        $sp="EXECUTE SP_Rechazar_NominaR ".$idNomina;
+        $res=$this->db->query($sp);
+        return $res->num_rows();
+    }
+
 
 }

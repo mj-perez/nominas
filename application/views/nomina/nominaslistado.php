@@ -96,81 +96,43 @@
         
 <tbody>
 <?php
-if(isset($contratos)){
-
 
 foreach($contratos as $c) {
 echo "     
             <tr>
-                
-                   <td>".$c['Nombres']."</td>
-       <td>".$c['Ap_Paterno']."</td> 
-    <td>".$c['Ap_Materno']."</td>
-    <td>".$c['Rut']."</td>
-    <td>".$c['Cliente']."</td>
-    <td>".$c['local']."</td>
-    <td>".$c['cadena']."</td>
-    <td>".$c['Comuna']."</td>
-    <td>".$c['Region']."</td> 
-    <td>".$c['EGrupo']."</td> 
-    <td>".$c['Tipo_Contrato']."</td> 
-    <td>".$c['Cargo']."</td>
-    <td>".$c['Banco']."</td> 
-    <td>".$c['FPago']."</td> 
-    <td>".$c['NCuenta']."</td> 
-    <td>".$c['afp']."</td> 
-    <td>".$c['isapre']."</td>
-    <td>".$c['vacaciones']."</td>  
-    <td>".$c['Fecha_Inicio']."</td>
-    <td>".$c['Fecha_Termino']."</td> 
-    <td>".$c['Sueldo_Base']."</td> 
-    <td>".$c['Bono_Cualitativo']."</td>
-    <td>".$c['Bono_Cuantitativo']."</td> 
-    <td>".$c['Colacion']."</td>
-    <td>".$c['Movilizacion']."</td> 
-    <td>".$c['Usuario']."</td> 
-    <td>".$c['Status_Contrato']."</td> 
-    <td>".$c['ACTIVO']."</td>
-        <td>".$nombre."</td>
+                <td>".$c['Nombres']."</td>
+                <td>".$c['Ap_Paterno']."</td> 
+                <td>".$c['Ap_Materno']."</td>
+                <td>".$c['Rut']."</td>
+                <td>".$c['Cliente']."</td>
+                <td>".$c['local']."</td>
+                <td>".$c['cadena']."</td>
+                <td>".$c['Comuna']."</td>
+                <td>".$c['Region']."</td> 
+                <td>".$c['EGrupo']."</td> 
+                <td>".$c['Tipo_Contrato']."</td> 
+                <td>".$c['Cargo']."</td>
+                <td>".$c['Banco']."</td> 
+                <td>".$c['FPago']."</td> 
+                <td>".$c['NCuenta']."</td> 
+                <td>".$c['afp']."</td> 
+                <td>".$c['isapre']."</td>
+                <td>".$c['vacaciones']."</td>  
+                <td>".$c['Fecha_Inicio']."</td>
+                <td>".$c['Fecha_Termino']."</td> 
+                <td>".$c['Sueldo_Base']."</td> 
+                <td>".$c['Bono_Cualitativo']."</td>
+                <td>".$c['Bono_Cuantitativo']."</td> 
+                <td>".$c['Colacion']."</td>
+                <td>".$c['Movilizacion']."</td> 
+                <td>".$c['Usuario']."</td> 
+                <td>".$c['Status_Contrato']."</td> 
+                <td>".$c['ACTIVO']."</td>
+                <td>".$nombre."</td>
             </tr>";
         }
 
-    } else {
-        
-    echo"    
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-";
-
-
-    }
-    ?><a href="<?php echo base_url("menu/index");?>">
+    ?>
        </tbody>
     </table>
 </div>
@@ -185,84 +147,6 @@ echo "
 </div>
 </div>
 
-<!-- </div></div></div></div></div></div></div> -->
-<div class='modal fade' id='modal-default'>
-  <div class='modal-dialog'>
-    <div class='modal-content'>
-      <div class='modal-header'>
-        <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-          <span aria-hidden='true'>&times;</span></button>
-            <h4 class='modal-title'>Informacion de Local y Cadena</h4>
-      </div>
-        <div class='modal-body'> 
-            <div class="col-xs-3">
-                <label>
-                <p>Horario: <form id="form2" name="form2" method="post" action="<?php echo  site_url();?>nominalist/buscarUsuario">
-                    <select id="usuarios" name="usuarios" style="width:130px" class="form-control" onchange="document.getElementById('form2').submit();"> 
-                        <option value="">Seleccione</option> 
-                        <?php foreach ($usuarios as $u) {echo "<option value='".$u["id_usuario"]."'>".strtoupper($u["usuario"])."</option>"; } ?>
-                    </select>
-                    </form>
-                </p>
-                </label>
-            </div>
-            <div class="col-xs-3">
-                <label>
-                    <p>Jornada:
-                    <form id="form2" name="form2" method="post" action="<?php echo  site_url();?>nominalist/buscarUsuario"> 
-                    <select id="usuarios" name="usuarios" style="width:130px" class="form-control" onchange="document.getElementById('form2').submit();"> 
-                        <option value="">Seleccione</option> 
-                        <?php foreach ($usuarios as $u) {echo "<option value='".$u["id_usuario"]."'>".strtoupper($u["usuario"])."</option>";}?>
-                    </select>
-                    </form>
-                    </p>
-                </label>
-            </div>
-            <div class="col-xs-3">
-                <label> 
-                    <p>Local:
-                        <form id="form2" name="form2" method="post" action="<?php echo  site_url();?>nominalist/buscarUsuario"> 
-                            <select id="usuarios" name="usuarios" style="width:130px" class="form-control" onchange="document.getElementById('form2').submit();"> 
-                                <option value="">Seleccione</option> 
-                                <?php foreach ($usuarios as $u) {echo "<option value='".$u["id_usuario"]."'>".strtoupper($u["usuario"])."</option>"; } ?> 
-                            </select>
-                        </form>
-                    </p>
-                </label>
-            </div>
-            <div class="col-xs-3">
-                <label> 
-                    <p>Cadena:
-                        <form id="form2" name="form2" method="post" action="<?php echo  site_url();?>nominalist/buscarUsuario">
-                            <select id="usuarios" name="usuarios" style="width:130px" class="form-control" onchange="document.getElementById('form2').submit();"> 
-                                <option value="">Seleccione</option> 
-                                <?php foreach ($usuarios as $u) {echo "<option value='".$u["id_usuario"]."'>".strtoupper($u["usuario"])."</option>";}?>
-                            </select>
-                        </form>
-                    </p>
-                </label>
-            </div> 
-            <br>
-            <br>
-              </div>
-              <div class='modal-footer'>
-                <button type='button' class='btn btn-default pull-left' data-dismiss='modal'>Cancelar</button>
-                <a href="<?php echo base_url("menu/index");?>"><button type='button' class='btn btn-primary'>Ingresar</button></a>
-
-              </div>
-            </div>
-            <!-- /.modal-content -->
-          </div>
-          <!-- /.modal-dialog -->
-        </div>
-
-<div class='modal fade' id='modal-bonos' >
-</div>
-
-
-</section>
-</div>
-</div>
 <style type="text/css">
       th, td { white-space: nowrap; }
     div.dataTables_wrapper {
@@ -436,46 +320,6 @@ function buscarbonos(id){
 
     
 </script>
-<script>
-    
- $(document).ready(function() {
-    var table = $('#exa').DataTable( {
-      searching   : true,  
-      info        : true,
-      lengthMenu : [[5, 15, 25,50, -1], [5,15, 25, 50, "All"]],
-      scroll: true,
-    
-      fixedColumns:   {
-            leftColumns: 4
-        },
-        "language": {
-        "sProcessing":    "Procesando...",
-        "sLengthMenu":    "Mostrar _MENU_ registros",
-        "sZeroRecords":   "No se encontraron resultados",
-        "sEmptyTable":    "Ningún dato disponible en esta tabla",
-        "sInfo":          "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-        "sInfoEmpty":     "Mostrando registros del 0 al 0 de un total de 0 registros",
-        "sInfoFiltered":  "(filtrado de un total de _MAX_ registros)",
-        "sInfoPostFix":   "",
-        "sSearch":        "Buscar:",
-        "sUrl":           "",
-        "sInfoThousands":  ",",
-        "sLoadingRecords": "Cargando...",
-        "oPaginate": {
-            "sFirst":    "Primero",
-            "sLast":    "Último",
-            "sNext":    "Siguiente",
-            "sPrevious": "Anterior"
-        },
-        "oAria": {
-            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-        }
-    }
-    } );
-} );
-    
-</script>
 <script type="text/javascript">
 
     $("#sig-btn").click(function(){
@@ -567,37 +411,5 @@ function buscarbonos(id){
           }
 });
 ";}?>
-
-$(document).ready(function() {
-    var table = $('#dias').DataTable( {
-      
-        "language": {
-        "sProcessing":    "Procesando...",
-        "sLengthMenu":    "Mostrar _MENU_ registros",
-        "sZeroRecords":   "No se encontraron resultados",
-        "sEmptyTable":    "Ningún dato disponible en esta tabla",
-        "sInfo":          "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-        "sInfoEmpty":     "Mostrando registros del 0 al 0 de un total de 0 registros",
-        "sInfoFiltered":  "(filtrado de un total de _MAX_ registros)",
-        "sInfoPostFix":   "",
-        "sSearch":        "Buscar:",
-        "sUrl":           "",
-        "sInfoThousands":  ",",
-        "sLoadingRecords": "Cargando...",
-        "oPaginate": {
-            "sFirst":    "Primero",
-            "sLast":    "Último",
-            "sNext":    "Siguiente",
-            "sPrevious": "Anterior"
-        },
-        "oAria": {
-            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-        }
-    }
-    } );
-} );
-
-
 
 </script>

@@ -8,11 +8,10 @@
       <span class="logo-lg"><b>Grupo</b>Progestion</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
+    <nav class="navbar navbar-static-top" style="align-content: center;">
       <!-- Sidebar toggle button-->
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <label style="color: white;">CLIENTE <?php echo $nombrecliente; ?></label></span>
       </a>
 
       <div class="navbar-custom-menu">
