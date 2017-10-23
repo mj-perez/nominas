@@ -11,19 +11,22 @@
     <nav class="navbar navbar-static-top" style="align-content: center;">
       <!-- Sidebar toggle button-->
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        <label style="color: white;">CLIENTE <?php echo $nombrecliente; ?></label></span>
+       
       </a>
 
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- Messages: style can be found in dropdown.less-->
-          <li class="dropdown messages-menu"></li>
+          <li class="dropdown messages-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">            <i class="fa fa-industry"></i>
+             <label style="color: white;">&nbsp;<?php echo $nombrecliente; ?></label></span>
+           </a>
+          </li>
           <!-- Notifications: style can be found in dropdown.less -->
           <li class="dropdown notifications-menu">
           
           </li>
-          <!-- Tasks: style can be found in dropdown.less -->
-          <li class="dropdown tasks-menu">
+         <!--  <li class="dropdown tasks-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-flag-o"></i>
               <span class="label label-danger">9</span>
@@ -31,9 +34,9 @@
             <ul class="dropdown-menu">
               <li class="header">You have 9 tasks</li>
               <li>
-                <!-- inner menu: contains the actual data -->
+                inner menu: contains the actual data
                 <ul class="menu">
-                  <li><!-- Task item -->
+                  <li>Task item
                     <a href="#">
                       <h3>
                         Design some buttons
@@ -47,18 +50,19 @@
                       </div>
                     </a>
                   </li>
-                  <!-- end task item -->
+                  end task item
                 </ul>
               </li>
               <li class="footer">
                 <a href="#">View all tasks</a>
               </li>
             </ul>
-          </li>
+          </li> -->
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <span class="hidden-xs"><?php echo $nombre;?></span>
+               
+              <span class="hidden-xs"><i class="fa fa-user"></i>&nbsp;<?php echo $nombre;?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->

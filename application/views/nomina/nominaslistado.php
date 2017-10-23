@@ -49,11 +49,11 @@
         </form>
         </td>
          
-       <td width="25%"><h5 class="titulousuarios" align="left"><font color="black">Limpiar</font></h5>
+       <!-- <td width="25%"><h5 class="titulousuarios" align="left"><font color="black">Limpiar</font></h5>
           <form class='form-horizontal' name ='form3' id='form3' method='POST' action="<?php echo  site_url();?>nominalist/listnominas">
            <button id="btn_ini" name="btn_ini" type="submit" class="btn btn-info btn-sm" title='exportar'  onclick="document.getElementById(form3).submit();"><i class="glyphicon glyphicon-refresh"></i></button>
         </form>     
-       </td>
+       </td> -->
 
     
 </table>

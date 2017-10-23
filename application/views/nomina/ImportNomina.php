@@ -14,40 +14,47 @@
               <div class="box-header">
                 <table>
                   <td>
-                    <h3 class="box-title">Plantilla Oficial de Nomina 
-                      <small>Está plantilla es el formato para el ingreso de las nominas</small>
+                    <h3 class="box-title"><i class="fa fa-circle-o"></i> &nbsp;Selecione Cliente
+                      <small>Selecione cliente si desea cambiarlo para descarga su Nomina</small>
                     </h3>
                   </td>
-              <?php echo "<form action='".site_url()."nominalist/exportarexcel' method='POST' name='client' id='client'>
-                     <td><input type='hidden' name='cliente' id='cliente' value='".$idcliente."'></td>
-                      <td><button type='submit' class='btn btn-block btn-info btn-sm' title='Exportar  nomina'>&nbsp;&nbsp;Descargar&nbsp;&nbsp;</button></td>
-                      </form>";
-                 ?>
-              </table>
-            </div>
-            <div class="box-body pad">
-              <table>   
-                <td width="3%">
-                </td> 
-                <td width="30%"><h5 class="tituloclientes" align="left"><font color="black">Buscar Clientes</font></h5>
+              
+                
+                </table>
+                <br>
+                <table>
+                  <td width="30%">
                   <form id="form1" name="form1" method="post" action="<?php echo  site_url();?>/nominalist/ImportaNominas">
                     <select id="cliente" name="cliente" style="width:200px" class="form-control" onchange="document.getElementById('form1').submit();">
-                    <option value="">Seleccione</option>
+                    <option value=""><?php echo $nombrecliente; ?></option>
                     <?php
                       foreach ($clientes as $cl) {
                           echo "<option value='".$cl["id_cliente"]."'>".strtoupper($cl["cliente"])."</option>";}?>
                     </select> 
                   </form>
                 </td>
-                <td></td>      
-                <td>
-                <h5 class="tituloclientes" align="left"><font color="black">Limpiar</font></h5>
-                <form class='form-horizontal' name ='form3' id='form3' method='POST' action="<?php echo  site_url();?>nominalist/ImportaNominas">
-                <button id="btn_ini" name="btn_ini" type="submit" class="btn btn-info btn-sm" title='Limpiar tabla'  onclick="document.getElementById(form3).submit();"><i class="glyphicon glyphicon-refresh"></i></button>
-                </form>     
-                </td> 
-                <td></td>
-                <td></td>
+              <?php echo "<form action='".site_url()."nominalist/exportarexcel' method='POST' name='client' id='client'>
+                     <td><input type='hidden' name='cliente' id='cliente' value='".$idcliente."'></td>
+                      <td><button type='submit' class='btn btn-block btn-info btn-sm' title='Exportar  nomina'>&nbsp;&nbsp;Descargar&nbsp;&nbsp;</button></td>
+                      </form>";
+                 ?>
+
+              </table>
+              <br>
+              <table>
+                  <td>
+                    <h3 class="box-title"><i class="fa fa-circle-o"></i> &nbsp;Importar Nomina
+                      <small>Seleccione la nomina la cual quieres Registrar. </small>
+                    </h3>
+                  </td>
+              
+                
+                </table>
+            </div>
+
+            <div class="box-body pad">
+              
+              <table>   
                 <td>
                   <h5 class="tituloclientes" align="left"><font color="black">Importar</font></h5>
                     <form id="formu2" class="bus" action="<?php echo  site_url();?>nominalist/agregarnominamasiva" method="POST" enctype="multipart/form-data">
@@ -56,7 +63,14 @@
                     </label>
                      <input type="file" id="excel" name="excel"  onchange="formato('#excel');" />
                   </form>     
-                </td>
+                </td> 
+                <td></td>      
+                <td>
+                <h5 class="tituloclientes" align="left"><font color="black">Limpiar</font></h5>
+                <form class='form-horizontal' name ='form3' id='form3' method='POST' action="<?php echo  site_url();?>nominalist/ImportaNominas">
+                <button id="btn_ini" name="btn_ini" type="submit" class="btn btn-info btn-sm" title='Limpiar tabla'  onclick="document.getElementById(form3).submit();"><i class="glyphicon glyphicon-refresh"></i></button>
+                </form>     
+                </td> 
               </table>
             <?php 
               if(isset($nombre2)){
